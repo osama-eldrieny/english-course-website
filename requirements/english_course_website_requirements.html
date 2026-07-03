@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Course Website — Project Requirements</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a5c9a;
+    --primary-light: #e8f2fc;
+    --primary-mid: #4a90d9;
+    --accent: #f4a62a;
+    --accent-light: #fef6e8;
+    --green: #1e8a5c;
+    --green-light: #e7f7f0;
+    --red: #c0392b;
+    --red-light: #fdf0ee;
+    --gray-50: #f8f9fa;
+    --gray-100: #f1f3f4;
+    --gray-200: #e8eaed;
+    --gray-400: #9aa0a6;
+    --gray-600: #5f6368;
+    --gray-800: #3c4043;
+    --gray-900: #202124;
+    --border: 1px solid var(--gray-200);
+    --radius: 10px;
+    --radius-lg: 16px;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--gray-900);
+    background: #fff;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    background: linear-gradient(135deg, #0f3d6e 0%, #1a5c9a 50%, #2478c8 100%);
+    color: #fff;
+    padding: 72px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 30%;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .cover-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50px;
+    padding: 5px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    max-width: 560px;
+  }
+  .cover .subtitle {
+    font-size: 17px;
+    opacity: 0.8;
+    max-width: 500px;
+    margin-bottom: 36px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 24px;
+  }
+  .cover-meta-item { font-size: 13px; opacity: 0.75; }
+  .cover-meta-item strong { display: block; font-size: 15px; opacity: 1; font-weight: 600; margin-bottom: 2px; }
+
+  /* ── LAYOUT ── */
+  .doc { max-width: 1200px; margin: 0 auto; padding: 0 0 80px; }
+
+  .section {
+    padding: 48px 60px;
+    border-bottom: var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    line-height: 1.2;
+    color: var(--gray-900);
+    margin-bottom: 24px;
+  }
+
+  /* ── NAME CARDS ── */
+  .names-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .name-card {
+    background: var(--gray-50);
+    border: var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    cursor: default;
+    transition: all 0.2s;
+  }
+  .name-card:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-mid);
+  }
+  .name-card.recommended {
+    background: var(--primary-light);
+    border: 2px solid var(--primary);
+  }
+  .name-card .rec-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 50px;
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .name-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 3px;
+  }
+  .name-card p {
+    font-size: 12px;
+    color: var(--gray-600);
+  }
+
+  /* ── AUDIENCE ── */
+  .audience-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .audience-card {
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px;
+  }
+  .audience-card.students { border-left: 4px solid var(--primary); }
+  .audience-card.teachers { border-left: 4px solid var(--accent); }
+  .audience-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .audience-label.blue { color: var(--primary); }
+  .audience-label.amber { color: #b07a0c; }
+  .audience-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .audience-card p { font-size: 13px; color: var(--gray-600); }
+  .coming-soon {
+    display: inline-block;
+    background: var(--accent-light);
+    color: #b07a0c;
+    border: 1px solid #f4c96a;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 50px;
+    margin-top: 8px;
+  }
+
+  /* ── SITE MAP ── */
+  .sitemap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .sm-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .sm-num {
+    min-width: 28px;
+    height: 28px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .sm-content { flex: 1; }
+  .sm-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--gray-900);
+    margin-bottom: 2px;
+  }
+  .sm-desc { font-size: 13px; color: var(--gray-600); margin-bottom: 6px; }
+  .sm-children { padding-left: 16px; border-left: 2px solid var(--gray-200); margin-top: 6px; }
+  .sm-child {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 5px 0;
+  }
+  .sm-sub-num {
+    min-width: 22px;
+    height: 22px;
+    background: var(--gray-100);
+    border: var(--border);
+    color: var(--gray-600);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .sm-child-title { font-size: 14px; font-weight: 500; }
+  .sm-child-note { font-size: 12px; color: var(--gray-400); }
+  .tag-cs {
+    display: inline-block;
+    background: #fff8e7;
+    color: #9a6800;
+    border: 1px solid #f4c96a;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 50px;
+    margin-left: 6px;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  .tag-req {
+    display: inline-block;
+    background: var(--red-light);
+    color: var(--red);
+    border: 1px solid #f5b8b3;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 50px;
+    margin-left: 6px;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+
+  /* ── COLORS ── */
+  .palette {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .swatch {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    border: var(--border);
+    position: relative;
+  }
+  .swatch-label {
+    font-size: 11px;
+    color: var(--gray-600);
+    text-align: center;
+    margin-top: 4px;
+    width: 52px;
+  }
+
+  /* ── FEATURES GRID ── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .feature-card {
+    background: var(--gray-50);
+    border: var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+  }
+  .feature-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .feature-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .feature-card p { font-size: 12px; color: var(--gray-600); }
+
+  /* ── CTA ── */
+  .cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .cta-card {
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px 20px;
+  }
+  .cta-card.primary-cta { border-color: #25d366; background: #f0fdf5; }
+  .cta-card.secondary-cta { background: var(--primary-light); border-color: var(--primary-mid); }
+  .cta-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .cta-card p { font-size: 13px; color: var(--gray-600); }
+  .cta-example {
+    margin-top: 10px;
+    background: rgba(0,0,0,0.04);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-family: monospace;
+    word-break: break-all;
+  }
+
+  /* ── REFERRAL ── */
+  .referral-box {
+    background: linear-gradient(135deg, #fff8e7, #fef4d8);
+    border: 1px solid #f4c96a;
+    border-radius: var(--radius-lg);
+    padding: 24px 28px;
+  }
+  .referral-box h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .referral-steps {
+    display: flex;
+    gap: 20px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .referral-step {
+    flex: 1;
+    min-width: 140px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .rs-num {
+    width: 28px; height: 28px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+  }
+  .rs-text { font-size: 13px; }
+
+  /* ── TECH STACK ── */
+  .tech-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gray-50);
+    border: var(--border);
+    border-radius: 50px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .pill-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+  }
+
+  /* ── REQUIREMENTS TABLE ── */
+  .req-list { display: flex; flex-direction: column; gap: 6px; }
+  .req-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 14px;
+    background: var(--gray-50);
+    border: var(--border);
+    border-radius: 8px;
+  }
+  .req-prio {
+    min-width: 60px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 0;
+    text-align: center;
+    border-radius: 50px;
+  }
+  .prio-must { background: #fde8e8; color: var(--red); }
+  .prio-should { background: var(--primary-light); color: var(--primary); }
+  .prio-nice { background: var(--gray-100); color: var(--gray-600); }
+  .req-text { font-size: 13px; }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    padding: 32px 60px;
+    background: var(--gray-50);
+    border-top: var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .doc-footer p { font-size: 13px; color: var(--gray-400); }
+
+  @media (max-width: 640px) {
+    .cover { padding: 40px 24px 36px; }
+    .section { padding: 36px 24px; }
+    .audience-row, .cta-grid { grid-template-columns: 1fr; }
+    .doc-footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-tag">Website Project Brief · v1.0</div>
+    <h1>English Course Website<br>Requirements Document</h1>
+    <p class="subtitle">Complete specification for the development agency — scope, content, UX, features, and technical guidelines.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><strong>Prepared</strong>June 2026</div>
+      <div class="cover-meta-item"><strong>Audience</strong>Students &amp; Professionals</div>
+      <div class="cover-meta-item"><strong>Status</strong>Draft — Ready for Review</div>
+      <div class="cover-meta-item"><strong>No. of Pages</strong>Sections 1–9</div>
+    </div>
+  </div>
+
+  <!-- 1. BRAND NAME -->
+  <div class="section">
+    <div class="section-label">Section 1</div>
+    <div class="section-title">Suggested Brand Names</div>
+    <p style="color:var(--gray-600); margin-bottom:20px;">Name options across three directions — clarity-focused, aspirational, and location-neutral. The agency should check domain availability for all options.</p>
+
+    <div class="names-grid">
+      <div class="name-card recommended">
+        <div class="rec-badge">⭐ Top Pick</div>
+        <h3>Fluent Path</h3>
+        <p>Journey + language growth. Clean, modern, memorable.</p>
+      </div>
+      <div class="name-card recommended">
+        <div class="rec-badge">⭐ Top Pick</div>
+        <h3>SpeakUp Academy</h3>
+        <p>Action-oriented. Speaks to confidence-building.</p>
+      </div>
+      <div class="name-card">
+        <h3>Elevate English</h3>
+        <p>Career-focused. Appeals to 25–35 segment.</p>
+      </div>
+      <div class="name-card">
+        <h3>Clarity Academy</h3>
+        <p>Clean &amp; trustworthy. Works for all courses.</p>
+      </div>
+      <div class="name-card">
+        <h3>BrightPath English</h3>
+        <p>Optimistic, educational, easy to remember.</p>
+      </div>
+      <div class="name-card">
+        <h3>The English Hub</h3>
+        <p>Community feel. Works well with referral program.</p>
+      </div>
+      <div class="name-card">
+        <h3>NextLevel English</h3>
+        <p>Strong for career / business segment.</p>
+      </div>
+      <div class="name-card">
+        <h3>Open Doors English</h3>
+        <p>Opportunity metaphor. Strong emotional resonance.</p>
+      </div>
+    </div>
+    <p style="font-size:13px; color:var(--gray-600);">💡 Tip: For the "Teaching 101" sub-course, this name is already strong and can stay as-is regardless of the parent brand chosen.</p>
+  </div>
+
+  <!-- 2. AUDIENCE -->
+  <div class="section">
+    <div class="section-label">Section 2</div>
+    <div class="section-title">Target Audience</div>
+    <div class="audience-row">
+      <div class="audience-card students">
+        <div class="audience-label blue">Primary Audience</div>
+        <h3>Students (17–35)</h3>
+        <p>Pre-university students (17–24) preparing for academic entry or IELTS. Young professionals (25–35) seeking career advancement, promotion, or opportunities abroad.</p>
+      </div>
+      <div class="audience-card teachers">
+        <div class="audience-label amber">Secondary Audience</div>
+        <h3>English Teachers</h3>
+        <p>Teachers who want to improve their own teaching methodology and professional skills. Served via the "Teaching 101" course.</p>
+        <div class="coming-soon">Coming Soon</div>
+      </div>
+    </div>
+    <p style="font-size:13px; color:var(--gray-600);">The website copy and tone should feel <strong>warm and encouraging</strong> for students, and <strong>professional and credible</strong> for career-seekers. Both should feel premium but not intimidating.</p>
+  </div>
+
+  <!-- 3. LOOK & FEEL -->
+  <div class="section">
+    <div class="section-label">Section 3</div>
+    <div class="section-title">Look &amp; Feel — Design Direction</div>
+
+    <p style="margin-bottom:20px; color:var(--gray-600);">Reference site: <strong>ieltsonlinetests.com</strong> — clean whites, blue primary, structured layout. The new site should feel <em>more modern and warmer</em> than the reference.</p>
+
+    <div style="margin-bottom:20px;">
+      <p style="font-size:13px; font-weight:600; color:var(--gray-800); margin-bottom:10px;">Color Palette</p>
+      <div class="palette">
+        <div>
+          <div class="swatch" style="background:#1a5c9a;"></div>
+          <div class="swatch-label">Primary Blue</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#4a90d9;"></div>
+          <div class="swatch-label">Mid Blue</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#e8f2fc;"></div>
+          <div class="swatch-label">Light Blue</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#f4a62a;"></div>
+          <div class="swatch-label">Accent Amber</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#1e8a5c;"></div>
+          <div class="swatch-label">Success Green</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#f8f9fa;"></div>
+          <div class="swatch-label">BG Light</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#ffffff; border:1px solid #e0e0e0;"></div>
+          <div class="swatch-label">White</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#202124;"></div>
+          <div class="swatch-label">Body Text</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#e8f2fc; color:#1a5c9a;">✦</div>
+        <h4>Typography</h4>
+        <p>Clean sans-serif for body. Serif accent for hero headings. Large, readable font sizes (16px+).</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fff0f8; color:#c0559e;">⬜</div>
+        <h4>White Space</h4>
+        <p>Generous padding. Sections breathe. Avoid crowded layouts. Use cards to group information.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#e7f7f0; color:#1e8a5c;">◎</div>
+        <h4>Navigation</h4>
+        <p>Sticky header. Clear labels. Dropdown for Courses. Mobile hamburger menu. Max 5 top-level items.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fef6e8; color:#c07800;">★</div>
+        <h4>Trust Signals</h4>
+        <p>Certificates display, instructor photos, star ratings on testimonials, student count badges.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#e8f2fc; color:#1a5c9a;">📱</div>
+        <h4>Mobile First</h4>
+        <p>Fully responsive. Priority on mobile experience — most users will arrive via WhatsApp/social.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fde8e8; color:#c0392b;">⚡</div>
+        <h4>Performance</h4>
+        <p>Fast load times. Compressed images. Minimal third-party scripts. Google PageSpeed score 80+.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. SITE MAP / NAVIGATION -->
+  <div class="section">
+    <div class="section-label">Section 4</div>
+    <div class="section-title">Site Map &amp; Navigation Structure</div>
+    <p style="color:var(--gray-600); margin-bottom:24px;">Top-level navigation tabs and all sub-pages. The agency should build this as a clear menu hierarchy.</p>
+
+    <div class="sitemap">
+
+      <div class="sm-item">
+        <div class="sm-num">H</div>
+        <div class="sm-content">
+          <div class="sm-title">Home</div>
+          <div class="sm-desc">Hero section, value proposition, social proof strip, instructors, testimonials, success stories, referral CTA.</div>
+        </div>
+      </div>
+
+      <div class="sm-item">
+        <div class="sm-num">1</div>
+        <div class="sm-content">
+          <div class="sm-title">Test Your English</div>
+          <div class="sm-desc">Embedded Google Form or typeform-style quiz. Collects name + email. Sends result + recommended course via WhatsApp/email.</div>
+        </div>
+      </div>
+
+      <div class="sm-item">
+        <div class="sm-num">2</div>
+        <div class="sm-content">
+          <div class="sm-title">Courses</div>
+          <div class="sm-desc">Landing page listing all course types with brief cards. Each card links to individual course page.</div>
+          <div class="sm-children">
+
+            <div class="sm-child">
+              <div class="sm-sub-num">2.1</div>
+              <div>
+                <div class="sm-child-title">Intensive English Course</div>
+                <div class="sm-child-note">Group format · Minimum 5 students to open · Schedule + pricing · WhatsApp CTA</div>
+              </div>
+            </div>
+
+            <div class="sm-child">
+              <div class="sm-sub-num">2.2</div>
+              <div>
+                <div class="sm-child-title">1-to-1 English Course</div>
+                <div class="sm-child-note">Private sessions · 4 sub-types below</div>
+                <div style="margin-top:6px; padding-left:12px; border-left:2px solid #e8eaed;">
+                  <p style="font-size:12px; padding:3px 0; color:var(--gray-600);">2.2.1 — General English</p>
+                  <p style="font-size:12px; padding:3px 0; color:var(--gray-600);">2.2.2 — Business English</p>
+                  <p style="font-size:12px; padding:3px 0; color:var(--gray-600);">2.2.3 — Consultation Session <span class="tag-req">Separate Price</span></p>
+                  <p style="font-size:12px; padding:3px 0; color:var(--gray-600);">2.2.4 — Teaching 101 (Teacher Training) <span class="tag-cs">Coming Soon</span></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sm-child">
+              <div class="sm-sub-num">2.3</div>
+              <div>
+                <div class="sm-child-title">Speaking Course</div>
+                <div class="sm-child-note">Group format · Minimum 5 students · Focus on fluency &amp; confidence</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sm-item">
+        <div class="sm-num">3</div>
+        <div class="sm-content">
+          <div class="sm-title">IELTS Preparation</div>
+          <div class="sm-desc">Dedicated IELTS section. Two track options below.</div>
+          <div class="sm-children">
+
+            <div class="sm-child">
+              <div class="sm-sub-num">3.1</div>
+              <div>
+                <div class="sm-child-title">Intensive Course — 1 Month</div>
+                <div class="sm-child-note">
+                  Prerequisite: Upper-Intermediate level or above <span class="tag-req">Entry Requirement</span><br>
+                  Includes mock tests · Fast-track to exam readiness
+                </div>
+              </div>
+            </div>
+
+            <div class="sm-child">
+              <div class="sm-sub-num">3.2</div>
+              <div>
+                <div class="sm-child-title">Regular Course — 2 Months</div>
+                <div class="sm-child-note">Open to all levels including beginners · Structured from foundation up</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="sm-item">
+        <div class="sm-num">+</div>
+        <div class="sm-content">
+          <div class="sm-title">Referral Program Page</div>
+          <div class="sm-desc">How it works, reward details, share link. Accessible from footer &amp; after enrollment confirmation.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 5. KEY SECTIONS (Homepage) -->
+  <div class="section">
+    <div class="section-label">Section 5</div>
+    <div class="section-title">Homepage Sections &amp; Content</div>
+
+    <div class="req-list">
+      <div class="req-row">
+        <div class="req-prio prio-must">Must</div>
+        <div class="req-text"><strong>Hero Section</strong> — Headline, subheadline, primary CTA button (WhatsApp), secondary CTA (Test Your English). Include a background image of a happy, diverse learning environment.</div>
+      </div>
+      <div class="req-row">
+        <div class="req-prio prio-must">Must</div>
+        <div class="req-text"><strong>Courses Overview Strip</strong> — 3–4 course cards as visual quick-links below the hero. Each with icon, name, and short description.</div>
+      </div>
+      <div class="req-row">
+        <div class="req-prio prio-must">Must</div>
+        <div class="req-text"><strong>Meet Our Instructors</strong> — Two instructor profiles with photo, name, credentials, a short bio, and teaching style. Professional photography or high-quality headshots required.</div>
+      </div>
+      <div class="req-row">
+        <div class="req-prio prio-must">Must</div>
+        <div class="req-text"><strong>Testimonials</strong> — 3–6 student testimonials with name, photo (optional), course taken, and star rating. Carousel or grid layout.</div>
+      </div>
+      <div class="req-row">
+        <div class="req-prio prio-must">Must</div>
+        <div class="req-text"><strong>Success Stories</strong> — 2–3 featured stories. Slightly longer format than testimonials — show outcome (e.g., "Scored 7.5 on IELTS", "Got promotion"). Can include before/after format.</div>
+      </div>
+      <div class="req-row">
+        <div class="req-prio prio-must">Must</div>
+        <div class="req-text"><strong>Certificate Section</strong> — Display sample certificate design. Short text explaining that all completed courses receive a certificate.</div>
+      </div>
+      <div class="req-row">
+        <div class="req-prio prio-should">Should</div>
+        <div class="req-text"><strong>Stats Bar</strong> — 3–4 key numbers: total students, courses available, success rate, years experience. Animated counter on scroll (optional).</div>
+      </div>
+      <div class="req-row">
+        <div class="req-prio prio-should">Should</div>
+        <div class="req-text"><strong>FAQ Section</strong> — 5–8 accordion questions. Common questions about enrollment, payment, group minimums, scheduling, etc.</div>
+      </div>
+      <div class="req-row">
+        <div class="req-prio prio-nice">Nice</div>
+        <div class="req-text"><strong>Blog / Resources</strong> — Optional section with 2–3 English learning tips articles. Good for SEO. Can be added in Phase 2.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. CTA STRATEGY -->
+  <div class="section">
+    <div class="section-label">Section 6</div>
+    <div class="section-title">CTA Strategy — No Direct Payment</div>
+    <p style="color:var(--gray-600); margin-bottom:20px;">All calls-to-action lead to <strong>WhatsApp</strong> or a <strong>Waiting List form</strong>. No payment gateway needed in Phase 1.</p>
+
+    <div class="cta-grid">
+      <div class="cta-card primary-cta">
+        <h4 style="color:#1a7a3f;">📱 WhatsApp CTA (Primary)</h4>
+        <p>Each course page has a "Enroll via WhatsApp" button. Clicking opens a pre-filled WhatsApp message that includes the course name, so the instructor knows what the student is interested in.</p>
+        <div class="cta-example">wa.me/+60XXXXXXXXX?text=Hi!+I'm+interested+in+the+Intensive+English+Course</div>
+      </div>
+      <div class="cta-card secondary-cta">
+        <h4 style="color:#0f3d6e;">⏳ Waiting List (Secondary)</h4>
+        <p>For courses that are not yet open or full (e.g., group courses waiting for minimum 5). Collects name, email, phone. Simple form per course page.</p>
+        <div class="cta-example">Google Form or Typeform embedded · Auto-notify when seats open</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px; padding:14px 18px; background:var(--gray-50); border:var(--border); border-radius:var(--radius); font-size:13px; color:var(--gray-600);">
+      <strong style="color:var(--gray-800);">Important note to agency:</strong> Do NOT implement any payment gateway, checkout, or booking system in Phase 1. All financial transactions happen off-site (via WhatsApp conversation). This keeps the site simple and fast to launch.
+    </div>
+  </div>
+
+  <!-- 7. REFERRAL -->
+  <div class="section">
+    <div class="section-label">Section 7</div>
+    <div class="section-title">Referral Program</div>
+
+    <div class="referral-box">
+      <h3>🎁 Refer a Friend — Earn a Reward</h3>
+      <p style="color:#7a5c00; font-size:14px;">The referral program encourages word-of-mouth. Details (discount % or reward type) to be defined by the client, but the website should include a dedicated section or page.</p>
+      <div class="referral-steps">
+        <div class="referral-step">
+          <div class="rs-num">1</div>
+          <div class="rs-text">Student gets a unique referral link or code after enrolling</div>
+        </div>
+        <div class="referral-step">
+          <div class="rs-num">2</div>
+          <div class="rs-text">They share it with friends who sign up via WhatsApp or waiting list</div>
+        </div>
+        <div class="referral-step">
+          <div class="rs-num">3</div>
+          <div class="rs-text">When friend enrolls, referrer earns a discount or session credit</div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:14px; font-size:13px; color:var(--gray-600);">Phase 1 can use a simple manual referral (student mentions a name in their WhatsApp message). A formal referral tracking system can be added in Phase 2.</p>
+  </div>
+
+  <!-- 8. COURSE PAGE REQUIREMENTS -->
+  <div class="section">
+    <div class="section-label">Section 8</div>
+    <div class="section-title">Individual Course Page Requirements</div>
+    <p style="color:var(--gray-600); margin-bottom:18px;">Every course should have its own dedicated page with the following structure:</p>
+
+    <div class="req-list">
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">Course name &amp; short tagline</div></div>
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">Who this course is for (audience description)</div></div>
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">What you will learn (bullet list or icon grid)</div></div>
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">Course duration &amp; format (online / in-person / both)</div></div>
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">Prerequisites if any (e.g., IELTS Intensive: Upper-Intermediate required)</div></div>
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">Pricing info — even if just "Contact for pricing" or a starting price</div></div>
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">Certificate on completion badge/mention</div></div>
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">WhatsApp CTA button with pre-filled message (course name included)</div></div>
+      <div class="req-row"><div class="req-prio prio-should">Should</div><div class="req-text">1–2 testimonials specific to this course type</div></div>
+      <div class="req-row"><div class="req-prio prio-should">Should</div><div class="req-text">Instructor assigned to this course</div></div>
+      <div class="req-row"><div class="req-prio prio-should">Should</div><div class="req-text">Waiting List form if course has a group minimum requirement</div></div>
+      <div class="req-row"><div class="req-prio prio-nice">Nice</div><div class="req-text">Sample lesson video or free intro session CTA</div></div>
+    </div>
+  </div>
+
+  <!-- 9. TECH -->
+  <div class="section">
+    <div class="section-label">Section 9</div>
+    <div class="section-title">Technical Requirements &amp; Notes for Agency</div>
+
+    <p style="color:var(--gray-600); margin-bottom:16px;">Suggested stack — agency may propose alternatives but must justify deviation.</p>
+
+    <div class="tech-pills">
+      <div class="pill"><span class="pill-dot" style="background:#4285f4;"></span>Google Forms (Level Test)</div>
+      <div class="pill"><span class="pill-dot" style="background:#25d366;"></span>WhatsApp Business API / Link</div>
+      <div class="pill"><span class="pill-dot" style="background:#f05340;"></span>WordPress or Webflow</div>
+      <div class="pill"><span class="pill-dot" style="background:#fbbc04;"></span>Google Analytics 4</div>
+      <div class="pill"><span class="pill-dot" style="background:#34a853;"></span>Google Search Console</div>
+      <div class="pill"><span class="pill-dot" style="background:#9b59b6;"></span>Meta Pixel (optional)</div>
+    </div>
+
+    <div class="req-list">
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">Fully responsive — mobile, tablet, desktop</div></div>
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">SSL certificate (HTTPS)</div></div>
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">Basic SEO setup — meta tags, page titles, Open Graph for WhatsApp link previews</div></div>
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">Google Analytics 4 installed and configured</div></div>
+      <div class="req-row"><div class="req-prio prio-must">Must</div><div class="req-text">CMS access — client must be able to update testimonials, instructors, and course info without developer help</div></div>
+      <div class="req-row"><div class="req-prio prio-should">Should</div><div class="req-text">WhatsApp floating chat button visible on all pages</div></div>
+      <div class="req-row"><div class="req-prio prio-should">Should</div><div class="req-text">Cookie consent banner (GDPR-lite for international students)</div></div>
+      <div class="req-row"><div class="req-prio prio-should">Should</div><div class="req-text">Site speed optimized — images compressed, lazy loaded</div></div>
+      <div class="req-row"><div class="req-prio prio-nice">Nice</div><div class="req-text">Arabic language toggle (if targeting Arabic-speaking markets)</div></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <p>English Course Website · Project Requirements v1.0 · June 2026</p>
+    <p style="color:var(--primary);">Ready to send to your web agency ✓</p>
+  </div>
+
+</div>
+</body>
+</html>

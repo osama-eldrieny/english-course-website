@@ -1,0 +1,17 @@
+{
+  "name": "fluent-path-website",
+  "version": "1.0.0",
+  "description": "Fluent Path — English Course Website. Awesome responsive modern site with animations.",
+  "scripts": {
+    "build": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css",
+    "watch": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch",
+    "serve": "npx serve .",
+    "dev": "concurrently \"npm run watch\" \"npm run serve\""
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  },
+  "keywords": ["english", "courses", "ielts", "education", "landing-page"],
+  "author": "Fluent Path Team",
+  "license": "ISC"
+}

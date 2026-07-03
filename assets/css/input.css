@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─ Global Base Styles ─ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg-warm text-gray-900-custom font-sans leading-relaxed;
+  }
+
+  h1 {
+    @apply font-serif text-4xl font-bold leading-tight;
+  }
+
+  h2 {
+    @apply font-serif text-3xl font-bold leading-snug;
+  }
+
+  h3 {
+    @apply font-serif text-xl font-bold;
+  }
+
+  h4 {
+    @apply text-base font-semibold;
+  }
+
+  p {
+    @apply text-base text-gray-600-custom leading-relaxed;
+  }
+
+  a {
+    @apply text-primary-blue-mid transition-colors duration-200;
+  }
+
+  button {
+    @apply cursor-pointer transition-all duration-200;
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ─ Component Styles ─ */
+@layer components {
+  /* Hero section common styles */
+  .hero-gradient {
+    @apply bg-gradient-to-br from-primary-blue via-primary-blue-mid to-primary-blue-light;
+  }
+
+  /* Card with soft depth */
+  .card-soft {
+    @apply bg-white rounded-md border border-gray-200-custom shadow-soft hover:shadow-soft-lg transition-shadow duration-200;
+  }
+
+  /* Button primary */
+  .btn-primary {
+    @apply px-6 py-3 bg-accent-amber text-gray-900-custom font-semibold rounded-sm hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-accent-amber focus:ring-offset-2 cursor-pointer;
+  }
+
+  /* Button secondary */
+  .btn-secondary {
+    @apply px-6 py-3 bg-primary-blue-light text-primary-blue font-semibold rounded-sm border border-primary-blue-mid hover:bg-primary-blue-mid hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-blue focus:ring-offset-2 cursor-pointer;
+  }
+
+  /* Button white outline */
+  .btn-white {
+    @apply px-6 py-3 bg-white text-primary-blue font-semibold rounded-sm border-2 border-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 cursor-pointer;
+  }
+
+  /* WhatsApp CTA button (green) */
+  .btn-whatsapp {
+    @apply px-6 py-3 bg-success-green text-white font-semibold rounded-sm hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-success-green focus:ring-offset-2 cursor-pointer;
+  }
+
+  /* Form input base */
+  .input-base {
+    @apply w-full px-4 py-2 border border-gray-200-custom rounded-sm font-sans text-base focus:outline-none focus:ring-2 focus:ring-primary-blue-mid focus:border-transparent;
+  }
+
+  /* Section padding */
+  .section-pad {
+    @apply py-20 px-4 md:px-6 lg:px-8;
+  }
+
+  /* Container max width */
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* Text with uppercase label */
+  .section-label {
+    @apply text-xs font-bold tracking-widest text-primary-blue uppercase mb-2;
+  }
+}
+
+/* ─ Animation Utilities ─ */
+@layer utilities {
+  .fade-in {
+    @apply opacity-0 animate-fadeIn;
+  }
+
+  .fade-in-up {
+    @apply opacity-0 translate-y-4 animate-fadeInUp;
+  }
+
+  .fade-in-down {
+    @apply opacity-0 -translate-y-4 animate-fadeInDown;
+  }
+}
+
+/* ─ Animations ─ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fadeInDown {
+    animation: fadeInDown 0.6s ease-out forwards;
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 0.5s ease-out forwards;
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.5s ease-out forwards;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+
+  .animate-blob {
+    animation: blob 6s ease-in-out infinite;
+  }
+}

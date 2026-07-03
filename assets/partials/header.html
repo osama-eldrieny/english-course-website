@@ -1,0 +1,54 @@
+<header class="sticky top-0 left-0 right-0 z-50 bg-white shadow-soft" x-data="{ mobileOpen: false }">
+  <div class="container-max">
+    <div class="flex items-center justify-between py-4 px-4">
+      <!-- Logo / Brand -->
+      <div class="flex items-center">
+        <h1 class="text-2xl font-bold font-serif text-primary-blue">Fluent Path</h1>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex gap-8 items-center">
+        <a href="/" class="text-gray-600-custom hover:text-primary-blue font-medium">Home</a>
+        <a href="/test-your-english.html" class="text-gray-600-custom hover:text-primary-blue font-medium">Test Your English</a>
+        <div class="relative group">
+          <button class="text-gray-600-custom hover:text-primary-blue font-medium flex items-center gap-1">
+            Courses
+            <svg data-lucide="chevron-down" class="w-4 h-4"></svg>
+          </button>
+          <div class="absolute left-0 mt-0 w-48 bg-white shadow-soft-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <a href="/courses/" class="block px-4 py-2 hover:bg-primary-blue-light text-gray-900-custom">All Courses</a>
+            <a href="/courses/intensive-english.html" class="block px-4 py-2 hover:bg-primary-blue-light text-gray-900-custom">Intensive English</a>
+            <a href="/courses/one-to-one/" class="block px-4 py-2 hover:bg-primary-blue-light text-gray-900-custom">1-to-1 Courses</a>
+            <a href="/courses/speaking.html" class="block px-4 py-2 hover:bg-primary-blue-light text-gray-900-custom">Speaking Course</a>
+            <a href="/ielts/" class="block px-4 py-2 hover:bg-primary-blue-light text-gray-900-custom">IELTS Preparation</a>
+          </div>
+        </div>
+        <a href="/referral.html" class="text-gray-600-custom hover:text-primary-blue font-medium">Referral Program</a>
+      </nav>
+
+      <!-- Mobile Menu Toggle -->
+      <button @click="mobileOpen = !mobileOpen" class="md:hidden p-2 hover:bg-gray-50-custom rounded-md focus:outline-none">
+        <svg data-lucide="menu" class="w-6 h-6 text-gray-900-custom"></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <div x-show="mobileOpen" @click.outside="mobileOpen = false" class="md:hidden bg-white border-t border-gray-200-custom py-4 px-4">
+      <nav class="flex flex-col gap-4">
+        <a href="/" class="text-gray-900-custom font-medium hover:text-primary-blue">Home</a>
+        <a href="/test-your-english.html" class="text-gray-900-custom font-medium hover:text-primary-blue">Test Your English</a>
+        <div>
+          <p class="text-gray-600-custom text-sm font-medium mb-2">Courses</p>
+          <div class="flex flex-col gap-2 pl-4">
+            <a href="/courses/" class="text-gray-600-custom hover:text-primary-blue">All Courses</a>
+            <a href="/courses/intensive-english.html" class="text-gray-600-custom hover:text-primary-blue">Intensive English</a>
+            <a href="/courses/one-to-one/" class="text-gray-600-custom hover:text-primary-blue">1-to-1 Courses</a>
+            <a href="/courses/speaking.html" class="text-gray-600-custom hover:text-primary-blue">Speaking Course</a>
+            <a href="/ielts/" class="text-gray-600-custom hover:text-primary-blue">IELTS Preparation</a>
+          </div>
+        </div>
+        <a href="/referral.html" class="text-gray-900-custom font-medium hover:text-primary-blue">Referral Program</a>
+      </nav>
+    </div>
+  </div>
+</header>
