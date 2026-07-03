@@ -37,6 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Listen for includes to finish loading
+document.addEventListener('includesLoaded', () => {
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+});
+
 // ─ Smooth scroll for anchor links ─
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {

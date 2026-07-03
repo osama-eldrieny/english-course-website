@@ -16,6 +16,14 @@ async function includeHTML() {
       element.innerHTML = '<p>Error loading content</p>';
     }
   }
+
+  // Re-initialize Lucide icons after includes are loaded
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+
+  // Dispatch custom event so main.js knows includes are done
+  document.dispatchEvent(new CustomEvent('includesLoaded'));
 }
 
 // Call on page load
