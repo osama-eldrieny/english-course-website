@@ -65,11 +65,11 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Course Card 1 -->
-        <a href="/courses/intensive-english.html" class="card-soft hover:scale-105 hover:shadow-soft-xl transform transition-all duration-300">
+        <a href="/courses/intensive-english.html" class="card-soft overflow-hidden hover:scale-105 hover:shadow-soft-xl transform transition-all duration-300">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&amp;h=500&amp;fit=crop&amp;auto=format&amp;q=80"
+               alt="Students studying together with laptops in a library"
+               width="800" height="500" loading="lazy" class="w-full h-40 object-cover">
           <div class="p-6">
-            <div class="mb-4 p-3 bg-primary-blue-light rounded-lg w-fit">
-              <i data-lucide="zap" style="color: #1a5c9a; width: 24px; height: 24px;"></i>
-            </div>
             <h3 class="text-lg font-bold mb-2">Intensive English</h3>
             <p class="text-sm text-gray-600-custom">Fast progress, real results. Daily focused practice in speaking, listening, reading, and writing.</p>
             <div class="mt-4 flex items-center text-primary-blue font-semibold text-sm">
@@ -80,11 +80,11 @@
         </a>
 
         <!-- Course Card 2 -->
-        <a href="/courses/one-to-one/" class="card-soft hover:scale-105 hover:shadow-soft-xl transform transition-all duration-300">
+        <a href="/courses/one-to-one/" class="card-soft overflow-hidden hover:scale-105 hover:shadow-soft-xl transform transition-all duration-300">
+          <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=800&amp;h=500&amp;fit=crop&amp;auto=format&amp;q=80"
+               alt="Two people in a one-to-one conversation across a small table"
+               width="800" height="500" loading="lazy" class="w-full h-40 object-cover">
           <div class="p-6">
-            <div class="mb-4 p-3 bg-success-green-light rounded-lg w-fit">
-              <i data-lucide="users" style="color: #1e8a5c; width: 24px; height: 24px;"></i>
-            </div>
             <h3 class="text-lg font-bold mb-2">1-to-1 Training</h3>
             <p class="text-sm text-gray-600-custom">Fully personalized learning tailored to your goals — General, Business, or Consultation sessions.</p>
             <div class="mt-4 flex items-center text-primary-blue font-semibold text-sm">
@@ -95,11 +95,11 @@
         </a>
 
         <!-- Course Card 3 -->
-        <a href="/courses/speaking.html" class="card-soft hover:scale-105 hover:shadow-soft-xl transform transition-all duration-300">
+        <a href="/courses/speaking.html" class="card-soft overflow-hidden hover:scale-105 hover:shadow-soft-xl transform transition-all duration-300">
+          <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&amp;h=500&amp;fit=crop&amp;auto=format&amp;q=80"
+               alt="Group of learners talking and laughing together around a table"
+               width="800" height="500" loading="lazy" class="w-full h-40 object-cover">
           <div class="p-6">
-            <div class="mb-4 p-3 bg-accent-teal-light rounded-lg w-fit">
-              <i data-lucide="mic-2" style="color: #20c997; width: 24px; height: 24px;"></i>
-            </div>
             <h3 class="text-lg font-bold mb-2">Speaking Course</h3>
             <p class="text-sm text-gray-600-custom">For learners who know English but can't speak it. Build fluency, pronunciation, and confidence.</p>
             <div class="mt-4 flex items-center text-primary-blue font-semibold text-sm">
@@ -110,11 +110,11 @@
         </a>
 
         <!-- Course Card 4 -->
-        <a href="/ielts/" class="card-soft hover:scale-105 hover:shadow-soft-xl transform transition-all duration-300">
+        <a href="/ielts/" class="card-soft overflow-hidden hover:scale-105 hover:shadow-soft-xl transform transition-all duration-300">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&amp;h=500&amp;fit=crop&amp;auto=format&amp;q=80"
+               alt="Person writing on an exam paper with a pen"
+               width="800" height="500" loading="lazy" class="w-full h-40 object-cover">
           <div class="p-6">
-            <div class="mb-4 p-3 bg-error-red-light rounded-lg w-fit">
-              <i data-lucide="target" style="color: #c0392b; width: 24px; height: 24px;"></i>
-            </div>
             <h3 class="text-lg font-bold mb-2">IELTS Prep</h3>
             <p class="text-sm text-gray-600-custom">Intensive & Regular tracks. Mock tests, fast-track readiness, and structured learning from foundation up.</p>
             <div class="mt-4 flex items-center text-primary-blue font-semibold text-sm">
@@ -138,7 +138,7 @@
   <section class="section-pad bg-primary-blue-light">
     <div class="container-max px-4">
       <div class="text-center mb-12">
-        <p class="section-label">Expert Teachers</p>
+        <p class="section-label">Experienced teachers</p>
         <h2>Meet Our Instructors</h2>
       </div>
 
@@ -450,7 +450,7 @@
             <i data-lucide="chevron-down" class="w-6 h-6 text-primary-blue transform transition-transform" :class="{ 'rotate-180': activeAccordion === 3 }"></i>
           </button>
           <div x-show="activeAccordion === 3" class="px-8 pb-6 text-gray-600-custom border-t border-gray-200-custom pt-6">
-            <p>We offer a 7-day money-back guarantee if you're not satisfied with your course. After 7 days, refunds are subject to our cancellation policy. Contact our team for details.</p>
+            <p>Registration and placement test fees are non-refundable. However, course fees are refundable provided that students have not started the course yet.</p>
           </div>
         </div>
 
@@ -513,14 +513,6 @@
 
   <!-- Footer -->
   <div data-include="/assets/partials/footer.html"></div>
-
-  <!-- ─ COOKIE CONSENT BANNER ─ -->
-  <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900-custom text-white p-4 md:p-6 shadow-soft-xl z-40">
-    <div class="container-max px-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-      <p class="text-sm opacity-90">We use cookies to improve your experience. By continuing to use this site, you agree to our use of cookies.</p>
-      <button data-dismiss-cookies class="px-6 py-2 bg-accent-teal text-gray-900-custom font-semibold rounded-sm hover:bg-opacity-90 whitespace-nowrap">Accept</button>
-    </div>
-  </div>
 
   <!-- ─ WHATSAPP FLOATING BUTTON ─ -->
   <a href="https://wa.me/60172740240" target="_blank" class="fixed bottom-6 right-6 z-40 p-4 bg-success-green text-white rounded-full shadow-soft-xl hover:shadow-soft-xl hover:scale-110 transition-all duration-200" title="Chat with us on WhatsApp">

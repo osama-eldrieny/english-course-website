@@ -9,6 +9,7 @@ module.exports = {
         'primary-blue': '#1a5c9a',
         'primary-blue-light': '#e8f2fc',
         'primary-blue-mid': '#4a90d9',
+        'accent-amber': '#f4a62a',
         'accent-teal': '#20c997',
         'accent-teal-light': '#e6fdf5',
         'success-green': '#1e8a5c',
