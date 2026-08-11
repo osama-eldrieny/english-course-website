@@ -654,15 +654,6 @@ button{
 
 /* Legacy card name, now flat to match. Fill is set per-instance. */
 
-.card-soft{
-  border-radius: 1rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-  transition-property: transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-}
-
 /* Button primary */
 
 .btn-primary{
@@ -1268,10 +1259,6 @@ button{
   border-radius: 20px;
 }
 
-.rounded-sm{
-  border-radius: 10px;
-}
-
 .rounded-xl{
   border-radius: 24px;
 }
@@ -1310,7 +1297,7 @@ button{
   border-color: rgb(30 58 95 / 0.1);
 }
 
-.border-primary-blue-mid{
+.border-slate-blue{
   --tw-border-opacity: 1;
   border-color: rgb(74 95 130 / var(--tw-border-opacity, 1));
 }
@@ -1323,11 +1310,6 @@ button{
   border-color: rgb(255 255 255 / 0.3);
 }
 
-.bg-accent-teal-light{
-  --tw-bg-opacity: 1;
-  background-color: rgb(222 226 233 / var(--tw-bg-opacity, 1));
-}
-
 .bg-bg-warm{
   --tw-bg-opacity: 1;
   background-color: rgb(255 253 247 / var(--tw-bg-opacity, 1));
@@ -1336,11 +1318,6 @@ button{
 .bg-cream{
   --tw-bg-opacity: 1;
   background-color: rgb(240 231 213 / var(--tw-bg-opacity, 1));
-}
-
-.bg-error-red-light{
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 204 196 / var(--tw-bg-opacity, 1));
 }
 
 .bg-gold-tint{
@@ -1358,29 +1335,19 @@ button{
   background-color: rgb(215 220 226 / var(--tw-bg-opacity, 1));
 }
 
-.bg-primary-blue{
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 58 95 / var(--tw-bg-opacity, 1));
-}
-
-.bg-primary-blue-light{
-  --tw-bg-opacity: 1;
-  background-color: rgb(215 220 226 / var(--tw-bg-opacity, 1));
-}
-
-.bg-primary-blue-mid{
+.bg-slate-blue{
   --tw-bg-opacity: 1;
   background-color: rgb(74 95 130 / var(--tw-bg-opacity, 1));
+}
+
+.bg-slate-tint{
+  --tw-bg-opacity: 1;
+  background-color: rgb(222 226 233 / var(--tw-bg-opacity, 1));
 }
 
 .bg-success-green{
   --tw-bg-opacity: 1;
   background-color: rgb(30 138 92 / var(--tw-bg-opacity, 1));
-}
-
-.bg-success-green-light{
-  --tw-bg-opacity: 1;
-  background-color: rgb(231 247 240 / var(--tw-bg-opacity, 1));
 }
 
 .bg-tan-tint{
@@ -1419,37 +1386,21 @@ button{
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
 
-.bg-gradient-to-r{
-  background-image: linear-gradient(to right, var(--tw-gradient-stops));
-}
-
-.from-accent-teal{
-  --tw-gradient-from: #4a5f82 var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(74 95 130 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-.from-error-red{
-  --tw-gradient-from: #c1543c var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(193 84 60 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
 .from-navy{
   --tw-gradient-from: #1e3a5f var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(30 58 95 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-.from-primary-blue{
-  --tw-gradient-from: #1e3a5f var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(30 58 95 / 0) var(--tw-gradient-to-position);
+.from-slate-blue{
+  --tw-gradient-from: #4a5f82 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(74 95 130 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-.from-primary-blue-mid{
-  --tw-gradient-from: #4a5f82 var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(74 95 130 / 0) var(--tw-gradient-to-position);
+.from-terra{
+  --tw-gradient-from: #c1543c var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(193 84 60 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
@@ -1458,16 +1409,8 @@ button{
   --tw-gradient-stops: var(--tw-gradient-from), #1e3a5f var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
 
-.to-primary-blue{
+.to-navy{
   --tw-gradient-to: #1e3a5f var(--tw-gradient-to-position);
-}
-
-.to-primary-blue-light{
-  --tw-gradient-to: #d7dce2 var(--tw-gradient-to-position);
-}
-
-.to-primary-blue-mid{
-  --tw-gradient-to: #4a5f82 var(--tw-gradient-to-position);
 }
 
 .to-slate-blue{
@@ -1482,6 +1425,10 @@ button{
 .object-cover{
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.p-10{
+  padding: 2.5rem;
 }
 
 .p-2{
@@ -1697,11 +1644,6 @@ button{
   letter-spacing: 0.1em;
 }
 
-.text-accent-teal{
-  --tw-text-opacity: 1;
-  color: rgb(74 95 130 / var(--tw-text-opacity, 1));
-}
-
 .text-gold{
   --tw-text-opacity: 1;
   color: rgb(244 183 49 / var(--tw-text-opacity, 1));
@@ -1712,27 +1654,7 @@ button{
   color: rgb(125 86 8 / var(--tw-text-opacity, 1));
 }
 
-.text-gray-600-custom{
-  --tw-text-opacity: 1;
-  color: rgb(95 99 104 / var(--tw-text-opacity, 1));
-}
-
-.text-gray-700{
-  --tw-text-opacity: 1;
-  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
-}
-
-.text-gray-900-custom{
-  --tw-text-opacity: 1;
-  color: rgb(32 33 36 / var(--tw-text-opacity, 1));
-}
-
 .text-navy{
-  --tw-text-opacity: 1;
-  color: rgb(30 58 95 / var(--tw-text-opacity, 1));
-}
-
-.text-primary-blue{
   --tw-text-opacity: 1;
   color: rgb(30 58 95 / var(--tw-text-opacity, 1));
 }
