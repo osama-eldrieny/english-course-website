@@ -1,54 +1,72 @@
-<header class="sticky top-0 left-0 right-0 z-50 bg-white shadow-soft" x-data="{ mobileOpen: false }">
+<header class="fixed top-0 left-0 right-0 z-50 pt-3 md:pt-5 px-3 md:px-6" x-data="{ mobileOpen: false }">
   <div class="container-max">
-    <div class="flex items-center justify-between py-4 px-4">
-      <!-- Logo / Brand -->
-      <a href="/" class="flex items-center">
-        <h1 class="text-2xl font-bold font-serif text-primary-blue hover:opacity-80 transition-opacity cursor-pointer">Fluent Path</h1>
-      </a>
+    <div class="bg-white rounded-2xl shadow-soft-lg">
+      <div class="flex items-center gap-6 py-3 pl-5 pr-3 md:pl-7 md:pr-4">
+        <!-- Logo / Brand — flex-1 here and on the right group pins the nav to true centre -->
+        <a href="/" class="flex items-center shrink-0 md:flex-1">
+          <span class="text-2xl font-extrabold tracking-heading text-navy hover:opacity-80 transition-opacity">Fluent Path</span>
+        </a>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex gap-8 items-center">
-        <a href="/" class="text-gray-600-custom hover:text-primary-blue font-medium">Home</a>
-        <a href="/test-your-english.html" class="text-gray-600-custom hover:text-primary-blue font-medium">Test Your English</a>
-        <div class="relative group">
-          <button class="text-gray-600-custom hover:text-primary-blue font-medium flex items-center gap-1">
-            Courses
-            <i data-lucide="chevron-down"></i>
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex gap-7 items-center justify-center">
+          <a href="/" class="text-slate-blue hover:text-navy font-medium transition-colors">Home</a>
+          <a href="/test-your-english.html" class="text-slate-blue hover:text-navy font-medium transition-colors">Test Your English</a>
+          <div class="relative group">
+            <button class="text-slate-blue hover:text-navy font-medium flex items-center gap-1 transition-colors">
+              Courses
+              <i data-lucide="chevron-down" style="width: 16px; height: 16px;"></i>
+            </button>
+            <div class="absolute left-0 pt-3 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div class="bg-white rounded-xl shadow-soft-lg py-2">
+                <a href="/courses/" class="block px-4 py-2 hover:bg-cream text-navy">All Courses</a>
+                <a href="/courses/intensive-english.html" class="block px-4 py-2 hover:bg-cream text-navy">Intensive English</a>
+                <a href="/courses/one-to-one/" class="block px-4 py-2 hover:bg-cream text-navy">1-to-1 Courses</a>
+                <a href="/courses/speaking.html" class="block px-4 py-2 hover:bg-cream text-navy">Speaking Course</a>
+                <a href="/ielts/" class="block px-4 py-2 hover:bg-cream text-navy">IELTS Preparation</a>
+              </div>
+            </div>
+          </div>
+          <a href="/referral.html" class="text-slate-blue hover:text-navy font-medium transition-colors">Referral Program</a>
+        </nav>
+
+        <!-- Right group — mirrors the logo's flex-1 so the nav sits dead centre -->
+        <div class="flex items-center justify-end ml-auto md:ml-0 md:flex-1">
+          <!-- Desktop CTA -->
+          <a href="/test-your-english.html" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-navy text-white font-bold rounded-full hover:bg-navy-deep transition-colors shrink-0">
+            Start Free Test
+          </a>
+
+          <!-- Mobile Menu Toggle -->
+          <button @click="mobileOpen = !mobileOpen" :aria-expanded="mobileOpen" aria-label="Toggle navigation"
+                  class="md:hidden p-2 rounded-lg hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy">
+            <i data-lucide="menu" x-show="!mobileOpen"></i>
+            <i data-lucide="x" x-show="mobileOpen" x-cloak></i>
           </button>
-          <div class="absolute left-0 mt-0 w-48 bg-white shadow-soft-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <a href="/courses/" class="block px-4 py-2 hover:bg-primary-blue-light text-gray-900-custom">All Courses</a>
-            <a href="/courses/intensive-english.html" class="block px-4 py-2 hover:bg-primary-blue-light text-gray-900-custom">Intensive English</a>
-            <a href="/courses/one-to-one/" class="block px-4 py-2 hover:bg-primary-blue-light text-gray-900-custom">1-to-1 Courses</a>
-            <a href="/courses/speaking.html" class="block px-4 py-2 hover:bg-primary-blue-light text-gray-900-custom">Speaking Course</a>
-            <a href="/ielts/" class="block px-4 py-2 hover:bg-primary-blue-light text-gray-900-custom">IELTS Preparation</a>
-          </div>
         </div>
-        <a href="/referral.html" class="text-gray-600-custom hover:text-primary-blue font-medium">Referral Program</a>
-      </nav>
+      </div>
 
-      <!-- Mobile Menu Toggle -->
-      <button @click="mobileOpen = !mobileOpen" class="md:hidden p-2 hover:bg-gray-50-custom rounded-md focus:outline-none">
-        <i data-lucide="menu"></i>
-      </button>
-    </div>
-
-    <!-- Mobile Nav Drawer -->
-    <div x-show="mobileOpen" @click.outside="mobileOpen = false" class="md:hidden bg-white border-t border-gray-200-custom py-4 px-4">
-      <nav class="flex flex-col gap-4">
-        <a href="/" class="text-gray-900-custom font-medium hover:text-primary-blue">Home</a>
-        <a href="/test-your-english.html" class="text-gray-900-custom font-medium hover:text-primary-blue">Test Your English</a>
-        <div>
-          <p class="text-gray-600-custom text-sm font-medium mb-2">Courses</p>
-          <div class="flex flex-col gap-2 pl-4">
-            <a href="/courses/" class="text-gray-600-custom hover:text-primary-blue">All Courses</a>
-            <a href="/courses/intensive-english.html" class="text-gray-600-custom hover:text-primary-blue">Intensive English</a>
-            <a href="/courses/one-to-one/" class="text-gray-600-custom hover:text-primary-blue">1-to-1 Courses</a>
-            <a href="/courses/speaking.html" class="text-gray-600-custom hover:text-primary-blue">Speaking Course</a>
-            <a href="/ielts/" class="text-gray-600-custom hover:text-primary-blue">IELTS Preparation</a>
+      <!-- Mobile Nav Drawer -->
+      <div x-show="mobileOpen" x-cloak @click.outside="mobileOpen = false"
+           class="md:hidden border-t border-navy/10 py-5 px-5 rounded-b-2xl">
+        <nav class="flex flex-col gap-4">
+          <a href="/" class="text-navy font-semibold">Home</a>
+          <a href="/test-your-english.html" class="text-navy font-semibold">Test Your English</a>
+          <div>
+            <p class="text-xs font-bold tracking-widest text-gold-text uppercase mb-2">Courses</p>
+            <div class="flex flex-col gap-2 pl-3">
+              <a href="/courses/" class="text-slate-blue">All Courses</a>
+              <a href="/courses/intensive-english.html" class="text-slate-blue">Intensive English</a>
+              <a href="/courses/one-to-one/" class="text-slate-blue">1-to-1 Courses</a>
+              <a href="/courses/speaking.html" class="text-slate-blue">Speaking Course</a>
+              <a href="/ielts/" class="text-slate-blue">IELTS Preparation</a>
+            </div>
           </div>
-        </div>
-        <a href="/referral.html" class="text-gray-900-custom font-medium hover:text-primary-blue">Referral Program</a>
-      </nav>
+          <a href="/referral.html" class="text-navy font-semibold">Referral Program</a>
+          <a href="/test-your-english.html" class="mt-2 inline-flex items-center justify-center gap-2 px-5 py-3 bg-navy text-white font-bold rounded-full">
+            Start Free Test
+          </a>
+        </nav>
+      </div>
     </div>
   </div>
 </header>

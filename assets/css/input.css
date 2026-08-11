@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,24 +6,28 @@
 
 /* ─ Global Base Styles ─ */
 @layer base {
+  [x-cloak] {
+    display: none !important;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-bg-warm text-gray-900-custom font-sans leading-relaxed;
+    @apply bg-bg-warm text-navy font-sans leading-relaxed;
   }
 
   h1 {
-    @apply font-serif text-4xl font-bold leading-tight;
+    @apply font-sans text-4xl font-extrabold leading-tight tracking-display;
   }
 
   h2 {
-    @apply font-serif text-3xl font-bold leading-snug;
+    @apply font-sans text-3xl font-extrabold leading-snug tracking-display;
   }
 
   h3 {
-    @apply font-serif text-xl font-bold;
+    @apply font-sans text-xl font-bold tracking-heading;
   }
 
   h4 {
@@ -31,11 +35,11 @@
   }
 
   p {
-    @apply text-base text-gray-600-custom leading-relaxed;
+    @apply text-base text-slate-blue leading-relaxed;
   }
 
   a {
-    @apply text-primary-blue-mid transition-colors duration-200;
+    @apply text-navy transition-colors duration-200;
   }
 
   button {
@@ -59,32 +63,37 @@
 @layer components {
   /* Hero section common styles */
   .hero-gradient {
-    @apply bg-gradient-to-br from-primary-blue via-primary-blue-mid to-primary-blue-light;
+    @apply bg-gradient-to-br from-navy via-navy to-slate-blue;
   }
 
-  /* Card with soft depth */
+  /* Flat card — solid fill, no border, no shadow. Depth comes from hover lift. */
+  .card-flat {
+    @apply rounded-2xl transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  /* Legacy card name, now flat to match. Fill is set per-instance. */
   .card-soft {
-    @apply bg-white rounded-md border border-gray-200-custom shadow-soft hover:shadow-soft-lg transition-shadow duration-200;
+    @apply bg-white rounded-2xl transition-transform duration-300;
   }
 
   /* Button primary */
   .btn-primary {
-    @apply px-6 py-3 bg-accent-amber text-gray-900-custom font-semibold rounded-sm hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-accent-amber focus:ring-offset-2 cursor-pointer;
+    @apply px-7 py-3.5 bg-gold text-navy font-bold rounded-full hover:bg-gold-deep focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 cursor-pointer;
   }
 
   /* Button secondary */
   .btn-secondary {
-    @apply px-6 py-3 bg-primary-blue-light text-primary-blue font-semibold rounded-sm border border-primary-blue-mid hover:bg-primary-blue-mid hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-blue focus:ring-offset-2 cursor-pointer;
+    @apply px-7 py-3.5 bg-navy text-white font-bold rounded-full hover:bg-navy-deep focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 cursor-pointer;
   }
 
   /* Button white outline */
   .btn-white {
-    @apply px-6 py-3 bg-white text-primary-blue font-semibold rounded-sm border-2 border-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 cursor-pointer;
+    @apply px-7 py-3.5 bg-white text-navy font-bold rounded-full border border-navy/10 hover:bg-cream focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 cursor-pointer;
   }
 
   /* WhatsApp CTA button (green) */
   .btn-whatsapp {
-    @apply px-6 py-3 bg-success-green text-white font-semibold rounded-sm hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-success-green focus:ring-offset-2 cursor-pointer;
+    @apply px-7 py-3.5 bg-success-green text-white font-bold rounded-full hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-success-green focus:ring-offset-2 cursor-pointer;
   }
 
   /* Form input base */
@@ -94,7 +103,7 @@
 
   /* Section padding */
   .section-pad {
-    @apply py-20 px-4 md:px-6 lg:px-8;
+    @apply py-24 px-4 md:px-6 lg:px-8;
   }
 
   /* Container max width */
@@ -104,7 +113,7 @@
 
   /* Text with uppercase label */
   .section-label {
-    @apply text-xs font-bold tracking-widest text-primary-blue uppercase mb-2;
+    @apply text-xs font-bold tracking-widest text-gold-text uppercase mb-3;
   }
 }
 
