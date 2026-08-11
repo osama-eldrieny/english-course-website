@@ -1243,10 +1243,6 @@ button{
   overflow: hidden;
 }
 
-.overflow-x-auto{
-  overflow-x: auto;
-}
-
 .rounded-2xl{
   border-radius: 1rem;
 }
@@ -1272,25 +1268,12 @@ button{
   border-width: 1px;
 }
 
-.border-b{
-  border-bottom-width: 1px;
-}
-
-.border-b-2{
-  border-bottom-width: 2px;
-}
-
 .border-l-4{
   border-left-width: 4px;
 }
 
 .border-t{
   border-top-width: 1px;
-}
-
-.border-gray-200-custom{
-  --tw-border-opacity: 1;
-  border-color: rgb(232 234 237 / var(--tw-border-opacity, 1));
 }
 
 .border-navy\/10{
@@ -1499,11 +1482,6 @@ button{
 .py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.py-4{
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 .py-5{
