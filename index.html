@@ -23,31 +23,26 @@
   <div data-include="/assets/partials/header.html"></div>
 
   <!-- ─ SECTION 1: HERO ─ -->
-  <section class="relative bg-gradient-to-br from-primary-blue via-primary-blue-mid to-primary-blue-light text-white overflow-hidden py-20 md:py-32">
-    <!-- Animated blob accents -->
-    <div class="absolute top-10 right-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-blob"></div>
-    <div class="absolute bottom-20 left-5 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-blob" style="animation-delay: 2s"></div>
-
-    <div class="container-max relative z-10 px-4">
-      <div class="max-w-3xl mx-auto text-center">
-        <div class="inline-block bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6 text-sm font-semibold">
-          ✨ Learn English, Change Your Future
+  <section class="relative overflow-hidden bg-navy text-white pt-32 pb-24 md:pt-40 md:pb-32 px-4">
+    <div class="container-max relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-8 text-sm font-semibold text-white">
+          <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+          Learn English, change your future
         </div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight animate-fadeInUp" style="animation-delay: 0.1s">
-          Fluent English,<br>Real Results
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-display leading-[1.05] mb-8 animate-fadeInUp" style="animation-delay: 0.1s">
+          Fluent English,<br>real results
         </h1>
-        <p class="text-lg md:text-xl text-white/90 mb-10 leading-relaxed max-w-2xl mx-auto animate-fadeInUp" style="animation-delay: 0.2s">
-          Master English through intensive courses, personalized 1-to-1 training, and IELTS preparation. Whether you're a student aiming for university or a professional seeking career advancement, we help you achieve fluency and confidence.
+        <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 animate-fadeInUp" style="animation-delay: 0.2s">
+          Intensive courses, personalized 1-to-1 training, and IELTS preparation — built to get you speaking with confidence.
         </p>
 
-        <!-- Hero CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap animate-fadeInUp" style="animation-delay: 0.3s">
-          <a href="https://wa.me/60172740240?text=Hi%2C%20I%20would%20like%20to%20enroll%20in%20a%20course%20at%20Fluent%20Path" target="_blank" class="btn-whatsapp flex items-center gap-2">
-            <i data-lucide="message-circle"></i>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fadeInUp" style="animation-delay: 0.3s">
+          <a href="https://wa.me/60172740240?text=Hi%2C%20I%20would%20like%20to%20enroll%20in%20a%20course%20at%20Fluent%20Path" target="_blank" rel="noopener" class="btn-primary inline-flex items-center gap-2">
             Enroll via WhatsApp
+            <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
           </a>
-          <a href="/test-your-english.html" class="btn-white flex items-center gap-2">
-            <i data-lucide="clipboard-list"></i>
+          <a href="/test-your-english.html" class="btn-white inline-flex items-center gap-2">
             Test Your English Level
           </a>
         </div>
@@ -55,87 +50,74 @@
     </div>
   </section>
 
-  <!-- ─ SECTION 2: COURSES OVERVIEW STRIP ─ -->
-  <section class="section-pad bg-white">
+  <!-- ─ SECTION 2: COURSES OVERVIEW ─ -->
+  <section class="section-pad bg-bg-warm">
     <div class="container-max px-4">
-      <div class="text-center mb-12">
+      <div class="max-w-2xl mb-14">
         <p class="section-label">Our Programs</p>
-        <h2>Find Your Perfect Course</h2>
+        <h2 class="text-4xl md:text-5xl mb-4">Find your perfect course</h2>
+        <p class="text-lg text-slate-blue">Four focused programs, each built around a different goal.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Course Card 1 -->
-        <a href="/courses/intensive-english.html" class="card-soft overflow-hidden hover:scale-105 hover:shadow-soft-xl transform transition-all duration-300">
-          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&amp;h=500&amp;fit=crop&amp;auto=format&amp;q=80"
-               alt="Students studying together with laptops in a library"
-               width="800" height="500" loading="lazy" class="w-full h-40 object-cover">
-          <div class="p-6">
-            <h3 class="text-lg font-bold mb-2">Intensive English</h3>
-            <p class="text-sm text-gray-600-custom">Fast progress, real results. Daily focused practice in speaking, listening, reading, and writing.</p>
-            <div class="mt-4 flex items-center text-primary-blue font-semibold text-sm">
-              Learn more
-              <i data-lucide="arrow-right"></i>
-            </div>
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+        <a href="/courses/intensive-english.html" class="bg-navy-tint rounded-2xl p-8 md:p-10 flex flex-col group hover:-translate-y-1 transition-transform duration-300">
+          <h3 class="text-2xl md:text-3xl font-extrabold tracking-display mb-4">Intensive English</h3>
+          <p class="text-slate-blue mb-8 max-w-sm">Fast progress, real results. Daily focused practice in speaking, listening, reading, and writing.</p>
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=900&amp;h=560&amp;fit=crop&amp;auto=format&amp;q=80"
+               alt="Students studying together with laptops in a library" width="900" height="560" loading="lazy"
+               class="w-full h-52 object-cover rounded-xl mt-auto">
+          <span class="mt-6 inline-flex items-center gap-2 font-bold text-navy">
+            Learn more <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+          </span>
         </a>
-
-        <!-- Course Card 2 -->
-        <a href="/courses/one-to-one/" class="card-soft overflow-hidden hover:scale-105 hover:shadow-soft-xl transform transition-all duration-300">
-          <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=800&amp;h=500&amp;fit=crop&amp;auto=format&amp;q=80"
-               alt="Two people in a one-to-one conversation across a small table"
-               width="800" height="500" loading="lazy" class="w-full h-40 object-cover">
-          <div class="p-6">
-            <h3 class="text-lg font-bold mb-2">1-to-1 Training</h3>
-            <p class="text-sm text-gray-600-custom">Fully personalized learning tailored to your goals — General, Business, or Consultation sessions.</p>
-            <div class="mt-4 flex items-center text-primary-blue font-semibold text-sm">
-              Learn more
-              <i data-lucide="arrow-right"></i>
-            </div>
-          </div>
+        <a href="/courses/one-to-one/" class="bg-gold-tint rounded-2xl p-8 md:p-10 flex flex-col group hover:-translate-y-1 transition-transform duration-300">
+          <h3 class="text-2xl md:text-3xl font-extrabold tracking-display mb-4">1-to-1 Training</h3>
+          <p class="text-slate-blue mb-8 max-w-sm">Fully personalized learning tailored to your goals — General, Business, or Consultation sessions.</p>
+          <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=900&amp;h=560&amp;fit=crop&amp;auto=format&amp;q=80"
+               alt="Two people in a one-to-one conversation across a small table" width="900" height="560" loading="lazy"
+               class="w-full h-52 object-cover rounded-xl mt-auto">
+          <span class="mt-6 inline-flex items-center gap-2 font-bold text-navy">
+            Learn more <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+          </span>
         </a>
+      </div>
 
-        <!-- Course Card 3 -->
-        <a href="/courses/speaking.html" class="card-soft overflow-hidden hover:scale-105 hover:shadow-soft-xl transform transition-all duration-300">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <a href="/courses/speaking.html" class="bg-terra-tint rounded-2xl p-8 flex flex-col group hover:-translate-y-1 transition-transform duration-300">
           <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&amp;h=500&amp;fit=crop&amp;auto=format&amp;q=80"
-               alt="Group of learners talking and laughing together around a table"
-               width="800" height="500" loading="lazy" class="w-full h-40 object-cover">
-          <div class="p-6">
-            <h3 class="text-lg font-bold mb-2">Speaking Course</h3>
-            <p class="text-sm text-gray-600-custom">For learners who know English but can't speak it. Build fluency, pronunciation, and confidence.</p>
-            <div class="mt-4 flex items-center text-primary-blue font-semibold text-sm">
-              Learn more
-              <i data-lucide="arrow-right"></i>
-            </div>
-          </div>
+               alt="Group of learners talking and laughing together around a table" width="800" height="500" loading="lazy"
+               class="w-full h-40 object-cover rounded-xl mb-6">
+          <h3 class="text-xl font-extrabold tracking-heading mb-3">Speaking Course</h3>
+          <p class="text-sm text-slate-blue mb-6">For learners who know English but can't speak it. Build fluency, pronunciation, and confidence.</p>
+          <span class="mt-auto inline-flex items-center gap-2 font-bold text-navy text-sm">
+            Learn more <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </span>
         </a>
-
-        <!-- Course Card 4 -->
-        <a href="/ielts/" class="card-soft overflow-hidden hover:scale-105 hover:shadow-soft-xl transform transition-all duration-300">
+        <a href="/ielts/" class="bg-tan-tint rounded-2xl p-8 flex flex-col group hover:-translate-y-1 transition-transform duration-300">
           <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&amp;h=500&amp;fit=crop&amp;auto=format&amp;q=80"
-               alt="Person writing on an exam paper with a pen"
-               width="800" height="500" loading="lazy" class="w-full h-40 object-cover">
-          <div class="p-6">
-            <h3 class="text-lg font-bold mb-2">IELTS Prep</h3>
-            <p class="text-sm text-gray-600-custom">Intensive & Regular tracks. Mock tests, fast-track readiness, and structured learning from foundation up.</p>
-            <div class="mt-4 flex items-center text-primary-blue font-semibold text-sm">
-              Learn more
-              <i data-lucide="arrow-right"></i>
-            </div>
-          </div>
+               alt="Person writing on an exam paper with a pen" width="800" height="500" loading="lazy"
+               class="w-full h-40 object-cover rounded-xl mb-6">
+          <h3 class="text-xl font-extrabold tracking-heading mb-3">IELTS Prep</h3>
+          <p class="text-sm text-slate-blue mb-6">Intensive &amp; Regular tracks. Mock tests, fast-track readiness, and structured learning.</p>
+          <span class="mt-auto inline-flex items-center gap-2 font-bold text-navy text-sm">
+            Learn more <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </span>
         </a>
-      </div>
-
-      <div class="text-center mt-8">
-        <a href="/courses/" class="btn-secondary inline-flex items-center gap-2">
-          View All Courses
-          <i data-lucide="arrow-right"></i>
+        <a href="/test-your-english.html" class="bg-navy text-white rounded-2xl p-8 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+          <div>
+            <h3 class="text-xl font-extrabold tracking-heading mb-3 text-white">Not sure where to start?</h3>
+            <p class="text-sm text-white/80">Take the free five-minute level test and get a course matched to your goals.</p>
+          </div>
+          <span class="mt-8 inline-flex items-center gap-2 font-bold text-gold text-sm">
+            Test your English <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </span>
         </a>
       </div>
     </div>
   </section>
 
   <!-- ─ SECTION 3: MEET OUR INSTRUCTORS ─ -->
-  <section class="section-pad bg-primary-blue-light">
+  <section class="section-pad bg-cream">
     <div class="container-max px-4">
       <div class="text-center mb-12">
         <p class="section-label">Experienced teachers</p>
@@ -144,33 +126,33 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
         <!-- Instructor 1 -->
-        <div class="card-soft overflow-hidden hover:shadow-soft-xl transition-shadow duration-300">
-          <div class="overflow-hidden bg-gray-200-custom flex items-center justify-center" style="height: 350px;">
+        <div class="card-flat bg-white overflow-hidden">
+          <div class="overflow-hidden bg-navy-tint flex items-center justify-center" style="height: 350px;">
             <img src="/assets/imgs/amal.png" alt="Amal Khayata - IELTS Specialist" class="max-w-full max-h-full object-contain" style="background-size: cover; width: 100%;">
           </div>
           <div class="p-8">
             <h3 class="text-2xl font-bold mb-2">Amal Khayata</h3>
-            <p class="text-accent-teal font-semibold mb-4">IELTS Specialist & Speaking Coach</p>
-            <p class="text-gray-600-custom mb-4">With 8+ years of experience teaching English to international students, Sarah specializes in exam prep and fluency building. Her students consistently achieve 7.0+ IELTS scores.</p>
-            <div class="flex gap-4 text-sm text-gray-600-custom">
-              <span class="flex items-center gap-1"><i data-lucide="award" style="color: #20c997; width: 18px; height: 18px;"></i> Cambridge Certified</span>
-              <span class="flex items-center gap-1"><i data-lucide="globe" style="color: #20c997; width: 18px; height: 18px;"></i> Native Speaker</span>
+            <p class="text-slate-blue font-semibold mb-4">IELTS Specialist & Speaking Coach</p>
+            <p class="text-slate-blue mb-4">With 8+ years of experience teaching English to international students, Sarah specializes in exam prep and fluency building. Her students consistently achieve 7.0+ IELTS scores.</p>
+            <div class="flex gap-4 text-sm text-slate-blue">
+              <span class="flex items-center gap-1"><i data-lucide="award" style="color: #4a5f82; width: 18px; height: 18px;"></i> Cambridge Certified</span>
+              <span class="flex items-center gap-1"><i data-lucide="globe" style="color: #4a5f82; width: 18px; height: 18px;"></i> Native Speaker</span>
             </div>
           </div>
         </div>
 
         <!-- Instructor 2 -->
-        <div class="card-soft overflow-hidden hover:shadow-soft-xl transition-shadow duration-300">
-          <div class="overflow-hidden bg-gray-200-custom flex items-center justify-center" style="height: 350px;">
+        <div class="card-flat bg-white overflow-hidden">
+          <div class="overflow-hidden bg-navy-tint flex items-center justify-center" style="height: 350px;">
             <img src="/assets/imgs/amr.png" alt="Amr Kadib Alban - Business English Expert" class="max-w-full max-h-full object-contain" style="background-size: cover; width: 100%;">
           </div>
           <div class="p-8">
             <h3 class="text-2xl font-bold mb-2">Amr Kadib Alban</h3>
-            <p class="text-accent-teal font-semibold mb-4">Business English & Conversation Expert</p>
-            <p class="text-gray-600-custom mb-4">Mark brings real-world corporate experience to the classroom. He helps professionals master workplace communication, from email writing to presentation skills and meeting participation.</p>
-            <div class="flex gap-4 text-sm text-gray-600-custom">
-              <span class="flex items-center gap-1"><i data-lucide="briefcase" style="color: #20c997; width: 18px; height: 18px;"></i> 10+ Yrs Corporate</span>
-              <span class="flex items-center gap-1"><i data-lucide="star" style="color: #20c997; width: 18px; height: 18px;"></i> Fluent Mentor</span>
+            <p class="text-slate-blue font-semibold mb-4">Business English & Conversation Expert</p>
+            <p class="text-slate-blue mb-4">Mark brings real-world corporate experience to the classroom. He helps professionals master workplace communication, from email writing to presentation skills and meeting participation.</p>
+            <div class="flex gap-4 text-sm text-slate-blue">
+              <span class="flex items-center gap-1"><i data-lucide="briefcase" style="color: #4a5f82; width: 18px; height: 18px;"></i> 10+ Yrs Corporate</span>
+              <span class="flex items-center gap-1"><i data-lucide="star" style="color: #4a5f82; width: 18px; height: 18px;"></i> Fluent Mentor</span>
             </div>
           </div>
         </div>
@@ -179,7 +161,7 @@
   </section>
 
   <!-- ─ SECTION 4: TESTIMONIALS (Swiper Carousel) ─ -->
-  <section class="section-pad bg-white">
+  <section class="section-pad bg-bg-warm">
     <div class="container-max px-4">
       <div class="text-center mb-12">
         <p class="section-label">Success Stories</p>
@@ -190,71 +172,71 @@
         <div class="swiper-wrapper">
           <!-- Testimonial 1 -->
           <div class="swiper-slide">
-            <div class="card-soft p-8 h-full flex flex-col">
+            <div class="card-flat bg-navy-tint p-8 h-full flex flex-col">
               <div class="flex gap-1 mb-4">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               </div>
-              <p class="text-gray-600-custom flex-1 mb-6 italic">"I joined Fluent Path wanting to improve my IELTS score, and in just 4 months I went from 6.0 to 7.5! Sarah's teaching method is practical and engaging. Highly recommended!"</p>
+              <p class="text-slate-blue flex-1 mb-6 italic">"I joined Fluent Path wanting to improve my IELTS score, and in just 4 months I went from 6.0 to 7.5! Sarah's teaching method is practical and engaging. Highly recommended!"</p>
               <div>
-                <p class="font-bold text-gray-900-custom">Ahmed Al-Mansouri</p>
-                <p class="text-sm text-gray-600-custom">IELTS Intensive Course</p>
+                <p class="font-bold text-navy">Ahmed Al-Mansouri</p>
+                <p class="text-sm text-slate-blue">IELTS Intensive Course</p>
               </div>
             </div>
           </div>
 
           <!-- Testimonial 2 -->
           <div class="swiper-slide">
-            <div class="card-soft p-8 h-full flex flex-col">
+            <div class="card-flat bg-navy-tint p-8 h-full flex flex-col">
               <div class="flex gap-1 mb-4">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               </div>
-              <p class="text-gray-600-custom flex-1 mb-6 italic">"As a professional, I needed to improve my business English for presentations. Mark's 1-to-1 sessions were tailored perfectly to my needs. I feel so much more confident now!"</p>
+              <p class="text-slate-blue flex-1 mb-6 italic">"As a professional, I needed to improve my business English for presentations. Mark's 1-to-1 sessions were tailored perfectly to my needs. I feel so much more confident now!"</p>
               <div>
-                <p class="font-bold text-gray-900-custom">Fatima Hassan</p>
-                <p class="text-sm text-gray-600-custom">Business English Course</p>
+                <p class="font-bold text-navy">Fatima Hassan</p>
+                <p class="text-sm text-slate-blue">Business English Course</p>
               </div>
             </div>
           </div>
 
           <!-- Testimonial 3 -->
           <div class="swiper-slide">
-            <div class="card-soft p-8 h-full flex flex-col">
+            <div class="card-flat bg-navy-tint p-8 h-full flex flex-col">
               <div class="flex gap-1 mb-4">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               </div>
-              <p class="text-gray-600-custom flex-1 mb-6 italic">"I was terrified to speak English. The Speaking Course changed everything. Now I participate in meetings confidently. Thank you, Fluent Path!"</p>
+              <p class="text-slate-blue flex-1 mb-6 italic">"I was terrified to speak English. The Speaking Course changed everything. Now I participate in meetings confidently. Thank you, Fluent Path!"</p>
               <div>
-                <p class="font-bold text-gray-900-custom">Youssef Ibrahim</p>
-                <p class="text-sm text-gray-600-custom">Speaking Course</p>
+                <p class="font-bold text-navy">Youssef Ibrahim</p>
+                <p class="text-sm text-slate-blue">Speaking Course</p>
               </div>
             </div>
           </div>
 
           <!-- Testimonial 4 -->
           <div class="swiper-slide">
-            <div class="card-soft p-8 h-full flex flex-col">
+            <div class="card-flat bg-navy-tint p-8 h-full flex flex-col">
               <div class="flex gap-1 mb-4">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#20c997" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#20c997" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f4b731" stroke="#f4b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4a5f82" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               </div>
-              <p class="text-gray-600-custom flex-1 mb-6 italic">"The Intensive Course is exactly what I needed before applying to universities. Great teachers, small class sizes, and real progress. Worth every penny!"</p>
+              <p class="text-slate-blue flex-1 mb-6 italic">"The Intensive Course is exactly what I needed before applying to universities. Great teachers, small class sizes, and real progress. Worth every penny!"</p>
               <div>
-                <p class="font-bold text-gray-900-custom">Leila Karim</p>
-                <p class="text-sm text-gray-600-custom">Intensive English Course</p>
+                <p class="font-bold text-navy">Leila Karim</p>
+                <p class="text-sm text-slate-blue">Intensive English Course</p>
               </div>
             </div>
           </div>
@@ -267,7 +249,7 @@
   </section>
 
   <!-- ─ SECTION 5: SUCCESS STORIES ─ -->
-  <section class="section-pad bg-primary-blue-light">
+  <section class="section-pad bg-cream">
     <div class="container-max px-4">
       <div class="text-center mb-12">
         <p class="section-label">Real Achievements</p>
@@ -276,50 +258,50 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Story 1 -->
-        <div class="card-soft p-8">
+        <div class="card-flat bg-white p-8">
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-16 h-16 bg-gradient-to-br from-success-green to-primary-blue rounded-full flex items-center justify-center text-white text-2xl font-bold">7.5</div>
+            <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center text-white text-2xl font-bold">7.5</div>
             <div>
-              <p class="font-bold text-gray-900-custom">IELTS Score</p>
-              <p class="text-sm text-gray-600-custom">Ahmed Al-Mansouri</p>
+              <p class="font-bold text-navy">IELTS Score</p>
+              <p class="text-sm text-slate-blue">Ahmed Al-Mansouri</p>
             </div>
           </div>
-          <p class="text-gray-600-custom mb-4">"Started at 6.0, reached 7.5 in 4 months through the Intensive IELTS course. Now accepted at top UK universities!"</p>
+          <p class="text-slate-blue mb-4">"Started at 6.0, reached 7.5 in 4 months through the Intensive IELTS course. Now accepted at top UK universities!"</p>
           <div class="flex gap-2 flex-wrap">
-            <span class="px-3 py-1 bg-success-green-light text-success-green text-xs font-semibold rounded-full">IELTS Intensive</span>
-            <span class="px-3 py-1 bg-primary-blue-light text-primary-blue text-xs font-semibold rounded-full">4 Months</span>
+            <span class="px-3 py-1 bg-gold-tint text-gold-text text-xs font-semibold rounded-full">IELTS Intensive</span>
+            <span class="px-3 py-1 bg-navy-tint text-navy text-xs font-semibold rounded-full">4 Months</span>
           </div>
         </div>
 
         <!-- Story 2 -->
-        <div class="card-soft p-8">
+        <div class="card-flat bg-white p-8">
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-16 h-16 bg-gradient-to-br from-accent-teal to-primary-blue rounded-full flex items-center justify-center text-white text-2xl font-bold"><i data-lucide="briefcase" style="width: 28px; height: 28px;"></i></div>
+            <div class="w-16 h-16 bg-terra rounded-full flex items-center justify-center text-white text-2xl font-bold"><i data-lucide="briefcase" style="width: 28px; height: 28px;"></i></div>
             <div>
-              <p class="font-bold text-gray-900-custom">Got Promotion</p>
-              <p class="text-sm text-gray-600-custom">Fatima Hassan</p>
+              <p class="font-bold text-navy">Got Promotion</p>
+              <p class="text-sm text-slate-blue">Fatima Hassan</p>
             </div>
           </div>
-          <p class="text-gray-600-custom mb-4">"Business English with Mark gave me the confidence to present at international meetings. Promoted to Regional Manager!"</p>
+          <p class="text-slate-blue mb-4">"Business English with Mark gave me the confidence to present at international meetings. Promoted to Regional Manager!"</p>
           <div class="flex gap-2 flex-wrap">
-            <span class="px-3 py-1 bg-accent-teal-light text-accent-teal text-xs font-semibold rounded-full">Business English</span>
-            <span class="px-3 py-1 bg-primary-blue-light text-primary-blue text-xs font-semibold rounded-full">Career Win</span>
+            <span class="px-3 py-1 bg-navy-tint text-navy text-xs font-semibold rounded-full">Business English</span>
+            <span class="px-3 py-1 bg-navy-tint text-navy text-xs font-semibold rounded-full">Career Win</span>
           </div>
         </div>
 
         <!-- Story 3 -->
-        <div class="card-soft p-8">
+        <div class="card-flat bg-white p-8">
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-16 h-16 bg-gradient-to-br from-success-green to-primary-blue rounded-full flex items-center justify-center text-white text-2xl font-bold"><i data-lucide="mic" style="width: 28px; height: 28px; color: white;"></i></div>
+            <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center text-white text-2xl font-bold"><i data-lucide="mic" style="width: 28px; height: 28px; color: white;"></i></div>
             <div>
-              <p class="font-bold text-gray-900-custom">Speaking Confidence</p>
-              <p class="text-sm text-gray-600-custom">Youssef Ibrahim</p>
+              <p class="font-bold text-navy">Speaking Confidence</p>
+              <p class="text-sm text-slate-blue">Youssef Ibrahim</p>
             </div>
           </div>
-          <p class="text-gray-600-custom mb-4">"Speaking Course transformed my fear into fluency. Now leading team meetings and presenting without anxiety!"</p>
+          <p class="text-slate-blue mb-4">"Speaking Course transformed my fear into fluency. Now leading team meetings and presenting without anxiety!"</p>
           <div class="flex gap-2 flex-wrap">
-            <span class="px-3 py-1 bg-success-green-light text-success-green text-xs font-semibold rounded-full">Speaking</span>
-            <span class="px-3 py-1 bg-primary-blue-light text-primary-blue text-xs font-semibold rounded-full">Confidence Boost</span>
+            <span class="px-3 py-1 bg-gold-tint text-gold-text text-xs font-semibold rounded-full">Speaking</span>
+            <span class="px-3 py-1 bg-navy-tint text-navy text-xs font-semibold rounded-full">Confidence Boost</span>
           </div>
         </div>
       </div>
@@ -327,51 +309,51 @@
   </section>
 
   <!-- ─ SECTION 6: CERTIFICATE ─ -->
-  <section class="section-pad bg-white">
+  <section class="section-pad bg-bg-warm">
     <div class="container-max px-4">
       <div class="text-center mb-12">
         <p class="section-label">Recognition</p>
         <h2>Earn Your Certificate</h2>
       </div>
 
-      <div class="max-w-4xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div class="rounded-xl shadow-soft-xl aspect-video overflow-hidden" style="height: fit-content; display: inline-table;">
+      <div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
+          <div class="rounded-2xl overflow-hidden min-h-[320px]">
             <img src="/assets/imgs/certificate.png" alt="Fluent Path Certificate of Completion" class="w-full h-full object-cover">
           </div>
 
-          <div>
+          <div class="card-flat bg-navy-tint p-8">
             <h3 class="text-2xl font-bold mb-6">Recognized & Respected</h3>
-            <p class="text-gray-600-custom mb-6">Upon successful completion of any Fluent Path course, you'll receive a formal certificate of achievement. These certificates are valued by employers and educational institutions worldwide as proof of your English proficiency and dedication to learning.</p>
+            <p class="text-slate-blue mb-6">Upon successful completion of any Fluent Path course, you'll receive a formal certificate of achievement. These certificates are valued by employers and educational institutions worldwide as proof of your English proficiency and dedication to learning.</p>
 
             <div class="space-y-4">
               <div class="flex gap-4 items-start">
                 <div class="flex-shrink-0 pt-1">
-                  <i data-lucide="check-circle" style="color: #1e8a5c; width: 24px; height: 24px;"></i>
+                  <i data-lucide="check-circle" style="color: #7d5608; width: 24px; height: 24px;"></i>
                 </div>
                 <div>
-                  <p class="font-semibold text-gray-900-custom">Digital & Printable</p>
-                  <p class="text-sm text-gray-600-custom">Instant digital delivery + high-quality printable version</p>
+                  <p class="font-semibold text-navy">Digital & Printable</p>
+                  <p class="text-sm text-slate-blue">Instant digital delivery + high-quality printable version</p>
                 </div>
               </div>
 
               <div class="flex gap-4 items-start">
                 <div class="flex-shrink-0 pt-1">
-                  <i data-lucide="check-circle" style="color: #1e8a5c; width: 24px; height: 24px;"></i>
+                  <i data-lucide="check-circle" style="color: #c1543c; width: 24px; height: 24px;"></i>
                 </div>
                 <div>
-                  <p class="font-semibold text-gray-900-custom">Career Boost</p>
-                  <p class="text-sm text-gray-600-custom">Add to LinkedIn, CVs, and job applications</p>
+                  <p class="font-semibold text-navy">Career Boost</p>
+                  <p class="text-sm text-slate-blue">Add to LinkedIn, CVs, and job applications</p>
                 </div>
               </div>
 
               <div class="flex gap-4 items-start">
                 <div class="flex-shrink-0 pt-1">
-                  <i data-lucide="check-circle" style="color: #1e8a5c; width: 24px; height: 24px;"></i>
+                  <i data-lucide="check-circle" style="color: #1e3a5f; width: 24px; height: 24px;"></i>
                 </div>
                 <div>
-                  <p class="font-semibold text-gray-900-custom">Verifiable Credentials</p>
-                  <p class="text-sm text-gray-600-custom">Unique ID allows employers to verify authenticity</p>
+                  <p class="font-semibold text-navy">Verifiable Credentials</p>
+                  <p class="text-sm text-slate-blue">Unique ID allows employers to verify authenticity</p>
                 </div>
               </div>
             </div>
@@ -382,7 +364,7 @@
   </section>
 
   <!-- ─ SECTION 7: STATS BAR ─ -->
-  <section class="section-pad bg-gradient-to-r from-primary-blue to-primary-blue-mid text-white">
+  <section class="section-pad bg-navy text-white">
     <div class="container-max px-4">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
         <!-- Stat 1 -->
@@ -413,96 +395,113 @@
   </section>
 
   <!-- ─ SECTION 8: FAQ ─ -->
-  <section class="section-pad bg-primary-blue-light">
+  <section class="section-pad bg-cream">
     <div class="container-max px-4">
-      <div class="text-center mb-12">
-        <p class="section-label">Questions?</p>
-        <h2>Frequently Asked Questions</h2>
-      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
-      <div class="max-w-3xl mx-auto space-y-4" x-data="{activeAccordion: null}">
-        <!-- FAQ 1 -->
-        <div class="card-soft overflow-hidden">
-          <button @click="activeAccordion === 1 ? activeAccordion = null : activeAccordion = 1" class="w-full px-8 py-6 flex justify-between items-center hover:bg-primary-blue-light transition-colors text-left">
-            <span class="font-bold text-gray-900-custom">How do I enroll?</span>
-            <i data-lucide="chevron-down" class="w-6 h-6 text-primary-blue transform transition-transform" :class="{ 'rotate-180': activeAccordion === 1 }"></i>
-          </button>
-          <div x-show="activeAccordion === 1" class="px-8 pb-6 text-gray-600-custom border-t border-gray-200-custom pt-6">
-            <p>Simply click "Enroll via WhatsApp" on any course page. Our team will receive your inquiry and guide you through the enrollment process, payment options, and course scheduling.</p>
+        <!-- Left rail -->
+        <div class="lg:sticky lg:top-28">
+          <h2 class="text-5xl md:text-6xl mb-4">FAQs</h2>
+          <p class="text-lg text-slate-blue mb-16">Clear answers to common questions</p>
+
+          <div class="hidden lg:block">
+            <p class="font-bold text-navy mb-2">Still have questions?</p>
+            <p class="text-sm text-slate-blue mb-4 max-w-xs">Our team is happy to help, whether you're just exploring or ready to get started.</p>
+            <a href="https://wa.me/60172740240?text=Hi%2C%20I%20have%20a%20question%20about%20Fluent%20Path%20courses" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-bold text-navy">
+              Contact us <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+            </a>
           </div>
         </div>
 
-        <!-- FAQ 2 -->
-        <div class="card-soft overflow-hidden">
-          <button @click="activeAccordion === 2 ? activeAccordion = null : activeAccordion = 2" class="w-full px-8 py-6 flex justify-between items-center hover:bg-primary-blue-light transition-colors text-left">
-            <span class="font-bold text-gray-900-custom">What are the prerequisites?</span>
-            <i data-lucide="chevron-down" class="w-6 h-6 text-primary-blue transform transition-transform" :class="{ 'rotate-180': activeAccordion === 2 }"></i>
-          </button>
-          <div x-show="activeAccordion === 2" class="px-8 pb-6 text-gray-600-custom border-t border-gray-200-custom pt-6">
-            <p>Most courses are open to all levels. IELTS Intensive requires Upper-Intermediate English or above. Take our free "Test Your English" quiz to find your level and get personalized course recommendations.</p>
+        <!-- Accordion -->
+        <div class="space-y-3" x-data="{activeAccordion: null}">
+          <div class="bg-white rounded-2xl overflow-hidden">
+            <button @click="activeAccordion === 1 ? activeAccordion = null : activeAccordion = 1"
+                    class="w-full px-6 py-5 flex justify-between items-center gap-4 text-left cursor-pointer">
+              <span class="font-bold text-navy">How do I enroll?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-navy shrink-0 transform transition-transform" :class="{ 'rotate-180': activeAccordion === 1 }"></i>
+            </button>
+            <div x-show="activeAccordion === 1" class="px-6 pb-5">
+              <p class="text-sm">Simply click "Enroll via WhatsApp" on any course page. Our team will receive your inquiry and guide you through the enrollment process, payment options, and course scheduling.</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden">
+            <button @click="activeAccordion === 2 ? activeAccordion = null : activeAccordion = 2"
+                    class="w-full px-6 py-5 flex justify-between items-center gap-4 text-left cursor-pointer">
+              <span class="font-bold text-navy">What are the prerequisites?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-navy shrink-0 transform transition-transform" :class="{ 'rotate-180': activeAccordion === 2 }"></i>
+            </button>
+            <div x-show="activeAccordion === 2" class="px-6 pb-5">
+              <p class="text-sm">Most courses are open to all levels. IELTS Intensive requires Upper-Intermediate English or above. Take our free "Test Your English" quiz to find your level and get personalized course recommendations.</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden">
+            <button @click="activeAccordion === 3 ? activeAccordion = null : activeAccordion = 3"
+                    class="w-full px-6 py-5 flex justify-between items-center gap-4 text-left cursor-pointer">
+              <span class="font-bold text-navy">Can I get a refund?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-navy shrink-0 transform transition-transform" :class="{ 'rotate-180': activeAccordion === 3 }"></i>
+            </button>
+            <div x-show="activeAccordion === 3" class="px-6 pb-5">
+              <p class="text-sm">Registration and placement test fees are non-refundable. However, course fees are refundable provided that students have not started the course yet.</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden">
+            <button @click="activeAccordion === 4 ? activeAccordion = null : activeAccordion = 4"
+                    class="w-full px-6 py-5 flex justify-between items-center gap-4 text-left cursor-pointer">
+              <span class="font-bold text-navy">How long are the courses?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-navy shrink-0 transform transition-transform" :class="{ 'rotate-180': activeAccordion === 4 }"></i>
+            </button>
+            <div x-show="activeAccordion === 4" class="px-6 pb-5">
+              <p class="text-sm">Course durations vary: Intensive (ongoing), 1-to-1 (flexible, 1 month+), Speaking (1 month), IELTS (1-2 months). Check individual course pages for details.</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden">
+            <button @click="activeAccordion === 5 ? activeAccordion = null : activeAccordion = 5"
+                    class="w-full px-6 py-5 flex justify-between items-center gap-4 text-left cursor-pointer">
+              <span class="font-bold text-navy">Do you offer group discounts?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-navy shrink-0 transform transition-transform" :class="{ 'rotate-180': activeAccordion === 5 }"></i>
+            </button>
+            <div x-show="activeAccordion === 5" class="px-6 pb-5">
+              <p class="text-sm">Yes! We offer special pricing for groups of 5 or more. Contact us via WhatsApp to discuss bulk enrollment and corporate training options.</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden">
+            <button @click="activeAccordion === 6 ? activeAccordion = null : activeAccordion = 6"
+                    class="w-full px-6 py-5 flex justify-between items-center gap-4 text-left cursor-pointer">
+              <span class="font-bold text-navy">Will I get a certificate?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-navy shrink-0 transform transition-transform" :class="{ 'rotate-180': activeAccordion === 6 }"></i>
+            </button>
+            <div x-show="activeAccordion === 6" class="px-6 pb-5">
+              <p class="text-sm">Absolutely! All students who complete their course receive a formal, verifiable certificate of achievement. It's instantly digital and printable.</p>
+            </div>
           </div>
         </div>
 
-        <!-- FAQ 3 -->
-        <div class="card-soft overflow-hidden">
-          <button @click="activeAccordion === 3 ? activeAccordion = null : activeAccordion = 3" class="w-full px-8 py-6 flex justify-between items-center hover:bg-primary-blue-light transition-colors text-left">
-            <span class="font-bold text-gray-900-custom">Can I get a refund?</span>
-            <i data-lucide="chevron-down" class="w-6 h-6 text-primary-blue transform transition-transform" :class="{ 'rotate-180': activeAccordion === 3 }"></i>
-          </button>
-          <div x-show="activeAccordion === 3" class="px-8 pb-6 text-gray-600-custom border-t border-gray-200-custom pt-6">
-            <p>Registration and placement test fees are non-refundable. However, course fees are refundable provided that students have not started the course yet.</p>
-          </div>
+        <div class="lg:hidden">
+          <p class="font-bold text-navy mb-2">Still have questions?</p>
+          <p class="text-sm text-slate-blue mb-4">Our team is happy to help, whether you're just exploring or ready to get started.</p>
+          <a href="https://wa.me/60172740240?text=Hi%2C%20I%20have%20a%20question%20about%20Fluent%20Path%20courses" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-bold text-navy">
+            Contact us <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+          </a>
         </div>
 
-        <!-- FAQ 4 -->
-        <div class="card-soft overflow-hidden">
-          <button @click="activeAccordion === 4 ? activeAccordion = null : activeAccordion = 4" class="w-full px-8 py-6 flex justify-between items-center hover:bg-primary-blue-light transition-colors text-left">
-            <span class="font-bold text-gray-900-custom">How long are the courses?</span>
-            <i data-lucide="chevron-down" class="w-6 h-6 text-primary-blue transform transition-transform" :class="{ 'rotate-180': activeAccordion === 4 }"></i>
-          </button>
-          <div x-show="activeAccordion === 4" class="px-8 pb-6 text-gray-600-custom border-t border-gray-200-custom pt-6">
-            <p>Course durations vary: Intensive (ongoing), 1-to-1 (flexible, 1 month+), Speaking (1 month), IELTS (1-2 months). Check individual course pages for details.</p>
-          </div>
-        </div>
-
-        <!-- FAQ 5 -->
-        <div class="card-soft overflow-hidden">
-          <button @click="activeAccordion === 5 ? activeAccordion = null : activeAccordion = 5" class="w-full px-8 py-6 flex justify-between items-center hover:bg-primary-blue-light transition-colors text-left">
-            <span class="font-bold text-gray-900-custom">Do you offer group discounts?</span>
-            <i data-lucide="chevron-down" class="w-6 h-6 text-primary-blue transform transition-transform" :class="{ 'rotate-180': activeAccordion === 5 }"></i>
-          </button>
-          <div x-show="activeAccordion === 5" class="px-8 pb-6 text-gray-600-custom border-t border-gray-200-custom pt-6">
-            <p>Yes! We offer special pricing for groups of 5 or more. Contact us via WhatsApp to discuss bulk enrollment and corporate training options.</p>
-          </div>
-        </div>
-
-        <!-- FAQ 6 -->
-        <div class="card-soft overflow-hidden">
-          <button @click="activeAccordion === 6 ? activeAccordion = null : activeAccordion = 6" class="w-full px-8 py-6 flex justify-between items-center hover:bg-primary-blue-light transition-colors text-left">
-            <span class="font-bold text-gray-900-custom">Will I get a certificate?</span>
-            <i data-lucide="chevron-down" class="w-6 h-6 text-primary-blue transform transition-transform" :class="{ 'rotate-180': activeAccordion === 6 }"></i>
-          </button>
-          <div x-show="activeAccordion === 6" class="px-8 pb-6 text-gray-600-custom border-t border-gray-200-custom pt-6">
-            <p>Absolutely! All students who complete their course receive a formal, verifiable certificate of achievement. It's instantly digital and printable.</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
   <!-- ─ SECTION 9: REFERRAL CTA ─ -->
-  <section class="section-pad bg-gradient-to-r from-accent-teal via-accent-teal-light to-primary-blue-light">
+  <section class="section-pad bg-navy text-white">
     <div class="container-max px-4">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-6">Know Someone Ready to Learn?</h2>
-        <p class="text-lg text-gray-700 mb-8">Share Fluent Path with a friend and both of you earn rewards. It's our way of saying thank you for your support.</p>
+        <p class="text-lg text-white/80 mb-8">Share Fluent Path with a friend and both of you earn rewards. It's our way of saying thank you for your support.</p>
 
         <div class="inline-flex flex-col sm:flex-row gap-4">
           <a href="/referral.html" class="btn-primary flex items-center justify-center gap-2">
             <i data-lucide="gift"></i>
             Earn Rewards
           </a>
-          <a href="https://wa.me/60172740240?text=Check%20out%20Fluent%20Path%20-%20amazing%20English%20courses!" target="_blank" class="flex items-center justify-center gap-2 px-6 py-3 border-2 border-accent-teal text-accent-teal font-semibold rounded-sm hover:bg-accent-teal hover:text-white transition-all duration-300">
+          <a href="https://wa.me/60172740240?text=Check%20out%20Fluent%20Path%20-%20amazing%20English%20courses!" target="_blank" class="btn-white inline-flex items-center justify-center gap-2">
             <i data-lucide="share-2"></i>
             Share Now
           </a>
