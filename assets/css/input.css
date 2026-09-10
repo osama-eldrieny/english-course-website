@@ -1,8 +1,112 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ─ Theme tokens ─
+   :root holds the "default" theme (current brand, unchanged).
+   [data-theme="theme2"] overrides the same variables with a
+   usertesting.com-inspired palette/type/shape/density. Pages and
+   components never reference raw values — only these variables via
+   the Tailwind tokens in tailwind.config.js — so switching theme
+   requires no HTML changes. */
+@layer base {
+  :root {
+    --color-navy: #1e3a5f;
+    --color-navy-rgb: 30 58 95;
+    --color-navy-deep: #152b47;
+    --color-navy-tint: #d7dce2;
+    --color-slate-blue: #4a5f82;
+    --color-slate-tint: #dee2e9;
+    --color-gold: #f4b731;
+    --color-gold-tint: #fce9c1;
+    --color-gold-deep: #c98f18;
+    --color-gold-text: #7d5608;
+    --color-terra: #c1543c;
+    --color-terra-tint: #ecccc4;
+    --color-cream: #f0e7d5;
+    --color-tan: #c9b892;
+    --color-tan-tint: #e4dcc6;
+    --color-success-green: #1e8a5c;
+    --color-success-green-light: #e7f7f0;
+    --color-gray-50: #f8f9fa;
+    --color-gray-100: #f1f3f4;
+    --color-gray-200: #e8eaed;
+    --color-gray-400: #9aa0a6;
+    --color-gray-600: #5f6368;
+    --color-gray-800: #3c4043;
+    --color-gray-900: #202124;
+    --color-bg-warm: #fffdf7;
+
+    --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+    --tracking-display: -0.03em;
+    --tracking-heading: -0.02em;
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
+
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-soft-lg: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --shadow-soft-xl: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+    --theme-font-scale: 1;
+  }
+
+  html[data-theme="theme2"] {
+    /* White/charcoal base, teal accent, generous rounded shapes, airier
+       density — inspired by usertesting.com. */
+    --color-navy: #1f2a33;
+    --color-navy-rgb: 31 42 51;
+    --color-navy-deep: #10171d;
+    --color-navy-tint: #dde3e6;
+    --color-slate-blue: #5b6670;
+    --color-slate-tint: #e4e8ea;
+    --color-gold: #0fb5ae;
+    --color-gold-tint: #d8f3f1;
+    --color-gold-deep: #0c948e;
+    --color-gold-text: #0c948e;
+    --color-terra: #e4572e;
+    --color-terra-tint: #fbe0d7;
+    --color-cream: #f4f7f8;
+    --color-tan: #d8dee1;
+    --color-tan-tint: #eef1f2;
+    --color-success-green: #158f6b;
+    --color-success-green-light: #e3f7ef;
+    --color-gray-50: #f7f8f9;
+    --color-gray-100: #eef0f1;
+    --color-gray-200: #e1e5e7;
+    --color-gray-400: #a7b0b5;
+    --color-gray-600: #5b6670;
+    --color-gray-800: #2c3640;
+    --color-gray-900: #1a2127;
+    --color-bg-warm: #ffffff;
+
+    --font-sans: "Inter", system-ui, sans-serif;
+    --tracking-display: -0.01em;
+    --tracking-heading: -0.005em;
+
+    --radius-sm: 14px;
+    --radius-md: 18px;
+    --radius-lg: 24px;
+    --radius-xl: 28px;
+
+    --shadow-soft: 0 1px 3px rgba(20, 25, 30, 0.06);
+    --shadow-soft-lg: 0 8px 24px rgba(20, 25, 30, 0.08);
+    --shadow-soft-xl: 0 16px 40px rgba(20, 25, 30, 0.1);
+
+    --theme-font-scale: 1.0625;
+  }
+
+  html[data-theme="theme2"] h1,
+  html[data-theme="theme2"] h2,
+  html[data-theme="theme2"] h3 {
+    font-family: "Sora", system-ui, sans-serif;
+  }
+}
 
 /* ─ Global Base Styles ─ */
 @layer base {
@@ -12,6 +116,7 @@
 
   html {
     scroll-behavior: smooth;
+    font-size: calc(100% * var(--theme-font-scale, 1));
   }
 
   body {

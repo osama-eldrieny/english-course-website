@@ -1,3 +1,28 @@
+<!-- Theme switcher — independent of the nav's centering layout -->
+<div class="fixed top-3 md:top-5 left-3 md:left-6 z-[60]"
+     x-data="{
+       open: false,
+       themes: window.FluentPathTheme.THEMES,
+       current: window.FluentPathTheme.getTheme(),
+       choose(id) { window.FluentPathTheme.setTheme(id); this.current = id; this.open = false; }
+     }">
+  <button @click="open = !open" :aria-expanded="open" aria-label="Switch theme"
+          class="flex items-center gap-2 bg-white rounded-full shadow-soft-lg px-3.5 py-2 text-sm font-semibold text-navy hover:bg-cream focus:outline-none focus:ring-2 focus:ring-navy transition-colors">
+    <i data-lucide="palette" style="width: 16px; height: 16px;"></i>
+    <span class="hidden sm:inline" x-text="themes.find(t => t.id === current)?.label || 'Theme'"></span>
+  </button>
+  <div x-show="open" x-cloak @click.outside="open = false"
+       class="absolute left-0 mt-2 w-44 bg-white rounded-xl shadow-soft-lg py-2 overflow-hidden">
+    <template x-for="t in themes" :key="t.id">
+      <button @click="choose(t.id)"
+              class="w-full flex items-center justify-between px-4 py-2 text-sm text-navy hover:bg-cream text-left">
+        <span x-text="t.label"></span>
+        <i data-lucide="check" x-show="current === t.id" style="width: 14px; height: 14px;"></i>
+      </button>
+    </template>
+  </div>
+</div>
+
 <header class="fixed top-0 left-0 right-0 z-50 pt-3 md:pt-5 px-3 md:px-6" x-data="{ mobileOpen: false }">
   <div class="container-max">
     <div class="bg-white rounded-2xl shadow-soft-lg">
