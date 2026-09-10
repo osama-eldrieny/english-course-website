@@ -220,6 +220,19 @@
   .section-label {
     @apply text-xs font-bold tracking-widest text-gold-text uppercase mb-3;
   }
+
+  /* Logo color contexts — the two-tone logo recolors per theme via the same
+     tokens the rest of the page uses, plus a dark-bg variant (footer) that
+     swaps the dark tone for white so it stays legible on a navy/charcoal fill. */
+  .logo-on-light {
+    --logo-primary: var(--color-navy);
+    --logo-accent: var(--color-gold);
+  }
+
+  .logo-on-dark {
+    --logo-primary: #ffffff;
+    --logo-accent: var(--color-gold);
+  }
 }
 
 /* ─ Animation Utilities ─ */
