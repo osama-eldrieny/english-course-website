@@ -1066,6 +1066,10 @@ button{
   margin-top: 0.5rem;
 }
 
+.mt-28{
+  margin-top: 7rem;
+}
+
 .mt-4{
   margin-top: 1rem;
 }
@@ -1791,14 +1795,6 @@ button{
 
 .text-white\/90{
   color: rgb(255 255 255 / 0.9);
-}
-
-.underline{
-  text-decoration-line: underline;
-}
-
-.underline-offset-2{
-  text-underline-offset: 2px;
 }
 
 .opacity-0{
