@@ -945,6 +945,10 @@ button{
   position: relative;
 }
 
+.sticky{
+  position: sticky;
+}
+
 .-bottom-10{
   bottom: -2.5rem;
 }
@@ -1068,10 +1072,6 @@ button{
 
 .mt-28{
   margin-top: 7rem;
-}
-
-.mt-4{
-  margin-top: 1rem;
 }
 
 .mt-6{
@@ -1272,6 +1272,10 @@ button{
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
+.grid-cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .flex-col{
   flex-direction: column;
 }
@@ -1344,6 +1348,15 @@ button{
   gap: 2rem;
 }
 
+.gap-x-6{
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
+}
+
+.gap-y-2{
+  row-gap: 0.5rem;
+}
+
 .space-y-2 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1409,6 +1422,10 @@ button{
 
 .border-t{
   border-top-width: 1px;
+}
+
+.border-gold{
+  border-color: var(--color-gold);
 }
 
 .border-navy\/10{
@@ -1593,6 +1610,11 @@ button{
   padding-bottom: 3rem;
 }
 
+.py-14{
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
 .py-16{
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -1644,6 +1666,10 @@ button{
 
 .pl-5{
   padding-left: 1.25rem;
+}
+
+.pl-6{
+  padding-left: 1.5rem;
 }
 
 .pr-3{
@@ -1745,6 +1771,10 @@ button{
 
 .leading-none{
   line-height: 1;
+}
+
+.leading-relaxed{
+  line-height: 1.625;
 }
 
 .tracking-display{
@@ -2180,6 +2210,10 @@ button{
     padding-top: 1.25rem;
   }
 
+  .md\:text-2xl{
+    font-size: 20px;
+  }
+
   .md\:text-3xl{
     font-size: 28px;
   }
@@ -2212,12 +2246,24 @@ button{
     top: 7rem;
   }
 
+  .lg\:col-span-2{
+    grid-column: span 2 / span 2;
+  }
+
+  .lg\:col-span-3{
+    grid-column: span 3 / span 3;
+  }
+
   .lg\:block{
     display: block;
   }
 
   .lg\:hidden{
     display: none;
+  }
+
+  .lg\:h-96{
+    height: 24rem;
   }
 
   .lg\:grid-cols-2{
@@ -2230,6 +2276,10 @@ button{
 
   .lg\:grid-cols-4{
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-5{
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .lg\:gap-20{
