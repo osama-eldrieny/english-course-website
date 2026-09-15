@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t&&t!=="default")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/assets/imgs/favicon.svg">
+  <title>English Placement Test — Speakademi</title>
+  <link rel="stylesheet" href="/assets/css/output.css">
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <script src="https://unpkg.com/lucide"></script>
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/include.js"></script>
+  <style>
+    .step { display: none; }
+    .step.active { display: block; }
+    #loading-overlay, #transition-overlay {
+      position: fixed; inset: 0; z-index: 100;
+      align-items: center; justify-content: center;
+      background: rgba(30, 58, 95, 0.92);
+      color: white; font-weight: 600; font-size: 1.125rem; text-align: center; padding: 1.5rem;
+    }
+    #loading-overlay:not([hidden]), #transition-overlay:not([hidden]) {
+      display: flex;
+    }
+    .spinner {
+      width: 40px; height: 40px; border-radius: 9999px;
+      border: 4px solid rgba(255,255,255,0.3); border-top-color: #fff;
+      animation: spin 0.8s linear infinite; margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #progress-bar { height: 8px; background: var(--color-navy-tint); border-radius: 9999px; overflow: hidden; }
+    .question-card { box-shadow: var(--shadow-soft); }
+    #progress-fill { height: 100%; width: 0%; background: var(--color-gold); transition: width 0.4s ease; }
+  </style>
+</head>
+<body class="bg-bg-warm">
+
+  <div id="loading-overlay" hidden>
+    <div>
+      <div class="spinner"></div>
+      Loading...
+    </div>
+  </div>
+
+  <div id="transition-overlay" hidden>
+    <div>
+      <div class="spinner"></div>
+      <p id="transition-text"></p>
+    </div>
+  </div>
+
+  <div data-include="/assets/partials/header.html"></div>
+
+  <main class="container-max max-w-2xl px-4 pt-32 pb-12 md:pt-40 md:pb-16">
+    <div id="app">
+
+      <!-- Step 1: Student Info -->
+      <div id="step-info" class="step active">
+        <div class="text-center mb-10">
+          <p class="section-label">Placement Test</p>
+          <h1 class="mb-4">English Placement Test</h1>
+        </div>
+
+        <div class="card-flat bg-white p-6 md:p-8 mb-6">
+          <h3 class="mb-3">Welcome</h3>
+          <p class="mb-6">You are about to start your English Placement Test online.</p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+            <div class="text-center bg-navy-tint rounded-lg p-4">
+              <p class="font-bold text-navy mb-1">Reading</p>
+              <p class="text-sm">20 mins</p>
+            </div>
+            <div class="text-center bg-navy-tint rounded-lg p-4">
+              <p class="font-bold text-navy mb-1">Listening</p>
+              <p class="text-sm">20 mins</p>
+            </div>
+            <div class="text-center bg-navy-tint rounded-lg p-4">
+              <p class="font-bold text-navy mb-1">Writing</p>
+              <p class="text-sm">35 mins</p>
+            </div>
+            <div class="text-center bg-navy-tint rounded-lg p-4">
+              <p class="font-bold text-navy mb-1">Grammar</p>
+              <p class="text-sm">20 mins</p>
+            </div>
+          </div>
+
+          <ul class="space-y-3 text-sm list-disc pl-5">
+            <li>Check you will have enough time to complete the whole test before you begin. Once you begin the test, you cannot pause the timer or restart the test. You can take very short breaks between test sections if needed. These breaks are also timed.</li>
+            <li>You can only take the test once. You cannot repeat the test to practice.</li>
+            <li>If your internet connection isn't stable, you may not be able to complete the test. Partial tests are not saved.</li>
+            <li>You will not lose points for wrong answers.</li>
+            <li>Once you submit an exercise, you cannot go back.</li>
+          </ul>
+        </div>
+
+        <form id="info-form" class="card-flat bg-white p-6 md:p-8 space-y-4">
+          <div>
+            <label for="fullName" class="block text-sm font-semibold text-navy mb-1">Full Name</label>
+            <input type="text" id="fullName" class="input-base" required />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-semibold text-navy mb-1">Email</label>
+            <input type="email" id="email" class="input-base" required />
+          </div>
+          <div>
+            <label for="whatsapp" class="block text-sm font-semibold text-navy mb-1">WhatsApp Number</label>
+            <input type="tel" id="whatsapp" class="input-base" placeholder="e.g. 0060111234567" />
+          </div>
+          <button type="submit" class="btn-primary w-full justify-center flex items-center gap-2 mt-2">
+            Start Test
+          </button>
+        </form>
+      </div>
+
+      <!-- Step 2: Questions -->
+      <div id="step-questions" class="step">
+        <div id="progress-bar" class="mb-8">
+          <div id="progress-fill"></div>
+        </div>
+        <h2 id="section-title" class="mb-6"></h2>
+        <div id="questions-container"></div>
+        <button id="next-section-btn" class="btn-primary w-full justify-center flex items-center gap-2 mt-4">
+          Next Section →
+        </button>
+      </div>
+
+      <!-- Step 3: Writing Prompt -->
+      <div id="step-writing" class="step">
+        <div id="progress-bar-writing" class="mb-8">
+          <div id="progress-fill-writing"></div>
+        </div>
+        <h2 id="writing-title" class="mb-3"></h2>
+        <p id="writing-prompt" class="mb-4"></p>
+        <textarea id="writing-answer" rows="10" class="input-base mb-2"></textarea>
+        <p id="word-count" class="text-sm text-slate-blue mb-6">0 words</p>
+        <button id="submit-writing-btn" class="btn-primary w-full justify-center flex items-center gap-2">
+          Submit
+        </button>
+      </div>
+
+      <!-- Step 4: Results -->
+      <div id="step-results" class="step">
+        <div class="card-flat bg-white p-6 md:p-8 text-center">
+          <h2 class="mb-6">Your Results</h2>
+          <div id="results-content" class="text-left"></div>
+          <a href="/index.html" class="btn-secondary inline-flex items-center gap-2 justify-center">
+            Back to Home
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div data-include="/assets/partials/footer.html"></div>
+
+  <script src="/assets/js/placement-test.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
