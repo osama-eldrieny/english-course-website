@@ -181,7 +181,6 @@ function onSectionComplete(sectionId) {
   }
 
   if (nextSection) {
-    markSkippedSections(sectionId, nextSection);
     state.currentSectionId = nextSection;
     state.sectionsVisited.push(nextSection);
     saveLocal();
@@ -219,15 +218,12 @@ function assignedWritingSection() {
   return WRITING_BY_GRAMMAR_LEVEL[level] || 'writing_place';
 }
 
-function markSkippedSections(fromSectionId, toSectionId) {
-  const fromIdx = DEFAULT_FLOW.indexOf(fromSectionId);
-  const toIdx = DEFAULT_FLOW.indexOf(toSectionId);
-  if (fromIdx === -1 || toIdx === -1) return;
-  for (let i = fromIdx + 1; i < toIdx; i++) {
-    if (!state.sectionsSkipped.includes(DEFAULT_FLOW[i])) {
-      state.sectionsSkipped.push(DEFAULT_FLOW[i]);
-    }
-  }
+// Sections the student never took: everything in the Questions tab except the
+// intro and the sections they visited.
+function computeSkippedSections() {
+  return Object.keys(state.allQuestions).filter(id =>
+    id !== 'intro' && !state.sectionsVisited.includes(id)
+  );
 }
 
 function evaluateCondition(rule, score) {
@@ -411,6 +407,7 @@ function updateProgress(sectionId) {
 
 async function finishTest() {
   showLoading(true);
+  state.sectionsSkipped = computeSkippedSections();
 
   const payload = {
     email: state.studentInfo.email,

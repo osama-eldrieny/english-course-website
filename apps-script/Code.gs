@@ -247,7 +247,17 @@ function saveResults(payload, graded, level) {
   };
 
   const headers = ensureResultColumns(sheet);
+
   sheet.appendRow(headers.map(h => values[h] !== undefined ? values[h] : ''));
+
+  // appendRow lets Sheets turn "0060111234567" into a number and drop the zeros,
+  // so rewrite the phone cell explicitly as text.
+  const phoneCol = headers.indexOf('whatsapp') + 1;
+  if (phoneCol > 0 && payload.whatsapp) {
+    sheet.getRange(sheet.getLastRow(), phoneCol)
+      .setNumberFormat('@')
+      .setValue(String(payload.whatsapp));
+  }
 }
 
 // ============ EMAIL ============
