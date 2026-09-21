@@ -134,6 +134,11 @@ function onNextSectionClick() {
   // Collect answers from the DOM into state before grading.
   const answers = {};
   questions.forEach(q => {
+    if (q.question_type === 'long_text') {
+      const box = document.querySelector(`textarea[name="q_${q.question_number}"]`);
+      answers[q.question_number] = box ? box.value.trim() : '';
+      return;
+    }
     const selected = document.querySelector(`input[name="q_${q.question_number}"]:checked`);
     answers[q.question_number] = selected ? selected.value : null;
   });
@@ -148,11 +153,14 @@ function onSectionComplete(sectionId) {
   const studentAnswers = state.answers[sectionId] || {};
   let correct = 0;
 
+  let total = 0;
   sectionQuestions.forEach(q => {
+    if (q.question_type === 'long_text') return; // written response, not graded
+    total++;
     if (studentAnswers[q.question_number] === q.correct_answer) correct++;
   });
 
-  state.scores[sectionId] = { correct, total: sectionQuestions.length };
+  state.scores[sectionId] = { correct, total };
 
   if (sectionId.indexOf('grammar_') === 0) {
     state.highestGrammarReached = sectionId;
@@ -162,7 +170,12 @@ function onSectionComplete(sectionId) {
   let nextSection;
 
   if (rule) {
-    nextSection = evaluateCondition(rule, correct);
+    const target = evaluateCondition(rule, correct);
+    nextSection = resolveSectionId(target);
+    if (!nextSection) {
+      console.warn(`Routing rule after "${sectionId}" points to unknown section "${target}"; falling back to writing.`);
+      nextSection = assignedWritingSection();
+    }
   } else {
     nextSection = nextDefaultSection(sectionId);
   }
@@ -178,13 +191,27 @@ function onSectionComplete(sectionId) {
   }
 }
 
+// A section with no routing rule ends its track. If the section already
+// contained its own written question the test is finished; otherwise fall
+// back to the standalone writing step.
 function nextDefaultSection(sectionId) {
-  const idx = DEFAULT_FLOW.indexOf(sectionId);
-  if (idx === -1 || idx === DEFAULT_FLOW.length - 1) {
-    // End of grammar/reading/listening flow -> go to writing
-    return assignedWritingSection();
-  }
-  return DEFAULT_FLOW[idx + 1];
+  const hasWrittenQuestion = (state.allQuestions[sectionId] || [])
+    .some(q => q.question_type === 'long_text');
+  return hasWrittenQuestion ? null : assignedWritingSection();
+}
+
+// Routing rules may name a target by section_id (e.g. "listening_1") or by the
+// section_title shown in the Questions tab (e.g. "Beginner Listening (Skills_1)").
+function resolveSectionId(target) {
+  const wanted = String(target || '').trim();
+  if (!wanted) return null;
+  if (state.allQuestions[wanted] || wanted.indexOf('writing_') === 0) return wanted;
+
+  const key = wanted.toLowerCase();
+  return Object.keys(state.allQuestions).find(id => {
+    const title = (state.allQuestions[id][0] || {}).section_title;
+    return String(title || '').trim().toLowerCase() === key;
+  }) || null;
 }
 
 function assignedWritingSection() {
@@ -204,7 +231,7 @@ function markSkippedSections(fromSectionId, toSectionId) {
 }
 
 function evaluateCondition(rule, score) {
-  const match = String(rule.condition).match(/score\s*([<>=!]+)\s*(\d+)/);
+  const match = String(rule.condition).match(/score\s*([<>=!]+)\s*(\d+)/i);
   if (!match) return rule.else_go_to;
 
   const operator = match[1];
@@ -296,6 +323,18 @@ function createQuestionElement(q) {
   // from the source Form, so it's shown as-is without adding another one.
   title.textContent = q.question_text;
   wrapper.appendChild(title);
+
+  if (q.question_type === 'long_text') {
+    const box = document.createElement('textarea');
+    box.name = `q_${q.question_number}`;
+    box.rows = 8;
+    box.className = 'w-full px-4 py-3 rounded-lg border border-gray-200-custom focus:outline-none focus:ring-2 focus:ring-navy';
+    box.setAttribute('aria-label', 'Your written answer');
+    const saved = (state.answers[state.currentSectionId] || {})[q.question_number];
+    if (saved) box.value = saved;
+    wrapper.appendChild(box);
+    return wrapper;
+  }
 
   const options = document.createElement('div');
   options.className = 'space-y-3';
