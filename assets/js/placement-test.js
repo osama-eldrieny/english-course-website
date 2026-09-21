@@ -340,8 +340,11 @@ function createQuestionElement(q) {
   options.className = 'space-y-3';
 
   ['option_a', 'option_b', 'option_c', 'option_d'].forEach((key, i) => {
-    const value = q[key];
-    if (!value) return;
+    // Sheets stores TRUE/FALSE cells as booleans, so `false` is a real option.
+    let value = q[key];
+    if (value === '' || value === null || value === undefined) return;
+    if (value === true) value = 'TRUE';
+    if (value === false) value = 'FALSE';
     const letter = String.fromCharCode(65 + i);
 
     const label = document.createElement('label');
