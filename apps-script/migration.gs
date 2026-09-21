@@ -26,6 +26,10 @@
  *   - anything else      -> treated as a grammar level: "grammar_1",
  *                          "grammar_2", etc. in the order they appear
  *
+ * The keywords only decide the section_id. The section_title written to the
+ * sheet is the Page Break's title exactly as typed in the Form (a generated
+ * title is used only if the Page Break title is blank).
+ *
  * Reading passage: put the passage text in a "Section header" form item
  * (Add item -> Section header) placed right before the reading questions,
  * OR as the Page Break's own description field. Either is picked up
@@ -95,9 +99,11 @@ function exportFormToSheet() {
   for (const item of items) {
     if (item.getType() === FormApp.ItemType.PAGE_BREAK) {
       const pb = item.asPageBreakItem();
-      const classified = classifySection(pb.getTitle() || '');
+      const formTitle = (pb.getTitle() || '').trim();
+      const classified = classifySection(formTitle);
       currentSectionId = classified.id;
-      currentTitle = classified.title;
+      // Use the title exactly as typed in the Form; fall back to the generated one if blank.
+      currentTitle = formTitle || classified.title;
       questionNum = 0;
       currentPassage = '';
       passageAttachedForSection = false;
