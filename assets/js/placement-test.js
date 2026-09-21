@@ -247,9 +247,7 @@ function evaluateCondition(rule, score) {
 
 function transitionTo(sectionId) {
   const overlay = document.getElementById('transition-overlay');
-  const label = state.allQuestions[sectionId]
-    ? (state.allQuestions[sectionId][0] || {}).section_title
-    : sectionTitleFor(sectionId);
+  const label = sectionTitleFor(sectionId);
 
   document.getElementById('transition-text').textContent = `Section complete! Moving to ${label || 'the next section'}...`;
   overlay.hidden = false;
@@ -260,14 +258,27 @@ function transitionTo(sectionId) {
   }, 1400);
 }
 
+// Student-facing names. The Questions tab titles contain internal IDs
+// (e.g. "Section 1 (grammar_1)"), so they're only used as a fallback.
+const SECTION_LABELS = {
+  grammar_1: 'Grammar — Part 1',
+  grammar_2: 'Grammar — Part 2',
+  grammar_3: 'Grammar — Part 3',
+  grammar_4: 'Grammar — Part 4',
+  listening_1: 'Beginner Listening & Writing',
+  grammar_5: 'Elementary Skills & Writing',
+  grammar_6: 'Pre-Intermediate Skills & Writing',
+  listening_2: 'Intermediate Listening & Writing',
+  writing_opinion: 'Writing — Opinion Essay',
+  writing_routine: 'Writing — Daily Routine',
+  writing_abroad: 'Writing — Studying Abroad',
+  writing_place: 'Writing — A Place I Like',
+};
+
 function sectionTitleFor(sectionId) {
-  const titles = {
-    writing_opinion: 'Writing — Opinion Essay',
-    writing_routine: 'Writing — Daily Routine',
-    writing_abroad: 'Writing — Studying Abroad',
-    writing_place: 'Writing — A Place I Like',
-  };
-  return titles[sectionId] || sectionId;
+  if (SECTION_LABELS[sectionId]) return SECTION_LABELS[sectionId];
+  const title = ((state.allQuestions[sectionId] || [])[0] || {}).section_title;
+  return title || sectionId;
 }
 
 // ============ RENDERING ============
@@ -284,7 +295,7 @@ function renderSection(sectionId) {
     return;
   }
 
-  document.getElementById('section-title').textContent = questions[0].section_title;
+  document.getElementById('section-title').textContent = sectionTitleFor(sectionId);
   updateProgress(sectionId);
 
   const container = document.getElementById('questions-container');
@@ -456,7 +467,7 @@ function renderResults(level, scores, submissionFailed) {
     const row = document.createElement('div');
     row.className = 'flex justify-between border-b border-gray-200-custom py-2';
     const label = document.createElement('span');
-    label.textContent = sectionTitleFor(sectionId) !== sectionId ? sectionTitleFor(sectionId) : sectionId;
+    label.textContent = sectionTitleFor(sectionId);
     const value = document.createElement('span');
     value.className = 'font-semibold text-navy';
     value.textContent = (s.total !== undefined && s.total !== null) ? `${s.correct}/${s.total}` : 'Submitted';
