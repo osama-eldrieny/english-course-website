@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t&&t!=="default")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/assets/imgs/favicon.svg">
+  <title>Preview All Questions (Admin Check)</title>
+  <link rel="stylesheet" href="/assets/css/output.css">
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/include.js"></script>
+  <style>
+    .preview-section { border-top: 3px solid var(--color-navy, #1e3a5f); padding-top: 1rem; margin-top: 2.5rem; }
+    .preview-section:first-child { margin-top: 0; }
+    .preview-meta { font-size: 0.8rem; color: var(--color-slate-blue, #5b6670); margin-bottom: 1rem; }
+    .answer-badge { display: inline-block; background: var(--color-success-green-light, #e3f7ef); color: var(--color-success-green, #158f6b); font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 9999px; margin-left: 0.5rem; }
+    .missing-badge { display: inline-block; background: var(--color-terra-tint, #fbe0d7); color: var(--color-terra, #e4572e); font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 9999px; margin-left: 0.5rem; }
+    #password-gate { max-width: 400px; margin: 4rem auto; }
+  </style>
+</head>
+<body class="bg-bg-warm flex flex-col min-h-screen">
+
+  <div data-include="/assets/partials/header.html"></div>
+
+  <main class="container-max max-w-4xl px-4 pt-32 pb-16 md:pt-40 flex-1 w-full">
+
+    <div id="password-gate" class="card-flat bg-white p-6">
+      <h3 class="mb-3">Admin Login</h3>
+      <p class="mb-4 text-sm">Enter the admin password to preview all questions.</p>
+      <input type="password" id="admin-password" class="input-base mb-3" placeholder="Password" />
+      <button id="login-btn" class="btn-primary w-full justify-center">Continue</button>
+      <p id="login-error" class="text-terra text-sm mt-2 hidden"></p>
+    </div>
+
+    <div id="preview" class="hidden">
+      <h1 class="text-2xl font-bold mb-2">Preview All Questions</h1>
+      <p class="text-slate-blue mb-8">Read-only view of every section and question as they'd appear to a student — for checking images, audio/video, helper text, and options without answering the test. Correct answers are shown for reference; students never see this page.</p>
+      <div id="sections-container"></div>
+    </div>
+
+  </main>
+
+  <div data-include="/assets/partials/footer.html"></div>
+
+  <script src="/assets/js/preview-all-questions.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

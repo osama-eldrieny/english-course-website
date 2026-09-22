@@ -6,6 +6,8 @@ const THEME_STORAGE_KEY = 'theme';
 const THEMES = [
   { id: 'default', label: 'Theme 1' },
   { id: 'theme2', label: 'Theme 2' },
+  { id: 'theme3', label: 'Theme 3' },
+  { id: 'theme4', label: 'Theme 4' },
 ];
 
 function getTheme() {

@@ -33,10 +33,34 @@
  * Reading passage: put the passage text in a "Section header" form item
  * (Add item -> Section header) placed right before the reading questions,
  * OR as the Page Break's own description field. Either is picked up
- * automatically and attached to the first question of that section.
+ * automatically and attached to the first question of that section — for
+ * ANY section, not just ones named "reading" (a Listening section's page can
+ * contain its own embedded reading passage and/or writing prompt too).
+ *
+ * Audio/video and per-question images: Apps Script's FormApp service cannot
+ * read back the URL of an embedded Video item (VideoItem exposes only
+ * getId/getTitle/getHelpText/getWidth/getAlignment — no getVideoUrl), and an
+ * embedded Image item only exposes the image as a Blob, not the public URL
+ * Forms serves it at. Because of that API limitation, these URLs can't be
+ * extracted automatically — they're hardcoded below in AUDIO_URL_BY_SECTION
+ * and IMAGE_URL_BY_QUESTION. Update those maps by hand whenever a Skills
+ * section's listening video changes, or a question's embedded image changes.
  */
 
 const TARGET_SPREADSHEET_ID = '1uVAM7SFuO_be7Sb0Wwoir7ZneDT8vMbFvyQGnQS-g1Y';
+
+// section_id -> the section's listening video URL (see comment above).
+const AUDIO_URL_BY_SECTION = {
+  listening_1: 'https://youtu.be/q6ATcDl7d6E',
+  grammar_5: 'https://youtu.be/JOhB8HbNFWk',
+  grammar_6: 'https://www.youtube.com/watch?v=zNHLiKQ_rw4',
+  listening_2: 'https://www.youtube.com/watch?v=7I1Ij7ZFi7M',
+};
+
+// "section_id:question_number" -> that question's embedded image URL.
+const IMAGE_URL_BY_QUESTION = {
+  'grammar_2:10': 'https://docs.google.com/u/0/forms-images-rt/ANbbkighqZIn687zN5VudzrCzNiWvssyRzbr7XHDBDtrrf1mJwbtjad7kEks-ZC3ciq6yc_G5CHzfVozqYjWT2kE_xVI0SjjizZ0TbbW1eEt0IUEJ1mVF2-9hHsut7yg4xoB4fT46q-BgCVuANJNs7if-cKZMtc3IzolM7XBa6WMDacvGPWyfEe1YM3rTKIjc1RwQik66xkl=w338',
+};
 
 function exportFormToSheet() {
   const form = FormApp.getActiveForm();
@@ -64,9 +88,11 @@ function exportFormToSheet() {
   let currentSectionId = 'intro';
   let currentTitle = 'Introduction';
   let currentPassage = '';
+  let currentAudioUrl = '';
   let questionNum = 0;
   const rows = [];
   let passageAttachedForSection = false;
+  let audioAttachedForSection = false;
 
   const writingMap = [
     { keywords: ['opinion'], id: 'writing_opinion', title: 'Writing — Opinion Essay' },
@@ -106,7 +132,9 @@ function exportFormToSheet() {
       currentTitle = formTitle || classified.title;
       questionNum = 0;
       currentPassage = '';
+      currentAudioUrl = AUDIO_URL_BY_SECTION[currentSectionId] || '';
       passageAttachedForSection = false;
+      audioAttachedForSection = false;
       // Some authors put the passage in the page break's own help text.
       try {
         const helpText = pb.getHelpText && pb.getHelpText();
@@ -117,8 +145,21 @@ function exportFormToSheet() {
 
     if (item.getType() === FormApp.ItemType.SECTION_HEADER) {
       const sh = item.asSectionHeaderItem();
-      const text = [sh.getTitle(), sh.getHelpText()].filter(Boolean).join('\n\n');
+      // "Untitled Title" is Forms' own placeholder for a Section Header whose
+      // title was never set (e.g. one added purely as a visual divider) — not
+      // real content, so it's excluded rather than appended to the passage.
+      const title = sh.getTitle();
+      const parts = [(title && title !== 'Untitled Title') ? title : '', sh.getHelpText()].filter(Boolean);
+      const text = parts.join('\n\n');
       if (text) currentPassage = currentPassage ? currentPassage + '\n\n' + text : text;
+      continue;
+    }
+
+    // Video and Image items embedded on the page: Apps Script can't read
+    // their URLs back (see the AUDIO_URL_BY_SECTION/IMAGE_URL_BY_QUESTION
+    // comment above), so these items are just skipped — the hardcoded maps
+    // supply the URLs instead.
+    if (item.getType() === FormApp.ItemType.VIDEO || item.getType() === FormApp.ItemType.IMAGE) {
       continue;
     }
 
@@ -141,10 +182,12 @@ function exportFormToSheet() {
         choices[3] ? choices[3].getValue() : '',
         correctIdx >= 0 ? letters[correctIdx] : '',
         mc.getPoints() || 1,
-        '', '',
-        (currentSectionId === 'reading' && !passageAttachedForSection && currentPassage) ? currentPassage : ''
+        IMAGE_URL_BY_QUESTION[`${currentSectionId}:${questionNum}`] || '',
+        (!audioAttachedForSection && currentAudioUrl) ? currentAudioUrl : '',
+        (!passageAttachedForSection && currentPassage) ? currentPassage : ''
       ]);
       passageAttachedForSection = passageAttachedForSection || !!currentPassage;
+      audioAttachedForSection = audioAttachedForSection || !!currentAudioUrl;
       continue;
     }
 
@@ -157,10 +200,12 @@ function exportFormToSheet() {
         item.getTitle(),
         'long_text',
         '', '', '', '', '', 0,
-        '', '',
-        (currentSectionId === 'reading' && !passageAttachedForSection && currentPassage) ? currentPassage : ''
+        '',
+        (!audioAttachedForSection && currentAudioUrl) ? currentAudioUrl : '',
+        (!passageAttachedForSection && currentPassage) ? currentPassage : ''
       ]);
       passageAttachedForSection = passageAttachedForSection || !!currentPassage;
+      audioAttachedForSection = audioAttachedForSection || !!currentAudioUrl;
       continue;
     }
   }

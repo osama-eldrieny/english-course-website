@@ -11,6 +11,16 @@ const DEFAULT_FLOW = [
   'listening_1', 'listening_2', 'listening_3'
 ];
 
+// Fallback routing, used only if the "Sections" tab fetch fails or is
+// empty. The live source of truth is the Sections tab, edited via
+// /admin-placement-questions.html — see init() below.
+const FALLBACK_ROUTING_RULES = [
+  { after_section: 'grammar_1', condition: 'score < 15', then_go_to: 'listening_1', else_go_to: 'grammar_2' },
+  { after_section: 'grammar_2', condition: 'score < 15', then_go_to: 'grammar_5', else_go_to: 'grammar_3' },
+  { after_section: 'grammar_3', condition: 'score < 15', then_go_to: 'grammar_6', else_go_to: 'grammar_4' },
+  { after_section: 'grammar_4', condition: 'score >= 15', then_go_to: 'listening_2', else_go_to: 'grammar_6' },
+];
+
 const WRITING_BY_GRAMMAR_LEVEL = {
   grammar_1: 'writing_place',
   grammar_2: 'writing_routine',
@@ -21,6 +31,7 @@ const WRITING_BY_GRAMMAR_LEVEL = {
 const state = {
   studentInfo: {},
   allQuestions: {},
+  sectionMeta: {},
   routingRules: [],
   currentSectionId: null,
   answers: {},
@@ -83,20 +94,70 @@ function showLoading(show) {
 async function init() {
   showLoading(true);
   try {
-    const [questionsRes, routingRes] = await Promise.all([
-      fetch(`${API_URL}?action=questions`).then(r => r.json()),
-      fetch(`${API_URL}?action=routing`).then(r => r.json()),
+    // Cache-bust: browsers (and some intermediate proxies) will otherwise
+    // reuse a cached response for this same GET URL, which made edits made
+    // through the admin page look like they "didn't take" even though the
+    // Sheet itself was already updated.
+    const cacheBuster = `_=${Date.now()}`;
+    const [questionsRes, sectionsRes] = await Promise.all([
+      fetch(`${API_URL}?action=questions&${cacheBuster}`, { cache: 'no-store' }).then(r => r.json()),
+      fetch(`${API_URL}?action=sections&${cacheBuster}`, { cache: 'no-store' }).then(r => r.json()).catch(() => ({})),
     ]);
 
     if (questionsRes.error) throw new Error(questionsRes.error);
     state.allQuestions = groupBy(questionsRes.questions, 'section_id');
-    state.routingRules = routingRes.rules || [];
+
+    const sections = (sectionsRes && sectionsRes.sections) || [];
+    state.sectionMeta = groupBy(sections, 'section_id');
+    const liveRules = sections
+      .filter(s => s.routing_condition)
+      .map(s => ({
+        after_section: s.section_id,
+        condition: s.routing_condition,
+        then_go_to: s.routing_then,
+        else_go_to: s.routing_else,
+      }));
+    state.routingRules = liveRules.length ? liveRules : FALLBACK_ROUTING_RULES;
+    applyIntroFieldMeta();
   } catch (err) {
     document.getElementById('step-info').innerHTML =
       `<p class="text-terra">Sorry — we couldn't load the test right now. Please try again later.</p>`;
     console.error(err);
   } finally {
     showLoading(false);
+  }
+}
+
+// The "Full Name" / "WhatsApp Number" inputs on the info step are real,
+// fixed HTML fields (not dynamically rendered like other sections), because
+// their values map straight onto fixed submission keys (fullName, whatsapp)
+// used throughout grading/results/email. Their label text and whether
+// they're required, though, are driven live from the "intro" section's rows
+// in the Questions tab — matched by keyword in question_text, edited via
+// /admin-placement-questions.html the same as any other question.
+function applyIntroFieldMeta() {
+  const introRows = state.allQuestions.intro || [];
+
+  const nameRow = introRows.find(r => /full ?name/i.test(r.question_text || ''));
+  if (nameRow) {
+    document.getElementById('fullName-label').textContent = nameRow.question_text;
+    document.getElementById('fullName').required = isRequired(nameRow);
+  }
+
+  const whatsappRow = introRows.find(r => /whatsapp/i.test(r.question_text || ''));
+  if (whatsappRow) {
+    document.getElementById('whatsapp-label').textContent = whatsappRow.question_text;
+    document.getElementById('whatsapp').required = isRequired(whatsappRow);
+  }
+
+  // Email has no Sheet row by default (it's structurally required for
+  // grading/duplicate-check/results email, so it stays required=true unless
+  // an admin explicitly adds an "Email" row to Introduction and unchecks
+  // Required there) — if that row exists, it takes over label + required.
+  const emailRow = introRows.find(r => /email/i.test(r.question_text || ''));
+  if (emailRow) {
+    document.getElementById('email-label').textContent = emailRow.question_text;
+    document.getElementById('email').required = isRequired(emailRow);
   }
 }
 
@@ -142,6 +203,23 @@ function onNextSectionClick() {
     const selected = document.querySelector(`input[name="q_${q.question_number}"]:checked`);
     answers[q.question_number] = selected ? selected.value : null;
   });
+
+  const missing = questions.filter(q => isRequired(q) && !answers[q.question_number]);
+  document.querySelectorAll('.question-card').forEach(el => el.classList.remove('ring-2', 'ring-terra'));
+  const errorEl = document.getElementById('required-error');
+  if (missing.length) {
+    missing.forEach(q => {
+      const card = document.querySelector(`.question-card[data-question-number="${q.question_number}"]`);
+      if (card) card.classList.add('ring-2', 'ring-terra');
+    });
+    errorEl.textContent = `Please answer question${missing.length > 1 ? 's' : ''} ${missing.map(q => q.question_number).join(', ')} before continuing — marked with *.`;
+    errorEl.classList.remove('hidden');
+    const firstCard = document.querySelector(`.question-card[data-question-number="${missing[0].question_number}"]`);
+    if (firstCard) firstCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  errorEl.classList.add('hidden');
+
   state.answers[sectionId] = answers;
   saveLocal();
 
@@ -276,9 +354,16 @@ const SECTION_LABELS = {
 };
 
 function sectionTitleFor(sectionId) {
+  const meta = (state.sectionMeta[sectionId] || [])[0];
+  if (meta && meta.title) return meta.title;
   if (SECTION_LABELS[sectionId]) return SECTION_LABELS[sectionId];
   const title = ((state.allQuestions[sectionId] || [])[0] || {}).section_title;
   return title || sectionId;
+}
+
+function sectionDescriptionFor(sectionId) {
+  const meta = (state.sectionMeta[sectionId] || [])[0];
+  return meta ? meta.description : '';
 }
 
 // ============ RENDERING ============
@@ -301,35 +386,97 @@ function renderSection(sectionId) {
   const container = document.getElementById('questions-container');
   container.innerHTML = '';
 
-  if (questions[0].passage_text) {
-    const passage = document.createElement('div');
-    passage.className = 'passage bg-cream rounded-lg p-5 mb-6 text-navy';
-    passage.textContent = questions[0].passage_text;
-    container.appendChild(passage);
-  }
-  if (questions[0].audio_url) {
-    const audio = document.createElement('audio');
-    audio.controls = true;
-    audio.src = questions[0].audio_url;
-    audio.className = 'w-full mb-6';
-    container.appendChild(audio);
+  const description = sectionDescriptionFor(sectionId);
+  if (description) {
+    const desc = document.createElement('p');
+    desc.className = 'text-slate-blue mb-6';
+    desc.textContent = description;
+    container.appendChild(desc);
   }
 
-  questions.forEach(q => container.appendChild(createQuestionElement(q)));
+  // Passage/audio are attached (by the migration script) to whichever
+  // question directly follows them in the source Form, which isn't always
+  // the section's first question — e.g. a Listening section can have its
+  // audio before the questions but its reading passage further down, after
+  // a run of listening questions. So each is rendered right before the
+  // specific question that carries it, not just once at the top.
+  questions.forEach(q => {
+    if (q.passage_text) {
+      const passage = document.createElement('div');
+      passage.className = 'passage bg-cream rounded-lg p-5 mb-6 text-navy';
+      // Admin-authored content pasted via a contenteditable field in the
+      // admin panel — trusted source, so rendered as HTML to preserve
+      // formatting (bold, line breaks, lists, etc.) instead of flattening it.
+      passage.innerHTML = q.passage_text;
+      container.appendChild(passage);
+    }
+    if (q.audio_url) {
+      const embedUrl = youtubeEmbedUrl(q.audio_url);
+      if (embedUrl) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'mb-6';
+        wrapper.style.aspectRatio = '16 / 9';
+        const iframe = document.createElement('iframe');
+        iframe.src = embedUrl;
+        iframe.className = 'w-full h-full rounded-lg';
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+        iframe.setAttribute('allowfullscreen', '');
+        wrapper.appendChild(iframe);
+        container.appendChild(wrapper);
+      } else {
+        const audio = document.createElement('audio');
+        audio.controls = true;
+        audio.src = q.audio_url;
+        audio.className = 'w-full mb-6';
+        container.appendChild(audio);
+      }
+    }
+    container.appendChild(createQuestionElement(q));
+  });
 
   showStep('step-questions');
+}
+
+// Converts a youtu.be/watch?v= link into an embeddable player URL. Returns
+// null for anything that isn't a recognizable YouTube URL (e.g. a direct
+// audio file URL), so callers can fall back to a plain <audio> tag.
+function youtubeEmbedUrl(url) {
+  const match = String(url || '').match(/(?:youtu\.be\/|[?&]v=)([\w-]{11})/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+}
+
+function isRequired(q) {
+  const v = q.required;
+  return v === true || v === 'TRUE' || v === 'true' || v === 1 || v === '1';
 }
 
 function createQuestionElement(q) {
   const wrapper = document.createElement('div');
   wrapper.className = 'question-card bg-white rounded-2xl p-6 mb-6';
+  wrapper.dataset.questionNumber = q.question_number;
 
   const title = document.createElement('p');
-  title.className = 'font-semibold text-navy mb-4';
+  title.className = 'font-semibold text-navy mb-4 text-lg';
   // question_text already includes its own leading number (e.g. "5. ...")
   // from the source Form, so it's shown as-is without adding another one.
-  title.textContent = q.question_text;
+  // Rendered as HTML (admin-authored, trusted) to preserve pasted formatting.
+  title.innerHTML = q.question_text;
+  if (isRequired(q)) {
+    const badge = document.createElement('span');
+    badge.className = 'text-terra text-sm font-normal ml-1';
+    badge.textContent = '*';
+    badge.title = 'Required';
+    title.appendChild(badge);
+  }
   wrapper.appendChild(title);
+
+  if (q.image_url) {
+    const img = document.createElement('img');
+    img.src = q.image_url;
+    img.alt = '';
+    img.className = 'w-full rounded-lg mb-4';
+    wrapper.appendChild(img);
+  }
 
   if (q.question_type === 'long_text') {
     const box = document.createElement('textarea');

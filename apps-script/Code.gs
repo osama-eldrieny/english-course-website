@@ -15,8 +15,35 @@ const SPREADSHEET_ID = SpreadsheetApp.getActiveSpreadsheet().getId();
 // Comma-separated if you want more than one admin notified.
 const ADMIN_EMAIL = 'amalkhayata.ahk@gmail.com,osama.eldrieny@gmail.com';
 
+// Shared password gating the question-editor admin endpoints below. NOT
+// hardcoded here on purpose — set it once via Apps Script's own UI:
+// Project Settings (gear icon) -> Script Properties -> Add property
+// "ADMIN_PASSWORD" -> your chosen password. Anyone with this password can
+// add/edit/delete Questions tab rows through the web admin page.
+function getAdminPassword_() {
+  return PropertiesService.getScriptProperties().getProperty('ADMIN_PASSWORD');
+}
+
+const QUESTIONS_HEADERS = [
+  'section_id', 'section_title', 'question_number',
+  'question_text', 'question_type', 'option_a', 'option_b',
+  'option_c', 'option_d', 'correct_answer', 'points',
+  'image_url', 'audio_url', 'passage_text', 'required'
+];
+
+// "Sections" tab: one row per section, holding its title, an optional
+// student-facing description (shown under the section title on the test
+// page), and its outgoing routing rule. routing_condition is a
+// "score < N" / "score >= N" expression; leave it blank for a section with
+// no conditional routing (falls through to the frontend's default
+// next-section / writing-prompt / finish logic).
+const SECTIONS_HEADERS = [
+  'section_id', 'title', 'description',
+  'routing_condition', 'routing_then', 'routing_else'
+];
+
 // Section metadata used for level determination.
-// Routing (after_section -> then/else) lives in the "Routing Rules" tab and is
+// Routing (after_section -> then/else) lives in the "Sections" tab and is
 // evaluated by the frontend; here we only translate the track a student ended
 // up in into a level label.
 const GRAMMAR_SECTIONS = ['grammar_1', 'grammar_2', 'grammar_3', 'grammar_4'];
@@ -43,7 +70,8 @@ function doGet(e) {
 
   try {
     if (action === 'questions') return serveQuestions();
-    if (action === 'routing') return serveRoutingRules();
+    if (action === 'sections') return serveSections();
+    if (action === 'admin_questions') return serveAdminQuestions(e.parameter.password);
 
     return jsonResponse({ error: 'Unknown action' });
   } catch (err) {
@@ -54,6 +82,12 @@ function doGet(e) {
 function doPost(e) {
   try {
     const payload = JSON.parse(e.postData.contents);
+
+    if (payload.type === 'admin_save_question') return adminSaveQuestion(payload);
+    if (payload.type === 'admin_insert_question') return adminInsertQuestion(payload);
+    if (payload.type === 'admin_delete_question') return adminDeleteQuestion(payload);
+    if (payload.type === 'admin_save_section') return adminSaveSection(payload);
+    if (payload.type === 'admin_delete_section') return adminDeleteSection(payload);
 
     if (isDuplicateSubmission(payload.email)) {
       return jsonResponse({ error: 'You have already submitted this test in the last 24 hours.' });
@@ -70,6 +104,199 @@ function doPost(e) {
   } catch (err) {
     return jsonResponse({ error: err.message });
   }
+}
+
+// ============ ADMIN QUESTION EDITOR ============
+// Backs the /admin-placement-questions.html page. Lets an admin add, edit,
+// and delete Questions tab rows directly from the browser — no more editing
+// the Google Form or re-running the migration script for content changes.
+
+function checkAdminPassword_(password) {
+  const expected = getAdminPassword_();
+  if (!expected) throw new Error('ADMIN_PASSWORD script property is not set. See Code.gs comment near the top.');
+  if (password !== expected) throw new Error('Incorrect admin password.');
+}
+
+function serveAdminQuestions(password) {
+  checkAdminPassword_(password);
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName('Questions');
+  const data = sheet.getDataRange().getValues();
+  const headers = data[0];
+
+  const rows = [];
+  for (let i = 1; i < data.length; i++) {
+    if (data[i].every(c => c === '')) continue;
+    const row = { _row: i + 1 }; // 1-based sheet row, used to target updates/deletes
+    headers.forEach((h, idx) => { row[h] = data[i][idx]; });
+    rows.push(row);
+  }
+  return jsonResponse({ questions: rows });
+}
+
+// payload: { type, password, row (0/blank = new row), section_id, section_title,
+//   question_number, question_text, question_type, option_a..d, correct_answer,
+//   points, image_url, audio_url, passage_text }
+function adminSaveQuestion(payload) {
+  checkAdminPassword_(payload.password);
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  let sheet = ss.getSheetByName('Questions');
+  if (!sheet) {
+    sheet = ss.insertSheet('Questions');
+    sheet.appendRow(QUESTIONS_HEADERS);
+  }
+
+  const values = QUESTIONS_HEADERS.map(h => payload[h] !== undefined ? payload[h] : '');
+
+  if (payload.row) {
+    sheet.getRange(payload.row, 1, 1, QUESTIONS_HEADERS.length).setValues([values]);
+    return jsonResponse({ success: true, row: payload.row });
+  }
+
+  sheet.appendRow(values);
+  return jsonResponse({ success: true, row: sheet.getLastRow() });
+}
+
+// payload: { type, password, section_id, after_question_number }
+// Inserts a blank question right after after_question_number, shifting every
+// later question in the section down by one — all within a single Apps
+// Script execution (one HTTP round-trip from the browser), instead of the
+// admin page doing it as N sequential save calls (one per shifted question),
+// which was taking 15+ seconds for sections with many questions.
+function adminInsertQuestion(payload) {
+  checkAdminPassword_(payload.password);
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName('Questions');
+  const data = sheet.getDataRange().getValues();
+  const headers = data[0];
+  const sectionIdx = headers.indexOf('section_id');
+  const numberIdx = headers.indexOf('question_number');
+  const titleIdx = headers.indexOf('section_title');
+
+  const newNumber = Number(payload.after_question_number) + 1;
+  let sectionTitle = '';
+
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][sectionIdx] !== payload.section_id) continue;
+    if (!sectionTitle) sectionTitle = data[i][titleIdx];
+    const currentNumber = Number(data[i][numberIdx]) || 0;
+    if (currentNumber >= newNumber) {
+      sheet.getRange(i + 1, numberIdx + 1).setValue(currentNumber + 1);
+    }
+  }
+
+  const blankValues = QUESTIONS_HEADERS.map(h => {
+    if (h === 'section_id') return payload.section_id;
+    if (h === 'section_title') return sectionTitle;
+    if (h === 'question_number') return newNumber;
+    if (h === 'question_type') return 'multiple_choice';
+    if (h === 'points') return 1;
+    return '';
+  });
+  sheet.appendRow(blankValues);
+
+  return jsonResponse({ success: true, row: sheet.getLastRow(), question_number: newNumber, section_title: sectionTitle });
+}
+
+function adminDeleteQuestion(payload) {
+  checkAdminPassword_(payload.password);
+  if (!payload.row) throw new Error('Missing row to delete.');
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName('Questions');
+  sheet.deleteRow(payload.row);
+  return jsonResponse({ success: true });
+}
+
+// ============ ADMIN SECTION EDITOR ============
+
+function getOrCreateSectionsSheet_(ss) {
+  let sheet = ss.getSheetByName('Sections');
+  if (!sheet) {
+    sheet = ss.insertSheet('Sections');
+    sheet.appendRow(SECTIONS_HEADERS);
+    seedSectionsFromExistingData_(ss, sheet);
+  }
+  return sheet;
+}
+
+// First-run only: seeds the new Sections tab from whatever the Questions tab
+// already describes, so existing content isn't lost when this tab is
+// created. Routing fields are left blank for the admin to fill in.
+function seedSectionsFromExistingData_(ss, sheet) {
+  const questionsSheet = ss.getSheetByName('Questions');
+  if (!questionsSheet) return;
+  const seen = {};
+  const order = [];
+  sheetToObjects('Questions').forEach(q => {
+    if (!seen[q.section_id]) {
+      seen[q.section_id] = q.section_title || q.section_id;
+      order.push(q.section_id);
+    }
+  });
+
+  const rows = order.map(id => [id, seen[id], '', '', '', '']);
+  if (rows.length) sheet.getRange(2, 1, rows.length, SECTIONS_HEADERS.length).setValues(rows);
+}
+
+function serveSections() {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = getOrCreateSectionsSheet_(ss);
+  const data = sheet.getDataRange().getValues();
+  const headers = data[0];
+  const rows = [];
+  for (let i = 1; i < data.length; i++) {
+    if (data[i].every(c => c === '')) continue;
+    const row = { _row: i + 1 };
+    headers.forEach((h, idx) => { row[h] = data[i][idx]; });
+    rows.push(row);
+  }
+  return jsonResponse({ sections: rows });
+}
+
+// payload: { type, password, section_id, title, description,
+//   routing_condition, routing_then, routing_else }
+// Upserts by section_id (not row index) since the admin page always knows
+// the section_id but may be creating this Sections row for the first time.
+function adminSaveSection(payload) {
+  checkAdminPassword_(payload.password);
+  if (!payload.section_id) throw new Error('Missing section_id.');
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = getOrCreateSectionsSheet_(ss);
+  const data = sheet.getDataRange().getValues();
+
+  const values = SECTIONS_HEADERS.map(h => payload[h] !== undefined ? payload[h] : '');
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][0] === payload.section_id) {
+      sheet.getRange(i + 1, 1, 1, SECTIONS_HEADERS.length).setValues([values]);
+      return jsonResponse({ success: true });
+    }
+  }
+  sheet.appendRow(values);
+  return jsonResponse({ success: true });
+}
+
+// Deletes the section's row from the Sections tab AND every Questions tab
+// row belonging to it — an explicit, deliberate action from the admin page.
+function adminDeleteSection(payload) {
+  checkAdminPassword_(payload.password);
+  if (!payload.section_id) throw new Error('Missing section_id.');
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+
+  const sectionsSheet = getOrCreateSectionsSheet_(ss);
+  const sectionsData = sectionsSheet.getDataRange().getValues();
+  for (let i = sectionsData.length - 1; i >= 1; i--) {
+    if (sectionsData[i][0] === payload.section_id) sectionsSheet.deleteRow(i + 1);
+  }
+
+  const questionsSheet = ss.getSheetByName('Questions');
+  if (questionsSheet) {
+    const qData = questionsSheet.getDataRange().getValues();
+    for (let i = qData.length - 1; i >= 1; i--) {
+      if (qData[i][0] === payload.section_id) questionsSheet.deleteRow(i + 1);
+    }
+  }
+
+  return jsonResponse({ success: true });
 }
 
 function jsonResponse(obj) {
@@ -99,11 +326,6 @@ function sheetToObjects(sheetName) {
 function serveQuestions() {
   const questions = sheetToObjects('Questions');
   return jsonResponse({ questions });
-}
-
-function serveRoutingRules() {
-  const rules = sheetToObjects('Routing Rules');
-  return jsonResponse({ rules });
 }
 
 // ============ GRADING ============
