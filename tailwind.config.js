@@ -22,6 +22,10 @@ module.exports = {
         'cream': 'var(--color-cream)',
         'tan': 'var(--color-tan)',
         'tan-tint': 'var(--color-tan-tint)',
+        'tertiary': 'var(--color-tertiary)',
+        'tertiary-tint': 'var(--color-tertiary-tint)',
+        'tertiary-deep': 'var(--color-tertiary-deep)',
+        'tertiary-text': 'var(--color-tertiary-text)',
 
         /* ─ Legacy token names, remapped onto the same vars as their canonical
            counterparts above. Kept so existing markup keeps rendering. ─ */

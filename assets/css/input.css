@@ -40,6 +40,15 @@
     --color-gray-900: #202124;
     --color-bg-warm: #fffdf7;
 
+    /* Reserved third brand accent — unused on Theme 1/2 (mapped to the same
+       value as gold-tint/gold-text so nothing visibly changes here), given
+       a real, distinct value on Theme 3/4 so switching themes shows it on
+       a couple of small badges. See tailwind.config.js for the utilities. */
+    --color-tertiary: var(--color-gold);
+    --color-tertiary-tint: var(--color-gold-tint);
+    --color-tertiary-deep: var(--color-gold-deep);
+    --color-tertiary-text: var(--color-gold-text);
+
     --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
     --tracking-display: -0.03em;
     --tracking-heading: -0.02em;
@@ -84,6 +93,11 @@
     --color-gray-800: #2c3640;
     --color-gray-900: #1a2127;
     --color-bg-warm: #ffffff;
+
+    --color-tertiary: var(--color-gold);
+    --color-tertiary-tint: var(--color-gold-tint);
+    --color-tertiary-deep: var(--color-gold-deep);
+    --color-tertiary-text: var(--color-gold-text);
 
     --font-sans: "Inter", system-ui, sans-serif;
     --tracking-display: -0.01em;
@@ -217,6 +231,33 @@
   html[data-theme="theme4"] h2,
   html[data-theme="theme4"] h3 {
     font-family: "Sora", system-ui, sans-serif;
+  }
+
+  /* Nav "Start Free Test" CTA — tertiary accent, Theme 3/4 only. Scoped to
+     these themes specifically (not a change to .btn-primary/bg-navy in
+     general) so Theme 1/2 keep their current navy/white button untouched. */
+  html[data-theme="theme3"] .nav-cta-btn,
+  html[data-theme="theme4"] .nav-cta-btn {
+    background-color: var(--color-tertiary);
+    color: var(--color-navy);
+  }
+  html[data-theme="theme3"] .nav-cta-btn:hover,
+  html[data-theme="theme4"] .nav-cta-btn:hover {
+    background-color: var(--color-tertiary-deep);
+  }
+
+  /* Hero "sparkles" badge — tertiary accent, Theme 3/4 only. Same scoping
+     approach as .nav-cta-btn: Theme 1/2 keep the current white text/icon. */
+  html[data-theme="theme3"] .hero-badge,
+  html[data-theme="theme4"] .hero-badge {
+    color: var(--color-tertiary);
+  }
+
+  /* Stats section numbers — tertiary accent, Theme 3/4 only. Labels under
+     each number stay white on both themes. */
+  html[data-theme="theme3"] .stat-number,
+  html[data-theme="theme4"] .stat-number {
+    color: var(--color-tertiary);
   }
 }
 
