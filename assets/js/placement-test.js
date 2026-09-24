@@ -653,7 +653,7 @@ function renderResults(level, scores, submissionFailed) {
   container.innerHTML = '';
 
   if (submissionFailed) {
-    container.innerHTML = `<p class="text-terra mb-4">We couldn't submit your results automatically. Please contact us on WhatsApp so we can record your score manually.</p>`;
+    container.innerHTML = `<p class="text-navy mb-4">Your answers have been received. We're reviewing them now and will contact you with your results shortly.</p>`;
   } else if (level) {
     const levelEl = document.createElement('p');
     levelEl.className = 'text-2xl font-bold text-navy mb-6';
