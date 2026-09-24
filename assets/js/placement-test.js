@@ -106,6 +106,13 @@ async function init() {
 
     if (questionsRes.error) throw new Error(questionsRes.error);
     state.allQuestions = groupBy(questionsRes.questions, 'section_id');
+    // Rows added or re-saved via the admin editor are appended to the bottom
+    // of the Questions tab, so sheet order isn't question order — sort by
+    // question_number (as the admin preview does) so e.g. a section's
+    // intro video stays on top.
+    Object.values(state.allQuestions).forEach(list =>
+      list.sort((a, b) => Number(a.question_number) - Number(b.question_number))
+    );
 
     const sections = (sectionsRes && sectionsRes.sections) || [];
     state.sectionMeta = groupBy(sections, 'section_id');
