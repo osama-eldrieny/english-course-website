@@ -354,6 +354,7 @@ function gradeSubmission(answers) {
     const writtenParts = [];
     sectionQuestions.forEach(q => {
       const given = studentAnswers[String(q.question_number)];
+      if (q.question_type === 'content') return; // display-only block, nothing to grade
       if (q.question_type === 'long_text') {
         // Written-response question inside a track: keep the text, don't grade it.
         if (given) writtenParts.push(String(given).trim());

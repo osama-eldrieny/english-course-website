@@ -202,6 +202,7 @@ function onNextSectionClick() {
   // Collect answers from the DOM into state before grading.
   const answers = {};
   questions.forEach(q => {
+    if (isContentBlock(q)) return; // display-only, nothing to answer
     if (q.question_type === 'long_text') {
       const box = document.querySelector(`textarea[name="q_${q.question_number}"]`);
       answers[q.question_number] = box ? box.value.trim() : '';
@@ -211,7 +212,7 @@ function onNextSectionClick() {
     answers[q.question_number] = selected ? selected.value : null;
   });
 
-  const missing = questions.filter(q => isRequired(q) && !answers[q.question_number]);
+  const missing = questions.filter(q => !isContentBlock(q) && isRequired(q) && !answers[q.question_number]);
   document.querySelectorAll('.question-card').forEach(el => el.classList.remove('ring-2', 'ring-terra'));
   const errorEl = document.getElementById('required-error');
   if (missing.length) {
@@ -240,7 +241,7 @@ function onSectionComplete(sectionId) {
 
   let total = 0;
   sectionQuestions.forEach(q => {
-    if (q.question_type === 'long_text') return; // written response, not graded
+    if (q.question_type === 'long_text' || isContentBlock(q)) return; // not auto-graded
     total++;
     if (studentAnswers[q.question_number] === q.correct_answer) correct++;
   });
@@ -414,6 +415,10 @@ function renderSection(sectionId) {
   // a run of listening questions. So each is rendered right before the
   // specific question that carries it, not just once at the top.
   questions.forEach(q => {
+    if (isContentBlock(q)) {
+      container.appendChild(createContentBlockElement(q));
+      return;
+    }
     if (q.passage_text) {
       const passage = document.createElement('div');
       passage.className = 'passage bg-cream rounded-lg p-5 mb-6 text-navy';
@@ -423,31 +428,67 @@ function renderSection(sectionId) {
       passage.innerHTML = q.passage_text;
       container.appendChild(passage);
     }
-    if (q.audio_url) {
-      const embedUrl = youtubeEmbedUrl(q.audio_url);
-      if (embedUrl) {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'mb-6';
-        wrapper.style.aspectRatio = '16 / 9';
-        const iframe = document.createElement('iframe');
-        iframe.src = embedUrl;
-        iframe.className = 'w-full h-full rounded-lg';
-        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-        iframe.setAttribute('allowfullscreen', '');
-        wrapper.appendChild(iframe);
-        container.appendChild(wrapper);
-      } else {
-        const audio = document.createElement('audio');
-        audio.controls = true;
-        audio.src = q.audio_url;
-        audio.className = 'w-full mb-6';
-        container.appendChild(audio);
-      }
-    }
+    if (q.audio_url) container.appendChild(createMediaElement(q.audio_url));
     container.appendChild(createQuestionElement(q));
   });
 
   showStep('step-questions');
+}
+
+// YouTube links become an embedded player; anything else is treated as a
+// direct audio file.
+function createMediaElement(url) {
+  const embedUrl = youtubeEmbedUrl(url);
+  if (embedUrl) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'mb-6';
+    wrapper.style.aspectRatio = '16 / 9';
+    const iframe = document.createElement('iframe');
+    iframe.src = embedUrl;
+    iframe.className = 'w-full h-full rounded-lg';
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    wrapper.appendChild(iframe);
+    return wrapper;
+  }
+  const audio = document.createElement('audio');
+  audio.controls = true;
+  audio.src = url;
+  audio.className = 'w-full mb-6';
+  return audio;
+}
+
+// "content" rows are display-only blocks (title, helper text, image,
+// video) placed between questions — never answered, required or graded.
+function isContentBlock(q) {
+  return q.question_type === 'content';
+}
+
+function createContentBlockElement(q) {
+  const block = document.createElement('div');
+  block.className = 'content-block mb-6';
+
+  if (q.question_text) {
+    const title = document.createElement('h3');
+    title.className = 'font-semibold text-navy mb-3 text-xl';
+    title.innerHTML = q.question_text;
+    block.appendChild(title);
+  }
+  if (q.passage_text) {
+    const helper = document.createElement('div');
+    helper.className = 'passage bg-cream rounded-lg p-5 mb-6 text-navy';
+    helper.innerHTML = q.passage_text;
+    block.appendChild(helper);
+  }
+  if (q.image_url) {
+    const img = document.createElement('img');
+    img.src = q.image_url;
+    img.alt = '';
+    img.className = 'w-full rounded-lg mb-6';
+    block.appendChild(img);
+  }
+  if (q.audio_url) block.appendChild(createMediaElement(q.audio_url));
+  return block;
 }
 
 // Converts a youtu.be/watch?v= link into an embeddable player URL. Returns

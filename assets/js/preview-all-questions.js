@@ -41,9 +41,66 @@ function groupBySection(questions) {
   return { groups, order };
 }
 
+function previewMedia(url) {
+  const embedUrl = youtubeEmbedUrl(url);
+  if (embedUrl) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'mb-4';
+    wrapper.style.aspectRatio = '16 / 9';
+    const iframe = document.createElement('iframe');
+    iframe.src = embedUrl;
+    iframe.className = 'w-full h-full rounded-lg';
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    wrapper.appendChild(iframe);
+    return wrapper;
+  }
+  const audio = document.createElement('audio');
+  audio.controls = true;
+  audio.src = url;
+  audio.className = 'w-full mb-4';
+  return audio;
+}
+
+function previewImage(url) {
+  const img = document.createElement('img');
+  img.src = url;
+  img.alt = '';
+  img.className = 'w-full rounded-lg mb-4';
+  img.onerror = () => {
+    const warn = document.createElement('p');
+    warn.className = 'text-terra text-sm mb-4';
+    warn.textContent = `⚠ Image failed to load: ${url}`;
+    img.replaceWith(warn);
+  };
+  return img;
+}
+
 function renderQuestion(q) {
   const card = document.createElement('div');
   card.className = 'question-card bg-white rounded-2xl p-6 mb-6 border border-gray-200-custom';
+
+  // Content blocks are display-only (title, helper text, image, video) —
+  // shown in the same order as the student test, with no answer area.
+  if (q.question_type === 'content') {
+    const title = document.createElement('p');
+    title.className = 'font-semibold text-navy mb-3 text-lg';
+    title.innerHTML = q.question_text || '';
+    const typeTag = document.createElement('span');
+    typeTag.className = 'text-xs text-slate-blue font-normal ml-2';
+    typeTag.textContent = `(#${q.question_number} · content block)`;
+    title.appendChild(typeTag);
+    card.appendChild(title);
+    if (q.passage_text) {
+      const helper = document.createElement('div');
+      helper.className = 'passage bg-cream rounded-lg p-5 mb-4 text-navy';
+      helper.innerHTML = q.passage_text;
+      card.appendChild(helper);
+    }
+    if (q.image_url) card.appendChild(previewImage(q.image_url));
+    if (q.audio_url) card.appendChild(previewMedia(q.audio_url));
+    return card;
+  }
 
   if (q.passage_text) {
     const passage = document.createElement('div');
@@ -52,27 +109,7 @@ function renderQuestion(q) {
     card.appendChild(passage);
   }
 
-  if (q.audio_url) {
-    const embedUrl = youtubeEmbedUrl(q.audio_url);
-    if (embedUrl) {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'mb-4';
-      wrapper.style.aspectRatio = '16 / 9';
-      const iframe = document.createElement('iframe');
-      iframe.src = embedUrl;
-      iframe.className = 'w-full h-full rounded-lg';
-      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-      iframe.setAttribute('allowfullscreen', '');
-      wrapper.appendChild(iframe);
-      card.appendChild(wrapper);
-    } else {
-      const audio = document.createElement('audio');
-      audio.controls = true;
-      audio.src = q.audio_url;
-      audio.className = 'w-full mb-4';
-      card.appendChild(audio);
-    }
-  }
+  if (q.audio_url) card.appendChild(previewMedia(q.audio_url));
 
   const title = document.createElement('p');
   title.className = 'font-semibold text-navy mb-3 text-lg';
@@ -90,19 +127,7 @@ function renderQuestion(q) {
   title.appendChild(typeTag);
   card.appendChild(title);
 
-  if (q.image_url) {
-    const img = document.createElement('img');
-    img.src = q.image_url;
-    img.alt = '';
-    img.className = 'w-full rounded-lg mb-4';
-    img.onerror = () => {
-      const warn = document.createElement('p');
-      warn.className = 'text-terra text-sm mb-4';
-      warn.textContent = `⚠ Image failed to load: ${q.image_url}`;
-      img.replaceWith(warn);
-    };
-    card.appendChild(img);
-  }
+  if (q.image_url) card.appendChild(previewImage(q.image_url));
 
   if (q.question_type === 'long_text') {
     const box = document.createElement('div');

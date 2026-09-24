@@ -5,6 +5,12 @@
 const API_URL = 'https://script.google.com/macros/s/AKfycbwkAAAat323vqTYRBn1MXIcUfdTOmh9MxUfOeuBVAwPJtNloo0CADI89reNxPeDd8EhTw/exec';
 const PASSWORD_KEY = 'speakfirst_admin_password';
 
+const QUESTION_TYPES = [
+  ['multiple_choice', 'Multiple choice'],
+  ['long_text', 'Long text'],
+  ['content', 'Content block (not a question)'],
+];
+
 const FIELDS = [
   'question_text', 'question_type', 'option_a', 'option_b',
   'option_c', 'option_d', 'correct_answer', 'points',
@@ -508,10 +514,10 @@ function renderQuestionRow(q) {
     } else if (type === 'select') {
       input = document.createElement('select');
       input.className = 'input-base';
-      ['multiple_choice', 'long_text'].forEach(v => {
+      QUESTION_TYPES.forEach(([v, label]) => {
         const opt = document.createElement('option');
         opt.value = v;
-        opt.textContent = v;
+        opt.textContent = label;
         input.appendChild(opt);
       });
     } else {
@@ -545,7 +551,7 @@ function renderQuestionRow(q) {
   textHelperGrid.style.gridColumn = '1 / -1';
   grid.appendChild(textHelperGrid);
 
-  addField('question_text', 'Question', 'richtext', textHelperGrid);
+  const questionTextWrap = addField('question_text', 'Question', 'richtext', textHelperGrid);
   addField('passage_text', 'Helper text', 'richtext', textHelperGrid);
 
   // Options A–D together on one row, and Correct Answer/Points/Image/Audio
@@ -577,17 +583,9 @@ function renderQuestionRow(q) {
   correctAnswerHelpIcon.setAttribute('data-lucide', 'info');
   correctAnswerHelp.appendChild(correctAnswerHelpIcon);
   correctAnswerLabel.appendChild(correctAnswerHelp);
-  addField('points', 'Points', 'number', metaGrid);
+  const pointsWrap = addField('points', 'Points', 'number', metaGrid);
   addField('image_url', 'Image URL', 'text', metaGrid);
   addField('audio_url', 'Audio/Video URL', 'text', metaGrid);
-
-  function syncMcFieldsVisibility() {
-    const isMc = inputs.question_type.value === 'multiple_choice';
-    optionsGrid.style.display = isMc ? '' : 'none';
-    correctAnswerWrap.style.display = isMc ? '' : 'none';
-  }
-  inputs.question_type.addEventListener('change', syncMcFieldsVisibility);
-  syncMcFieldsVisibility();
 
   body.appendChild(grid);
 
@@ -661,6 +659,23 @@ function renderQuestionRow(q) {
   requiredLabel.appendChild(track);
   requiredLabel.appendChild(requiredText);
   footer.appendChild(requiredLabel);
+
+  // Content blocks (title/helper text/image/video, no answer) hide every
+  // answer-related field; long_text hides only the multiple-choice ones.
+  const questionTextLabel = questionTextWrap.querySelector('label');
+  function syncTypeFieldsVisibility() {
+    const type = inputs.question_type.value;
+    const isMc = type === 'multiple_choice';
+    const isContent = type === 'content';
+    optionsGrid.style.display = isMc ? '' : 'none';
+    correctAnswerWrap.style.display = isMc ? '' : 'none';
+    pointsWrap.style.display = isContent ? 'none' : '';
+    requiredLabel.style.display = isContent ? 'none' : '';
+    questionTextLabel.textContent = isContent ? 'Title' : 'Question';
+    if (isContent) requiredInput.checked = false;
+  }
+  inputs.question_type.addEventListener('change', syncTypeFieldsVisibility);
+  syncTypeFieldsVisibility();
 
   body.appendChild(footer);
   row.appendChild(body);
