@@ -638,50 +638,21 @@ async function finishTest() {
 
     if (res.error) throw new Error(res.error);
 
-    renderResults(res.level, res.scores);
+    renderResults();
     clearLocal();
   } catch (err) {
     console.error(err);
-    renderResults(null, state.scores, true);
+    renderResults();
   } finally {
     showLoading(false);
   }
 }
 
-function renderResults(level, scores, submissionFailed) {
+// Students never see their level or scores on screen — the team reviews
+// results (Sheet + admin email) and follows up. The same message is shown
+// whether or not the submission reached the server.
+function renderResults() {
   const container = document.getElementById('results-content');
-  container.innerHTML = '';
-
-  if (submissionFailed) {
-    container.innerHTML = `<p class="text-navy mb-4">Your answers have been received. We're reviewing them now and will contact you with your results shortly.</p>`;
-  } else if (level) {
-    const levelEl = document.createElement('p');
-    levelEl.className = 'text-2xl font-bold text-navy mb-6';
-    levelEl.textContent = `Your Level: ${level}`;
-    container.appendChild(levelEl);
-  }
-
-  const breakdown = document.createElement('div');
-  breakdown.className = 'space-y-2 mb-8';
-  Object.keys(scores || {}).forEach(sectionId => {
-    const s = scores[sectionId];
-    const row = document.createElement('div');
-    row.className = 'flex justify-between border-b border-gray-200-custom py-2';
-    const label = document.createElement('span');
-    label.textContent = sectionTitleFor(sectionId);
-    const value = document.createElement('span');
-    value.className = 'font-semibold text-navy';
-    value.textContent = (s.total !== undefined && s.total !== null) ? `${s.correct}/${s.total}` : 'Submitted';
-    row.appendChild(label);
-    row.appendChild(value);
-    breakdown.appendChild(row);
-  });
-  container.appendChild(breakdown);
-
-  const message = document.createElement('p');
-  message.className = 'text-sm text-slate-blue mb-8';
-  message.textContent = "Thank you! Your detailed results have been sent to your email.";
-  container.appendChild(message);
-
+  container.innerHTML = `<p class="text-navy mb-8">Your answers have been received. We're reviewing them now and will contact you with your results shortly.</p>`;
   showStep('step-results');
 }
