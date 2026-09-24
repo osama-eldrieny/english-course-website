@@ -390,6 +390,12 @@ function renderSection(sectionId) {
   document.getElementById('section-title').textContent = sectionTitleFor(sectionId);
   updateProgress(sectionId);
 
+  // The last section of a track (e.g. Skills 1–4) ends the test, so its
+  // button submits rather than moving on.
+  const isFinalSection = !state.routingRules.some(r => r.after_section === sectionId)
+    && nextDefaultSection(sectionId) === null;
+  document.getElementById('next-section-btn').textContent = isFinalSection ? 'Submit' : 'Next Section →';
+
   const container = document.getElementById('questions-container');
   container.innerHTML = '';
 
