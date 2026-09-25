@@ -485,6 +485,20 @@ function saveResults(payload, graded, level) {
 
 // ============ EMAIL ============
 
+// Emails show as "Speakademi <info@speakademi.com>". Sending *from*
+// info@speakademi.com only works once it's a verified "Send mail as" alias
+// of the Gmail account that deploys this script (Gmail → Settings → Accounts
+// → Send mail as). Until then, mail goes out from that account's own address
+// under the Speakademi name, with replies routed to info@speakademi.com.
+const SENDER_NAME = 'Speakademi';
+const SENDER_EMAIL = 'info@speakademi.com';
+
+function sendMail_(to, subject, body) {
+  const options = { name: SENDER_NAME, replyTo: SENDER_EMAIL };
+  if (GmailApp.getAliases().indexOf(SENDER_EMAIL) !== -1) options.from = SENDER_EMAIL;
+  GmailApp.sendEmail(to, subject, body, options);
+}
+
 function sendStudentEmail(email, fullName) {
   if (!email) return;
   const body = `Hi ${fullName || 'there'},
@@ -498,7 +512,7 @@ SpeakFirst`;
 
   // The level is deliberately not included — students hear their result
   // from the team (it's only in the admin email and the Results sheet).
-  MailApp.sendEmail(email, 'We received your SpeakFirst Placement Test', body);
+  sendMail_(email, 'We received your SpeakFirst Placement Test', body);
 }
 
 function sendAdminEmail(payload, graded, level) {
@@ -521,5 +535,5 @@ ${lines.join('\n')}
 Sections visited: ${(payload.sectionsVisited || []).join(' -> ')}
 Sections skipped: ${(payload.sectionsSkipped || []).join(', ')}`;
 
-  MailApp.sendEmail(ADMIN_EMAIL, `Placement Test: ${payload.fullName} — ${level}`, body);
+  sendMail_(ADMIN_EMAIL, `Placement Test: ${payload.fullName} — ${level}`, body);
 }
