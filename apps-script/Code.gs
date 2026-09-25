@@ -97,7 +97,7 @@ function doPost(e) {
     const level = determineLevel(graded);
 
     saveResults(payload, graded, level);
-    sendStudentEmail(payload.email, payload.fullName, graded, level);
+    sendStudentEmail(payload.email, payload.fullName);
     sendAdminEmail(payload, graded, level);
 
     return jsonResponse({ success: true, level: level, scores: graded });
@@ -485,20 +485,20 @@ function saveResults(payload, graded, level) {
 
 // ============ EMAIL ============
 
-function sendStudentEmail(email, fullName, graded, level) {
+function sendStudentEmail(email, fullName) {
   if (!email) return;
   const body = `Hi ${fullName || 'there'},
 
 Thank you for completing the SpeakFirst English Placement Test!
 
-Your estimated level: ${level}
-
-Our team will review your results and follow up with course recommendations shortly.
+Your answers have been received. We're reviewing them now and will contact you with your results shortly.
 
 Best,
 SpeakFirst`;
 
-  MailApp.sendEmail(email, 'Your SpeakFirst Placement Test Results', body);
+  // The level is deliberately not included — students hear their result
+  // from the team (it's only in the admin email and the Results sheet).
+  MailApp.sendEmail(email, 'We received your SpeakFirst Placement Test', body);
 }
 
 function sendAdminEmail(payload, graded, level) {
