@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>(function(){try{var t=localStorage.getItem("theme");if(t&&t!=="default")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <script>(function(){try{var t=localStorage.getItem("theme")||"theme5";if(t!=="default")document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","theme5");}})();</script>
   <script>
     // Runs synchronously before the page paints, so a returning admin (with
     // a password already remembered for this browser tab) never sees the

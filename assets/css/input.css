@@ -330,6 +330,13 @@
   html[data-theme="theme5"] .stat-number {
     color: #2db3a8;
   }
+  html[data-theme="theme5"] .logo-on-light,
+  html[data-theme="theme5"] .logo-on-dark {
+    --logo-spark: var(--color-tertiary);
+  }
+  html[data-theme="theme5"] .logo-on-dark {
+    --logo-accent: #2db3a8;
+  }
 }
 
 /* ─ Global Base Styles ─ */
@@ -451,11 +458,13 @@
   .logo-on-light {
     --logo-primary: var(--color-navy);
     --logo-accent: var(--color-gold);
+    --logo-spark: var(--color-terra);
   }
 
   .logo-on-dark {
     --logo-primary: #ffffff;
     --logo-accent: var(--color-gold);
+    --logo-spark: var(--color-terra);
   }
 
 }
