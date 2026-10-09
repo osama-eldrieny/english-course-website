@@ -2,6 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -790,6 +792,76 @@ html[data-theme="theme3"] .stat-number,
   color: var(--color-tertiary);
 }
 
+/* ─ Theme 5 — Speakademi identity v2 (logo package colours + Nunito).
+     Ink = primary dark, Teal = signature accent, Signal/Deep Red = spark,
+     Paper = warm background, Mist = teal tint panels. ─ */
+
+html[data-theme="theme5"] {
+  --color-navy: #14213d;
+  --color-navy-rgb: 20 33 61;
+  --color-navy-deep: #0c1529;
+  --color-navy-tint: #dfe3ea;
+  --color-slate-blue: #4a5670;
+  --color-slate-tint: #e6e9ef;
+  --color-gold: #0a7f78;
+  --color-gold-tint: #e2f0ee;
+  --color-gold-deep: #086a64;
+  --color-gold-text: #086a64;
+  --color-terra: #c2352c;
+  --color-terra-tint: #f9dedb;
+  --color-cream: #faf7f2;
+  --color-tan: #e6dfd2;
+  --color-tan-tint: #f2ede4;
+  --color-success-green: #0a7f78;
+  --color-success-green-light: #e2f0ee;
+  --color-gray-50: #f8f8f6;
+  --color-gray-100: #f0efec;
+  --color-gray-200: #e4e3df;
+  --color-gray-400: #a3a7b0;
+  --color-gray-600: #5a6275;
+  --color-gray-800: #2a3448;
+  --color-gray-900: #14213d;
+  --color-bg-warm: #faf7f2;
+  --color-tertiary: #e5483d;
+  --color-tertiary-tint: #fbe1de;
+  --color-tertiary-deep: #c2352c;
+  --color-tertiary-text: #a02a22;
+  --font-sans: "Nunito", system-ui, sans-serif;
+  --tracking-display: -0.01em;
+  --tracking-heading: -0.005em;
+  --radius-sm: 14px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 28px;
+  --shadow-soft: 0 1px 3px rgba(20, 33, 61, 0.06);
+  --shadow-soft-lg: 0 8px 24px rgba(20, 33, 61, 0.08);
+  --shadow-soft-xl: 0 16px 40px rgba(20, 33, 61, 0.1);
+  --theme-font-scale: 1.0625;
+}
+
+/* Identity v2: Teal = primary buttons & links (white text, 4.9:1 — never
+     Ink on Teal); Signal Red = badges/highlights; Bright Teal for teal
+     accents on Ink surfaces (Teal on Ink is 3.4:1 and banned). */
+
+html[data-theme="theme5"] .btn-primary,
+  html[data-theme="theme5"] .nav-cta-btn {
+  background-color: var(--color-gold);
+  color: #ffffff;
+}
+
+html[data-theme="theme5"] .btn-primary:hover,
+  html[data-theme="theme5"] .nav-cta-btn:hover {
+  background-color: var(--color-gold-deep);
+}
+
+html[data-theme="theme5"] .hero-badge {
+  color: var(--color-tertiary);
+}
+
+html[data-theme="theme5"] .stat-number {
+  color: #2db3a8;
+}
+
 [x-cloak] {
   display: none !important;
 }
@@ -1295,12 +1367,16 @@ button{
   display: none;
 }
 
+.\!h-auto{
+  height: auto !important;
+}
+
 .h-10{
   height: 2.5rem;
 }
 
-.h-12{
-  height: 3rem;
+.h-11{
+  height: 2.75rem;
 }
 
 .h-16{
@@ -1327,16 +1403,20 @@ button{
   height: 18rem;
 }
 
+.h-9{
+  height: 2.25rem;
+}
+
+.h-\[300px\]{
+  height: 300px;
+}
+
 .h-full{
   height: 100%;
 }
 
 .max-h-\[75vh\]{
   max-height: 75vh;
-}
-
-.max-h-full{
-  max-height: 100%;
 }
 
 .min-h-\[320px\]{
@@ -1349,6 +1429,10 @@ button{
 
 .w-10{
   width: 2.5rem;
+}
+
+.w-11{
+  width: 2.75rem;
 }
 
 .w-16{
@@ -1406,10 +1490,6 @@ button{
 
 .max-w-6xl{
   max-width: 72rem;
-}
-
-.max-w-full{
-  max-width: 100%;
 }
 
 .max-w-sm{
@@ -1483,6 +1563,10 @@ button{
 
 .items-start{
   align-items: flex-start;
+}
+
+.items-end{
+  align-items: flex-end;
 }
 
 .items-center{
@@ -1611,6 +1695,14 @@ button{
   border-radius: 1rem;
 }
 
+.rounded-\[12px\]{
+  border-radius: 12px;
+}
+
+.rounded-\[24px\]{
+  border-radius: 24px;
+}
+
 .rounded-full{
   border-radius: 9999px;
 }
@@ -1662,6 +1754,10 @@ button{
 
 .bg-cream{
   background-color: var(--color-cream);
+}
+
+.bg-gold{
+  background-color: var(--color-gold);
 }
 
 .bg-gold-tint{
@@ -1741,14 +1837,14 @@ button{
   --tw-gradient-to: var(--color-slate-blue) var(--tw-gradient-to-position);
 }
 
-.object-contain{
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-
 .object-cover{
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.object-\[50\%_20\%\]{
+  -o-object-position: 50% 20%;
+     object-position: 50% 20%;
 }
 
 .p-10{
@@ -2302,6 +2398,18 @@ button{
 @media (min-width: 640px){
   .sm\:inline{
     display: inline;
+  }
+
+  .sm\:h-auto{
+    height: auto;
+  }
+
+  .sm\:min-h-\[340px\]{
+    min-height: 340px;
+  }
+
+  .sm\:w-2\/5{
+    width: 40%;
   }
 
   .sm\:grid-cols-2{

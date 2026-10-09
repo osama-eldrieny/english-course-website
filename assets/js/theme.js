@@ -8,6 +8,7 @@ const THEMES = [
   { id: 'theme2', label: 'Theme 2' },
   { id: 'theme3', label: 'Theme 3' },
   { id: 'theme4', label: 'Theme 4' },
+  { id: 'theme5', label: 'Speakademi' },
 ];
 
 function getTheme() {
