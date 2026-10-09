@@ -30,13 +30,16 @@
   <script src="/assets/js/theme.js"></script>
   <script src="/assets/js/include.js"></script>
   <style>
-    .q-row { border: 1px solid var(--color-navy-tint, #e2e8f0); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; }
+    .q-row { background: #fff; border: 1px solid var(--color-gray-200, #e4e3df); border-radius: 16px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 2px rgba(20, 33, 61, 0.04); transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+    .q-row.bg-navy-tint { background: var(--color-navy-tint, #dfe3ea); border-color: transparent; box-shadow: none; }
+    .q-row:hover { border-color: var(--color-gray-400, #a3a7b0); }
+    .q-row:focus-within { border-color: var(--color-gold, #0a7f78); box-shadow: 0 0 0 3px var(--color-gold-tint, #e2f0ee); }
     .q-row textarea { min-height: 3rem; }
-    .q-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .q-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
     @media (max-width: 700px) { .q-grid { grid-template-columns: 1fr; } }
-    .field label { display: block; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .field label { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-slate-blue, #4a5670); margin-bottom: 0.35rem; }
     #password-gate { max-width: 400px; margin: 4rem auto; }
-    .section-nav-item { display: block; width: 100%; text-align: left; padding: 0.6rem 0.75rem; border-radius: 8px; font-size: 0.875rem; }
+    .section-nav-item { display: block; width: 100%; text-align: left; padding: 0.6rem 0.75rem; border-radius: 8px; font-size: 0.875rem; background: #fff; margin-bottom: 0.375rem; }
     .section-nav-item:hover { background: var(--color-navy-tint, #eef2f7); }
     .section-nav-item.active { background: var(--color-navy, #1e3a5f); color: #fff; font-weight: 600; }
     .section-nav-item .nav-id { display: block; font-size: 0.7rem; opacity: 0.7; }
@@ -57,18 +60,26 @@
 
     .actions-row { display: flex; gap: 0.75rem; margin-top: 1rem; }
 
-    .q-row-header { display: flex; align-items: flex-end; gap: 0.75rem; }
-    .q-row-header-field { flex: 0 0 auto; width: 180px; margin-bottom: 0; }
+    .q-row-header { display: flex; align-items: center; gap: 0.75rem; }
+    .q-row-header .field label { display: none; }
+    .q-row-header-field { flex: 0 0 auto; width: 200px; margin-bottom: 0; }
     .meta-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
-    @media (min-width: 768px) { .meta-grid { grid-template-columns: 0.6fr 0.6fr 1.4fr 1.4fr; } }
-    .q-row-chevron-btn { flex-shrink: 0; background: none; border: none; padding: 0.4rem; margin-bottom: 2px; cursor: pointer; border-radius: 6px; color: var(--color-navy, #1e3a5f); opacity: 0.7; }
+    /* Correct Answer / Points keep a fixed width; Image and Audio/Video URL
+       split whatever is left equally, so they fill the row when the other
+       two are hidden for a question type. */
+    @media (min-width: 768px) {
+      .meta-grid { display: flex; gap: 0.75rem; }
+      .meta-grid > .meta-correct, .meta-grid > .meta-points { flex: 0 0 150px; }
+      .meta-grid > .meta-image, .meta-grid > .meta-audio { flex: 1 1 0; min-width: 0; }
+    }
+    .q-row-chevron-btn { flex-shrink: 0; background: none; border: none; padding: 0.4rem; margin-bottom: 0; cursor: pointer; border-radius: 8px; color: var(--color-navy, #1e3a5f); opacity: 0.7; }
     .q-row-chevron-btn:hover { background: var(--color-navy-tint, #eef2f7); opacity: 1; }
     .q-row-chevron { display: inline-flex; align-items: center; flex-shrink: 0; }
     .q-row-chevron svg { width: 16px; height: 16px; }
-    .q-row-toggle-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.9rem; font-weight: 600; color: var(--color-navy, #1e3a5f); margin-bottom: 2px; }
-    .q-row-body { margin-top: 1rem; }
+    .q-row-toggle-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.9rem; font-weight: 600; color: var(--color-navy, #1e3a5f); margin-bottom: 0; }
+    .q-row-body { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--color-gray-200, #e4e3df); }
     .q-row.collapsed .q-row-body { display: none; }
-    .q-row.collapsed { padding-bottom: 1rem; }
+    .q-row.collapsed { padding-top: 0.9rem; padding-bottom: 0.9rem; }
     .help-hint { display: inline-flex; align-items: center; margin-left: 0.35rem; cursor: help; opacity: 0.6; font-weight: 400; vertical-align: middle; }
     .help-hint svg { width: 13px; height: 13px; }
 

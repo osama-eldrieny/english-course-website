@@ -203,7 +203,7 @@ function render() {
   const rows = groups[activeSectionId];
   const meta = sectionMetaFor(activeSectionId);
   const section = document.createElement('div');
-  section.className = 'card-flat bg-white p-5 mb-8';
+  section.className = 'mb-8';
 
   section.appendChild(renderSectionHeader(activeSectionId, meta, rows, order, groups));
 
@@ -541,6 +541,9 @@ function renderQuestionRow(q) {
   inputs.question_number.readOnly = true;
   inputs.question_number.title = 'Position is set automatically — use the insert-between "+" button to reorder.';
   inputs.question_number.classList.add('opacity-70', 'cursor-not-allowed');
+  // Hidden from the UI (position is automatic) but kept in the DOM — Save
+  // and the collapsed preview label still read its value.
+  qnumWrap.style.display = 'none';
   const typeWrap = addField('question_type', 'Type', 'select', headerRow);
   typeWrap.classList.add('q-row-header-field');
   headerRow.appendChild(collapsedTitle);
@@ -584,8 +587,10 @@ function renderQuestionRow(q) {
   correctAnswerHelp.appendChild(correctAnswerHelpIcon);
   correctAnswerLabel.appendChild(correctAnswerHelp);
   const pointsWrap = addField('points', 'Points', 'number', metaGrid);
-  addField('image_url', 'Image URL', 'text', metaGrid);
-  addField('audio_url', 'Audio/Video URL', 'text', metaGrid);
+  addField('image_url', 'Image URL', 'text', metaGrid).classList.add('meta-image');
+  addField('audio_url', 'Audio/Video URL', 'text', metaGrid).classList.add('meta-audio');
+  correctAnswerWrap.classList.add('meta-correct');
+  pointsWrap.classList.add('meta-points');
 
   body.appendChild(grid);
 
