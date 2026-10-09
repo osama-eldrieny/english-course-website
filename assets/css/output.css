@@ -1378,6 +1378,10 @@ button{
   display: none;
 }
 
+.aspect-\[4\/3\]{
+  aspect-ratio: 4/3;
+}
+
 .\!h-auto{
   height: auto !important;
 }
@@ -1386,8 +1390,8 @@ button{
   height: 2.5rem;
 }
 
-.h-11{
-  height: 2.75rem;
+.h-12{
+  height: 3rem;
 }
 
 .h-16{
@@ -1442,8 +1446,8 @@ button{
   width: 2.5rem;
 }
 
-.w-11{
-  width: 2.75rem;
+.w-12{
+  width: 3rem;
 }
 
 .w-16{
@@ -1858,6 +1862,11 @@ button{
      object-position: 50% 20%;
 }
 
+.object-\[50\%_30\%\]{
+  -o-object-position: 50% 30%;
+     object-position: 50% 30%;
+}
+
 .p-10{
   padding: 2.5rem;
 }
@@ -1945,10 +1954,6 @@ button{
 .py-5{
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
-}
-
-.\!pb-12{
-  padding-bottom: 3rem !important;
 }
 
 .pb-1{
@@ -2344,6 +2349,10 @@ button{
   background-color: var(--color-cream);
 }
 
+.hover\:bg-gold-deep:hover{
+  background-color: var(--color-gold-deep);
+}
+
 .hover\:bg-navy-deep:hover{
   background-color: var(--color-navy-deep);
 }
@@ -2390,6 +2399,28 @@ button{
 .focus\:ring-navy:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(var(--color-navy-rgb) / var(--tw-ring-opacity, 1));
+}
+
+.focus-visible\:ring-2:focus-visible{
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus-visible\:ring-gold:focus-visible{
+  --tw-ring-color: var(--color-gold);
+}
+
+.focus-visible\:ring-offset-2:focus-visible{
+  --tw-ring-offset-width: 2px;
+}
+
+.disabled\:cursor-not-allowed:disabled{
+  cursor: not-allowed;
+}
+
+.disabled\:opacity-40:disabled{
+  opacity: 0.4;
 }
 
 .group:hover .group-hover\:visible{
@@ -2637,4 +2668,12 @@ button{
     font-size: 3.75rem;
     line-height: 1;
   }
+}
+
+.\[\&\.swiper-button-disabled\]\:cursor-not-allowed.swiper-button-disabled{
+  cursor: not-allowed;
+}
+
+.\[\&\.swiper-button-disabled\]\:opacity-40.swiper-button-disabled{
+  opacity: 0.4;
 }
