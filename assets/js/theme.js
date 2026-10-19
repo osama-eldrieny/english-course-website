@@ -16,7 +16,7 @@ const THEMES = [
 
 function getTheme() {
   try {
-    return localStorage.getItem(THEME_STORAGE_KEY) || DEFAULT_THEME;
+    return DEFAULT_THEME; // theme switcher hidden: Theme 1 is always used
   } catch (e) {
     return DEFAULT_THEME;
   }

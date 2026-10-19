@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>(function(){try{var t=localStorage.getItem("theme")||"theme5";if(t!=="default")document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","theme5");}})();</script>
+  <script>(function(){try{var t="theme5";if(t!=="default")document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","theme5");}})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="/assets/imgs/favicon.svg">
@@ -21,6 +21,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lucide"></script>
   <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/i18n.js"></script>
   <script src="/assets/js/include.js"></script>
 </head>
 <body>
@@ -31,19 +32,18 @@
   <section class="relative overflow-hidden bg-navy text-white pt-32 pb-24 md:pt-40 md:pb-32 px-4">
     <div class="container-max relative z-10">
       <div class="max-w-4xl mx-auto text-center">
-        <div class="hero-badge inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-8 text-sm font-semibold text-white">
-          <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
-          Learn English, change your future
+        <div class="hero-badge logo-on-dark inline-flex mb-8">
+          <svg class="h-14 md:h-16 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="250 230 1150 870" role="img" aria-label="Speakademi"><path fill="var(--logo-accent)" fill-rule="evenodd" d="M730.13 553.43Q734.34 566.95 737.41 581.04L353.61 581.04Q337.90 581.04 323.33 586.91Q308.76 592.79 297.45 603.69Q286.13 614.59 279.71 628.93Q273.30 643.27 272.71 658.97Q269.47 745.23 288.79 820.50Q308.26 896.34 348.71 953.95Q391.06 1014.26 451.12 1047.41Q513.79 1082.00 586.39 1082.00Q660.56 1082.00 723.08 1049.03Q784.17 1016.82 827.00 956.85Q830.41 952.09 833.67 947.19Q835.16 949.16 836.68 951.11Q883.70 1011.59 948.37 1044.68Q1016.33 1079.47 1094.94 1079.47Q1179.83 1079.47 1249.24 1053.44Q1311.56 1030.07 1365.22 984.07Q1377.45 973.59 1384.73 959.23Q1392.02 944.87 1393.26 928.81Q1394.49 912.75 1389.49 897.45Q1384.48 882.14 1374.00 869.91Q1363.52 857.68 1349.16 850.40Q1334.80 843.11 1318.74 841.88Q1302.68 840.64 1287.37 845.65Q1272.07 850.65 1259.84 861.13Q1227.90 888.50 1192.38 901.82Q1150.47 917.54 1094.94 917.54Q1015.69 917.54 964.51 851.72Q938.02 817.64 923.36 770.57Q919.16 757.05 916.08 742.96L1299.88 742.96Q1315.59 742.96 1330.16 737.09Q1344.73 731.21 1356.05 720.31Q1367.36 709.41 1373.78 695.07Q1380.20 680.73 1380.79 665.03Q1384.02 578.77 1364.70 503.50Q1345.23 427.66 1304.79 370.05Q1262.44 309.74 1202.38 276.59Q1139.70 242.00 1067.11 242.00Q992.94 242.00 930.41 274.97Q869.32 307.18 826.49 367.15Q823.09 371.91 819.83 376.81Q818.33 374.84 816.82 372.89Q769.80 312.41 705.13 279.32Q637.16 244.53 558.55 244.53Q473.66 244.53 404.25 270.56Q341.94 293.93 288.27 339.93Q276.05 350.41 268.76 364.77Q261.47 379.13 260.24 395.19Q259.00 411.25 264.01 426.55Q269.01 441.86 279.49 454.09Q289.97 466.32 304.33 473.60Q318.70 480.89 334.75 482.12Q350.81 483.36 366.12 478.35Q381.43 473.35 393.65 462.87Q425.59 435.50 461.11 422.18Q503.02 406.46 558.55 406.46Q637.80 406.46 688.98 472.28Q715.47 506.36 730.13 553.43ZM1215.25 581.04L913.75 581.04Q917.01 560.68 922.04 541.97Q934.96 493.88 958.25 461.27Q999.21 403.93 1067.11 403.93Q1130.71 403.93 1172.26 463.10Q1195.73 496.53 1207.86 543.77Q1212.49 561.79 1215.25 581.04ZM731.46 782.03Q736.48 763.32 739.75 742.96L438.25 742.96Q441.01 762.21 445.64 780.23Q457.76 827.47 481.23 860.90Q522.78 920.07 586.39 920.07Q654.28 920.07 695.24 862.73Q718.54 830.12 731.46 782.03Z"/></svg>
         </div>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-display leading-[1.05] mb-8 animate-fadeInUp" style="animation-delay: 0.1s">
           Speak as you go
         </h1>
-        <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 animate-fadeInUp" style="animation-delay: 0.2s">
+        <p class="text-[22px] text-white/80 max-w-2xl lg:max-w-3xl mx-auto mb-10 animate-fadeInUp" style="animation-delay: 0.2s">
           English shouldn't stay in your textbook. At Speakademi, our live online courses pair experienced teachers with real-world practice so you can use English at work, at university, and everywhere in between. Learn from anywhere. Speak with confidence everywhere.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fadeInUp" style="animation-delay: 0.3s">
-          <a href="https://wa.me/60172740240?text=Hi%2C%20I%20would%20like%20to%20enroll%20in%20a%20course%20at%20Speakademi" target="_blank" rel="noopener" class="btn-primary inline-flex items-center gap-2">
+          <a href="https://wa.me/601125366351?text=Hi%2C%20I%20would%20like%20to%20enroll%20in%20a%20course%20at%20Speakademi" target="_blank" rel="noopener" class="btn-primary inline-flex items-center gap-2">
             Enroll via WhatsApp
             <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
           </a>
@@ -109,12 +109,12 @@
             Learn more <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
           </span>
         </a>
-        <a href="/test-your-english.html" class="bg-navy text-white rounded-2xl p-8 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+        <a href="/test-your-english.html" class="group bg-navy text-white rounded-2xl p-8 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-tint focus-visible:ring-offset-2">
           <div>
             <h3 class="text-xl font-extrabold tracking-heading mb-3 text-white">Not sure where to start?</h3>
             <p class="text-sm text-white/80">Take the free five-minute level test and get a course matched to your goals.</p>
           </div>
-          <span class="mt-8 inline-flex items-center gap-2 font-bold text-gold text-sm">
+          <span class="mt-8 inline-flex items-center gap-2 font-bold text-gold-tint text-sm group-hover:underline underline-offset-4">
             Test your English <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
           </span>
         </a>
@@ -253,281 +253,596 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/abdulelah.webp" alt="عبدالاله الشمري" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/abdulelah.webp" alt="عبدالاله الشمري" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">عبدالاله الشمري</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>من أجمل التجارب التعليمية اللي مرّيت فيها سبق ودرست عندكم واستفدت كثير خصوصًا من أسلوب الشرح والاهتمام بالطلاب وهذا شيء جميل جدًا الله يوفقكم ويبارك لكم في هالخطوة ومنها للأفضل دائمًا 🤍👏 .</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy" dir="rtl" lang="ar">عبدالاله الشمري</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/abdalrhman-tayara.webp" alt="Abdalrhman Tayara" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/abdalrhman-tayara.webp" alt="Abdalrhman Tayara" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Abdalrhman Tayara</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇱🇾</span> Libya</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6"><p>The course was excellent and helped me improve my English a lot</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Abdalrhman Tayara</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇱🇾</span> Libya</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/abdullah-banji.webp" alt="Abdullah Reda Banji" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/abdullah-banji.webp" alt="Abdullah Reda Banji" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Abdullah Reda Banji</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6"><p>The best English teacher I&#x27;ve ever had. She was understanding, dedicated, honest, explained things easily, and was patient in teaching and conveying information. She deserves five stars.</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Abdullah Reda Banji</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/adhari-nayif.webp" alt="Adhari Nayif" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/adhari-nayif.webp" alt="Adhari Nayif" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[25%_12%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Adhari Nayif</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇴🇲</span> Oman</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6"><p>I would like to thank Ms. Amal and Mr. Amr for their wonderful teaching and support. I learned a lot from them, especially in writing and speaking. They helped me overcome my fear of speaking English and become more confident. شكرا جزيلااا على التدريس الاجمل من رائع🩷🩷😍</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Adhari Nayif</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇴🇲</span> Oman</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/hussam-faisal.webp" alt="Hussam Faisal" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/hussam-faisal.webp" alt="Hussam Faisal" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Hussam Faisal</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇾🇪</span> Yemen</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6"><p>I highly recommend this platform to anyone learning English. The lessons were helpful, and I truly enjoyed my experience. Special thanks to Mr. Amr and Amal for their support and dedication during my time in Malaysia. I’m truly grateful for everything I’ve learned! ❤️🫡</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Hussam Faisal</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇾🇪</span> Yemen</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <div class="w-full aspect-[4/3] rounded-[12px] mb-5 bg-gold-tint text-gold flex items-center justify-center" aria-hidden="true"><i data-lucide="user-round" style="width: 88px; height: 88px; stroke-width: 1.5;"></i></div>
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <div class="w-[86px] h-[86px] shrink-0 rounded-full bg-gold-tint text-gold flex items-center justify-center" aria-hidden="true"><i data-lucide="user-round" style="width: 44px; height: 44px; stroke-width: 1.5;"></i></div>
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Serik</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇰🇿</span> Kazakhstan</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
-              <blockquote class="text-slate-blue flex-1 mb-6"><p>Mr. Amr very good teacher, which have a big experience and skills to teach students. I’m very happy that i had opportunity to study with him.</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Serik</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇰🇿</span> Kazakhstan</span>
-                </span>
-              </figcaption>
+              <blockquote class="text-slate-blue flex-1 mb-6" lang="ru"><p>Мистер Амр очень хороший преподаватель с большим опытом и отличными навыками преподавания. Я очень рад(а), что у меня была возможность заниматься у него.</p></blockquote>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/hussein.webp" alt="Hussein" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/hussein.webp" alt="Hussein" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Hussein</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇯🇴</span> Jordan</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>بشكر الاستاذ عمر على المساعدة والتدريس الاحترافي والمهارات الرائعة التي يتمتع بها. من افضل المدرسين الذين تعلمت منهم اللغة بشكل ممتاز. كانت تحربة ممتازة وثرية بالمعلومات والمهارات المتميزة في تعلم اللغة. شكراً استاذ عمر</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Hussein</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇯🇴</span> Jordan</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <div class="w-full aspect-[4/3] rounded-[12px] mb-5 bg-gold-tint text-gold flex items-center justify-center" aria-hidden="true"><i data-lucide="user-round" style="width: 88px; height: 88px; stroke-width: 1.5;"></i></div>
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <div class="w-[86px] h-[86px] shrink-0 rounded-full bg-gold-tint text-gold flex items-center justify-center" aria-hidden="true"><i data-lucide="user-round" style="width: 44px; height: 44px; stroke-width: 1.5;"></i></div>
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Badriya</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇴🇲</span> Oman</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6"><p>I had a wonderful learning experience. I learned a lot about English grammar, report writing, and speaking. The lessons helped me improve my English and become more confident. Thank you for your excellent teaching, encouragement, and continuous support.</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Badriya</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇴🇲</span> Oman</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/azzam.webp" alt="Azzam Yahya Al-Aizari" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/azzam.webp" alt="Azzam Yahya Al-Aizari" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Azzam Yahya Al-Aizari</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇾🇪</span> Yemen</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6"><p>The best teacher l have ever seen in my life</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Azzam Yahya Al-Aizari</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇾🇪</span> Yemen</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/tareq-muneer.webp" alt="Tareq Muneer" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/tareq-muneer.webp" alt="Tareq Muneer" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Tareq Muneer</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇱🇾</span> Libya</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6"><p>He is the first teacher who has helped me truly understand many things. I have studied in different places before, but I never understood them as well as I do with him. I really appreciate his effort and patience.🤍</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Tareq Muneer</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇱🇾</span> Libya</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/nurgul.webp" alt="Nurgul" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/nurgul.webp" alt="Nurgul" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Nurgul</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇰🇿</span> Kazakhstan</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
-              <blockquote class="text-slate-blue flex-1 mb-6"><p>I really enjoyed his lessons. He is a professional, patient, and supportive teacher who explains everything clearly and makes the learning process comfortable and engaging. I truly appreciate his approach and would highly recommend him!</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Nurgul</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇰🇿</span> Kazakhstan</span>
-                </span>
-              </figcaption>
+              <blockquote class="text-slate-blue flex-1 mb-6" lang="ru"><p>Мне очень понравились его уроки. Он профессиональный, терпеливый и отзывчивый преподаватель, который всё понятно объясняет и делает обучение комфортным и интересным. Мне очень нравится его подход к обучению, и я с удовольствием рекомендую его другим!</p></blockquote>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/abdulhamid-abunowara.webp" alt="Abdulhamid Abunowara" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/abdulhamid-abunowara.webp" alt="Abdulhamid Abunowara" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Abdulhamid Abunowara</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇱🇾</span> Libya</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6"><p>I had a very good experience studying General English at the institute. The teachers were supportive and professional, and the classes were practical and engaging. I improved my English skills and became more confident in using English in daily communication.</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Abdulhamid Abunowara</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇱🇾</span> Libya</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <div class="w-full aspect-[4/3] rounded-[12px] mb-5 bg-gold-tint text-gold flex items-center justify-center" aria-hidden="true"><i data-lucide="user-round" style="width: 88px; height: 88px; stroke-width: 1.5;"></i></div>
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/heshuqing.webp" alt="Heshuqing" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Heshuqing</span>
+                <span class="block text-sm text-slate-blue">IELTS training</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇨🇳</span> China</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
-              <blockquote class="text-slate-blue flex-1 mb-6"><p>I really enjpyed my speaking classes with Mr Amr. Very interactive and fun with lots of games too!</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Heshuqing</span>
-                  <span class="block text-sm text-slate-blue">IELTS training · <span aria-hidden="true">🇨🇳</span> China</span>
-                </span>
-              </figcaption>
+              <blockquote class="text-slate-blue flex-1 mb-6" lang="zh"><p>我非常喜欢上 Amr 老师的口语课！课堂互动性很强，气氛也很轻松有趣，还有很多好玩的游戏！</p></blockquote>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/khalid-mohamed.webp" alt="Khalid Mohamed Abdullah" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/khalid-mohamed.webp" alt="Khalid Mohamed Abdullah" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Khalid Mohamed Abdullah</span>
+                <span class="block text-sm text-slate-blue">IELTS training</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇴🇲</span> Oman</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6"><p>Thank God, I took a course with Mr. Omar. It was truly wonderful and incredibly beneficial. I learned all about the IELTS exams, walked into the test feeling confident. I owe a great deal, as he trained me extensively for the exam.I highly recommend taking a course with Mr. Omar to everyone. 😍🤍</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Khalid Mohamed Abdullah</span>
-                  <span class="block text-sm text-slate-blue">IELTS training · <span aria-hidden="true">🇴🇲</span> Oman</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/ahmed-asiri.webp" alt="Ahmed Yousef Asiri" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/ahmed-asiri.webp" alt="Ahmed Yousef Asiri" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Ahmed Yousef Asiri</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6"><p>First of all, thank you, teacher, for everything you have done for me during this month. Honestly, I’m really happy that you were my teacher and that you were with us like a brother, not just a teacher. ❤️</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Ahmed Yousef Asiri</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/ibrahim.webp" alt="Ibrahim Adel Alrudayan" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/ibrahim.webp" alt="Ibrahim Adel Alrudayan" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Ibrahim Adel Alrudayan</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>من أفضل الكلاسات استفدت الله يكرمكم و اتطورت في المحادثة بشكل واضح</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Ibrahim Adel Alrudayan</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/mathilde.webp" alt="Mathilde" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/mathilde.webp" alt="Mathilde" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Mathilde</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇫🇷</span> France</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
-              <blockquote class="text-slate-blue flex-1 mb-6"><p>I really enjoyed his classes because they are fun and interactive. The games make learning English more enjoyable and help us improve our speaking skills. He is also very attentive, patient, and takes the time to correct our mistakes. I would definitely recommend his classes!</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Mathilde</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇫🇷</span> France</span>
-                </span>
-              </figcaption>
+              <blockquote class="text-slate-blue flex-1 mb-6" lang="fr"><p>J’ai vraiment aimé ses cours, qui sont toujours agréables et interactifs. Les jeux rendent l’apprentissage de l’anglais plus amusant et nous aident à mieux parler. Il est très à l’écoute, patient et prend toujours le temps de nous corriger quand on fait des erreurs. Je recommande vivement ses cours !</p></blockquote>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/tareq-mas.webp" alt="Tareq Mas" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/tareq-mas.webp" alt="Tareq Mas" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Tareq Mas</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>من حظي الجميل وقت تعلمي اللغه اني صادفت الاستاذ عمر واحمد الله انو بديت تعليمي معاه وكان معايا اول ب اول متابعه وشرح وطريقة التعليم مرنه وايصال المعلومه تكون بعدة طرق ممتعه للامانه شكراً استاذ عمر اجيال تخرجنا من تحت يدك .</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Tareq Mas</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/fella.webp" alt="Fella" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/fella.webp" alt="Fella" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Fella</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇩🇿</span> Algeria</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
               <blockquote class="text-slate-blue flex-1 mb-6"><p>Teacher Amel You were my first speaking teacher when I was in Pre Intermediate 1 class and I will be for ever thankful for the support that I got from you You had a really big impact on my speaking you were always pushing me talk especially with your interesting speaking topics</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Fella</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇩🇿</span> Algeria</span>
-                </span>
-              </figcaption>
               </div>
             </figure>
           </div>
           <div class="swiper-slide !h-auto">
             <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
-              <img src="/assets/imgs/testimonials/zhazira.webp" alt="Zhazira" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-5">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/zhazira.webp" alt="Zhazira" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Zhazira</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇰🇿</span> Kazakhstan</span>
+              </span>
+            </figcaption>
+              </div>
               <div class="px-5 pb-5 flex-1 flex flex-col">
-              <blockquote class="text-slate-blue flex-1 mb-6"><p>Amr is a very professional and dedicated English teacher. His lessons are interesting, clear, and easy to understand. He is patient, supportive, and always helps his students improve. I’m very happy to have him as my teacher and highly recommend him!</p></blockquote>
-              <figcaption>
-                <span>
-                  <span class="block font-bold text-navy">Zhazira</span>
-                  <span class="block text-sm text-slate-blue">General English · <span aria-hidden="true">🇰🇿</span> Kazakhstan</span>
-                </span>
-              </figcaption>
+              <blockquote class="text-slate-blue flex-1 mb-6" lang="ru"><p>Амр очень профессиональный и преданный своему делу преподаватель английского языка. Его уроки интересные, понятные и хорошо организованы. Он терпеливый, всегда поддерживает своих учеников и помогает им становиться лучше. Я очень рад(а), что занимаюсь именно у него, и с удовольствием рекомендую его всем!</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/amr-sameh.webp" alt="Amr Sameh" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Amr Sameh</span>
+                <span class="block text-sm text-slate-blue">IELTS training</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇾🇪</span> Yemen</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>الاستاذ عمرو قدم لي فوائد كبيرة جداً في تأهيلي لاختبار (IELTS) رغم ان الفترة التي درسني بها كانت قصيرة ولكن المقابل كان ملموس جدا بالنسبة لي. أتمنى له كل التوفيق والنجاح في حياته العملية.</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/khaled.webp" alt="Khaled" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Khaled</span>
+                <span class="block text-sm text-slate-blue">One-to-One General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>تجربة جميلة ومميزة، حيث كان يشرح بكل أمانة وإخلاص وضمير، ويحرص على إيصال المعلومة بطريقة واضحة وسهلة الفهم. أشكره على جهوده واهتمامه وحرصه على استفادتي وتطوري في اللغة الإنجليزية.</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/khalid-alhejaili.webp" alt="Khalid Muhammad Alhejaili" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Khalid Muhammad Alhejaili</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>للأمانة دراستي مع الاستاذ عَمر من افضل الاوقات بالنسبة لي. الاستاذ متجاوب و على الرغم من كثرة الأسأله اللي اسألها إلا أن الاستاذ عَمر ما يزعل او ما يتضايق من كثرة الاسألة بالعكس يعطيني الجاوب على كل سؤال. وقت الدرس او الحصة الكلمة التي لم افهمها يحاول بقدر المستطاع اني افهمها بالانقليزي.</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/taha-firas.webp" alt="طه فراس البصري" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">طه فراس البصري</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>السلام عليكم ورحمه الله وبركاته انا الطالب طه والله انصح اي شخص يبغى يتعلم انجليزي يدرس عند الاستاذ والله علمني صح ولازم تركزو معا وما تحلو الواجب من قولق حل من مخك حتى لو كان غلط تلاقي الاستاذ يقلك الأغلاط ويعلمك الصح ويختبرك عشان يشوف انك فاهم وشكرا</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/omar-alsuraihi.webp" alt="Omar Alsuraihi" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Omar Alsuraihi</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇸🇦</span> Saudi Arabia</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>أحد أفضل معلمي اللغة الإنجليزية الذين تعلمت على يدهُم. ساهم بشكل كبير في تطوير لغتي، وكان أسلوبه في التدريس ممتعًا وواضحًا ومحفزًا. ممتن جدًا لكل ما تعلمته منه، وأنصح بشدة بالتعلم معه. كل الشكر والتقدير لجهوده المميزة. 🌟</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/sara-monsif.webp" alt="Sara Monsif" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Sara Monsif</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇲🇦</span> Morocco</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>كنت من الطلبة ديالو فماليزيا، وبصراحة كانت تجربة زوينة بزاف. كيعرف يبسط حتى الدروس الصعيبة، وطاقتو الإيجابية كتخلي الحصة ممتعة وماشي مملة.</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/tarik-alzager.webp" alt="Tarik Ali Alzager" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Tarik Ali Alzager</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇸🇾</span> Syria</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>أود أن أعبر عن خالص امتناني وتقديري لمعلمي السابق للغة الإنجليزية، الذي لم يكن مجرد معلم، بل كان مصدر إلهام ودعم وتحفيز. بفضل أسلوبه المميز في التدريس وصبره وتشجيعه المستمر، أصبحت أكثر ثقة بنفسي وأكثر رغبة في تطوير مهاراتي في اللغة الإنجليزية.</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/alparay.webp" alt="Alparay" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Alparay</span>
+                <span class="block text-sm text-slate-blue">IELTS training</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇨🇳</span> China</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" lang="zh"><p>我曾在这位老师的带领下学习四个月，他口语标准，上课幽默风趣，很有耐心，很大程度上帮助到了我，尤其在speaking方面。</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <div class="w-[86px] h-[86px] shrink-0 rounded-full bg-gold-tint text-gold flex items-center justify-center" aria-hidden="true"><i data-lucide="user-round" style="width: 44px; height: 44px; stroke-width: 1.5;"></i></div>
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Mosab Abohadi</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇾🇪</span> Yemen</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>لقد درست في ماليزيا مع الاستاذ الكريم / عمر ولقد استمتعت وتعلمت الكثير ( حيث ان العلم مُتعة ) ، شكراً جزيلاً للاستاذ واتمنى لك النجاح مع طلابك الجُدد وإن شاء الله لنا لقاء قريب في ماليزيا او سوريا</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/sasha.webp" alt="Sasha" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Sasha</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇰🇿</span> Kazakhstan</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" lang="ru"><p>Спасибо преподавателю за внимательность и умение объяснять сложные вещи простыми словами. Мы много разговаривали и разбирали фразы, которые пригодятся в жизни. Занятия проходили интересно и весело)</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/karlygash.webp" alt="Karlygash" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Karlygash</span>
+                <span class="block text-sm text-slate-blue">IELTS training</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇰🇿</span> Kazakhstan</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" lang="kk"><p>2025 жылы жаз айында Куала- Лумпурде Mr.Amir-де 1 ай оқыдым. Сабақ маған өте қатты ұнады. Ұстаздың білімі, біліктілігі барлығы өте жоғары деңгейде👍. 1 айдың өзінде көп нәрсе үйрендім. Келесі жылы Амир ұстазбен тағы оқимын 🤗❤️🫶🫶🫶🫶</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/amir-alnaem.webp" alt="Amir Alnaem" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Amir Alnaem</span>
+                <span class="block text-sm text-slate-blue">One-to-One General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇸🇾</span> Syria</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>من أكثر الأشخاص الملهمين يلي عدّو بحياتي و بسبب حضرتك حبيت الانكلش و صرت استاذ انكلش كمان و فتحت مشروعي الخاص و كتير استلهمت افكار التدريس من أسلوبك معي وقت كنت طالب💙💙</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/evgeniia.webp" alt="Evgeniia Krasilova" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Evgeniia Krasilova</span>
+                <span class="block text-sm text-slate-blue">One-to-One General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇷🇺</span> Russia</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" lang="ru"><p>Это был мой первый опыт индивидуальных занятий с носителем английского языка, и мне очень понравилось! Несмотря на то, что нельзя было уточнить что-то на русском, Амру удавалось объяснить всё на английском, с помощью жестов и даже небольших сценок. Занятия проходили в комфортной атмосфере</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/vlad.webp" alt="Vlad" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Vlad</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇷🇺</span> Russia</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" lang="ru"><p>Отличный преподаватель, всё понятно, доступно и интересно!</p></blockquote>
+              </div>
+            </figure>
+          </div>
+          <div class="swiper-slide !h-auto">
+            <figure class="rounded-[24px] bg-navy-tint p-3 h-full flex flex-col">
+              <div class="flex items-center gap-4 px-5 pt-4 mb-4">
+                <img src="/assets/imgs/testimonials/taha-rahmoune.webp" alt="Taha Rahmoune" loading="lazy" class="w-[86px] h-[86px] shrink-0 rounded-full object-cover object-[50%_30%]">
+                <figcaption class="text-left" dir="ltr">
+              <span>
+                <span class="block font-bold text-navy">Taha Rahmoune</span>
+                <span class="block text-sm text-slate-blue">General English</span>
+                <span class="block text-sm text-slate-blue"><span aria-hidden="true">🇩🇿</span> Algeria</span>
+              </span>
+            </figcaption>
+              </div>
+              <div class="px-5 pb-5 flex-1 flex flex-col">
+              <blockquote class="text-slate-blue flex-1 mb-6" dir="rtl" lang="ar"><p>أود أن أعرب عن خالص شكري وتقديري لأستاذي الفاضل الذي أثر في مسيرتي التعليمية بشكل إيجابي قبل أربع سنوات. لقد كان بفضله وتشجيعه المستمر لي تأثير كبير في تطوير مهاراتي في اللغة الإنجليزية وزيادة شغفي بالتعلم. شكراً لك على جهدك وعطائك الدائم.</p></blockquote>
               </div>
             </figure>
           </div>
@@ -555,54 +870,97 @@
         <h2>Student Success Stories</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Story 1 -->
-        <div class="card-flat bg-white p-8">
+      <div class="swiper" id="stories-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide !h-auto">
+                <div class="card-flat bg-white p-8 h-full flex flex-col">
+          <div class="relative mb-6"><img src="/assets/imgs/testimonials/amir-alnaem.webp" alt="Amir Alnaem" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px]"><div class="absolute inset-0 rounded-[12px] bg-black/5 pointer-events-none"></div></div>
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center text-white text-2xl font-bold">7.5</div>
             <div>
-              <p class="font-bold text-navy">IELTS Score</p>
-              <p class="text-sm text-slate-blue">Ahmed Al-Mansouri</p>
+              <p class="font-bold text-navy">Became an ESL teacher and runs his own language center</p>
+              <p class="text-sm text-slate-blue">Amir Alnaem</p>
             </div>
           </div>
-          <p class="text-slate-blue mb-4">"Started at 6.0, reached 7.5 in 4 months through the Intensive IELTS course. Now accepted at top UK universities!"</p>
-          <div class="flex gap-2 flex-wrap">
-            <span class="px-3 py-1 bg-gold-tint text-gold-text text-xs font-semibold rounded-full">IELTS Intensive</span>
-            <span class="px-3 py-1 bg-tertiary-tint text-tertiary-text text-xs font-semibold rounded-full">4 Months</span>
+          <p class="text-slate-blue mb-4">"One of the most inspiring people I&#x27;ve had in my life. Because of you I fell in love with English, became an English teacher myself and started my own project. I drew a lot of teaching ideas from the way you taught me when I was a student."</p>
+          <div class="flex gap-2 flex-wrap mt-auto">
+            <span class="px-3 py-1 bg-gold-tint text-gold-text text-xs font-semibold rounded-full">One-to-One General English</span>
+            <span class="px-3 py-1 bg-tertiary-tint text-tertiary-text text-xs font-semibold rounded-full">Syria</span>
           </div>
         </div>
+          </div>
+          <div class="swiper-slide !h-auto">
+                <div class="card-flat bg-white p-8 h-full flex flex-col">
+          <img src="/assets/imgs/testimonials/leo.webp" alt="Leo Nerny" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-6">
+          <div class="flex items-center gap-4 mb-6">
+            <div>
+              <p class="font-bold text-navy">Became a music producer</p>
+              <p class="text-sm text-slate-blue">Leo Nerny</p>
+            </div>
+          </div>
+          <p class="text-slate-blue mb-4">"Some people don&#x27;t just teach us a subject, they open the door to a whole path. You were among the first to lay the foundation of my English journey, and that start shaped where I am today. You built my confidence and my love for the language and for learning."</p>
+          <div class="flex gap-2 flex-wrap mt-auto">
+            <span class="px-3 py-1 bg-gold-tint text-gold-text text-xs font-semibold rounded-full">General English</span>
+            <span class="px-3 py-1 bg-tertiary-tint text-tertiary-text text-xs font-semibold rounded-full">Syria</span>
+          </div>
+        </div>
+          </div>
+          <div class="swiper-slide !h-auto">
+                <div class="card-flat bg-white p-8 h-full flex flex-col">
+          <img src="/assets/imgs/testimonials/patrick.webp" alt="Patrick" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-6">
+          <div class="flex items-center gap-4 mb-6">
+            <div>
+              <p class="font-bold text-navy">Passed IELTS with 7.5</p>
+              <p class="text-sm text-slate-blue">Patrick</p>
+            </div>
+          </div>
+          <p class="text-slate-blue mb-4">"Thank you very much teacher Amal. I got my IELTS score 7.5 overall and I am on a plane heading back home now!"</p>
+          <div class="flex gap-2 flex-wrap mt-auto">
+            <span class="px-3 py-1 bg-gold-tint text-gold-text text-xs font-semibold rounded-full">IELTS</span>
+            <span class="px-3 py-1 bg-tertiary-tint text-tertiary-text text-xs font-semibold rounded-full">China</span>
+          </div>
+        </div>
+          </div>
+          <div class="swiper-slide !h-auto">
+                <div class="card-flat bg-white p-8 h-full flex flex-col">
+          <img src="/assets/imgs/testimonials/reem-ibrahim.webp" alt="Reem Ibrahim" loading="lazy" class="w-full aspect-[4/3] object-cover object-[50%_30%] rounded-[12px] mb-6">
+          <div class="flex items-center gap-4 mb-6">
+            <div>
+              <p class="font-bold text-navy">Got to university and moved to the UK</p>
+              <p class="text-sm text-slate-blue">Reem Ibrahim</p>
+            </div>
+          </div>
+          <div class="flex gap-2 flex-wrap mt-auto">
+            <span class="px-3 py-1 bg-gold-tint text-gold-text text-xs font-semibold rounded-full">IELTS</span>
+            <span class="px-3 py-1 bg-tertiary-tint text-tertiary-text text-xs font-semibold rounded-full">Syria</span>
+          </div>
+        </div>
+          </div>
+          <div class="swiper-slide !h-auto">
+                <div class="card-flat bg-white p-8 h-full flex flex-col">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 shrink-0 bg-navy rounded-full flex items-center justify-center text-white"><i data-lucide="briefcase" style="width: 28px; height: 28px; color: white;"></i></div>
+            <div>
+              <p class="font-bold text-navy">Got a job in an international organization</p>
+              <p class="text-sm text-slate-blue">Moina Al Haji</p>
+            </div>
+          </div>
+          <div class="flex gap-2 flex-wrap mt-auto">
+            <span class="px-3 py-1 bg-gold-tint text-gold-text text-xs font-semibold rounded-full">One-to-One General English</span>
+            <span class="px-3 py-1 bg-tertiary-tint text-tertiary-text text-xs font-semibold rounded-full">Syria</span>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
 
-        <!-- Story 2 -->
-        <div class="card-flat bg-white p-8">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-16 h-16 bg-terra rounded-full flex items-center justify-center text-white text-2xl font-bold"><i data-lucide="briefcase" style="width: 28px; height: 28px;"></i></div>
-            <div>
-              <p class="font-bold text-navy">Got Promotion</p>
-              <p class="text-sm text-slate-blue">Fatima Hassan</p>
-            </div>
-          </div>
-          <p class="text-slate-blue mb-4">"Business English with Mark gave me the confidence to present at international meetings. Promoted to Regional Manager!"</p>
-          <div class="flex gap-2 flex-wrap">
-            <span class="px-3 py-1 bg-navy-tint text-navy text-xs font-semibold rounded-full">Business English</span>
-            <span class="px-3 py-1 bg-tertiary-tint text-tertiary-text text-xs font-semibold rounded-full">Career Win</span>
-          </div>
-        </div>
-
-        <!-- Story 3 -->
-        <div class="card-flat bg-white p-8">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center text-white text-2xl font-bold"><i data-lucide="mic" style="width: 28px; height: 28px; color: white;"></i></div>
-            <div>
-              <p class="font-bold text-navy">Speaking Confidence</p>
-              <p class="text-sm text-slate-blue">Youssef Ibrahim</p>
-            </div>
-          </div>
-          <p class="text-slate-blue mb-4">"Speaking &amp; Fluency transformed my fear into fluency. Now leading team meetings and presenting without anxiety!"</p>
-          <div class="flex gap-2 flex-wrap">
-            <span class="px-3 py-1 bg-gold-tint text-gold-text text-xs font-semibold rounded-full">Speaking</span>
-            <span class="px-3 py-1 bg-tertiary-tint text-tertiary-text text-xs font-semibold rounded-full">Confidence Boost</span>
-          </div>
-        </div>
+      <!-- Prev / next arrows -->
+      <div class="flex justify-center gap-3 mt-8">
+        <button type="button" class="stories-prev w-12 h-12 rounded-full bg-gold text-white flex items-center justify-center hover:bg-gold-deep focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed [&.swiper-button-disabled]:opacity-40 [&.swiper-button-disabled]:cursor-not-allowed" aria-label="Previous stories">
+          <i data-lucide="chevron-left" style="width: 22px; height: 22px;"></i>
+        </button>
+        <button type="button" class="stories-next w-12 h-12 rounded-full bg-gold text-white flex items-center justify-center hover:bg-gold-deep focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed [&.swiper-button-disabled]:opacity-40 [&.swiper-button-disabled]:cursor-not-allowed" aria-label="Next stories">
+          <i data-lucide="chevron-right" style="width: 22px; height: 22px;"></i>
+        </button>
       </div>
     </div>
   </section>
@@ -617,7 +975,7 @@
 
       <div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
-          <div class="rounded-2xl overflow-hidden min-h-[320px]">
+          <div class="rounded-2xl overflow-hidden min-h-[320px] border border-navy/20 shadow-soft-lg">
             <img src="/assets/imgs/certificate.webp" alt="Speakademi Certificate of Completion" class="w-full h-full object-cover">
           </div>
 
@@ -680,13 +1038,13 @@
 
         <!-- Stat 3 -->
         <div class="text-center">
-          <p class="stat-number text-5xl md:text-6xl font-bold mb-2 text-white"><span class="stat-counter" data-target="12">0</span></p>
+          <p class="stat-number text-5xl md:text-6xl font-bold mb-2 text-white"><span class="stat-counter" data-target="10">0</span>+</p>
           <p class="text-lg font-bold text-white">Expert Instructors</p>
         </div>
 
         <!-- Stat 4 -->
         <div class="text-center">
-          <p class="stat-number text-5xl md:text-6xl font-bold mb-2 text-white"><span class="stat-counter" data-target="8">0</span>+</p>
+          <p class="stat-number text-5xl md:text-6xl font-bold mb-2 text-white"><span class="stat-counter" data-target="14">0</span>+</p>
           <p class="text-lg font-bold text-white">Years Experience</p>
         </div>
       </div>
@@ -706,7 +1064,7 @@
           <div class="hidden lg:block">
             <p class="font-bold text-navy mb-2">Still have questions?</p>
             <p class="text-sm text-slate-blue mb-4 max-w-xs">Our team is happy to help, whether you're just exploring or ready to get started.</p>
-            <a href="https://wa.me/60172740240?text=Hi%2C%20I%20have%20a%20question%20about%20Speakademi%20courses" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-bold text-navy">
+            <a href="https://wa.me/601125366351?text=Hi%2C%20I%20have%20a%20question%20about%20Speakademi%20courses" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-bold text-navy">
               Contact us <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
             </a>
           </div>
@@ -779,7 +1137,7 @@
         <div class="lg:hidden">
           <p class="font-bold text-navy mb-2">Still have questions?</p>
           <p class="text-sm text-slate-blue mb-4">Our team is happy to help, whether you're just exploring or ready to get started.</p>
-          <a href="https://wa.me/60172740240?text=Hi%2C%20I%20have%20a%20question%20about%20Speakademi%20courses" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-bold text-navy">
+          <a href="https://wa.me/601125366351?text=Hi%2C%20I%20have%20a%20question%20about%20Speakademi%20courses" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-bold text-navy">
             Contact us <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
           </a>
         </div>
@@ -813,7 +1171,7 @@
   <div data-include="/assets/partials/footer.html"></div>
 
   <!-- ─ WHATSAPP FLOATING BUTTON ─ -->
-  <a href="https://wa.me/60172740240" target="_blank" class="fixed bottom-6 right-6 z-40 p-4 bg-success-green text-white rounded-full shadow-soft-xl hover:shadow-soft-xl hover:scale-110 transition-all duration-200" title="Chat with us on WhatsApp">
+  <a href="https://wa.me/601125366351" target="_blank" class="fixed bottom-6 right-6 z-40 p-4 bg-success-green text-white rounded-full shadow-soft-xl hover:shadow-soft-xl hover:scale-110 transition-all duration-200" title="Chat with us on WhatsApp">
     <i data-lucide="message-circle"></i>
   </a>
 
@@ -823,6 +1181,13 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     // Initialize Swiper
+    const storiesSwiper = new Swiper('#stories-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      navigation: { prevEl: '.stories-prev', nextEl: '.stories-next' },
+      breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+      autoplay: { delay: 6000, disableOnInteraction: false },
+    });
     const testimonialsSwiper = new Swiper('#testimonials-swiper', {
       slidesPerView: 1,
       spaceBetween: 24,

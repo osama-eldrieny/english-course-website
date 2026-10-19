@@ -602,3 +602,46 @@
     animation: blob 6s ease-in-out infinite;
   }
 }
+
+/* ── Localization (see assets/js/i18n.js) ─────────────────────────────── */
+/* Hide the page until the first translation pass so English never flashes. */
+html[data-i18n-pending] body { opacity: 0; }
+
+/* Per-language font stacks (Arabic / Chinese are loaded on demand by i18n.js). */
+html[lang="ar"] body, html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4,
+html[lang="ar"] button, html[lang="ar"] input, html[lang="ar"] textarea {
+  font-family: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
+  letter-spacing: 0;
+}
+html[lang="zh"] body, html[lang="zh"] h1, html[lang="zh"] h2, html[lang="zh"] h3, html[lang="zh"] h4,
+html[lang="zh"] button, html[lang="zh"] input, html[lang="zh"] textarea {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  letter-spacing: 0;
+}
+html[lang="ru"] body, html[lang="ru"] h1, html[lang="ru"] h2, html[lang="ru"] h3, html[lang="ru"] h4 {
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+/* Right-to-left (Arabic): flex/grid and text direction mirror automatically via dir="rtl";
+   the rules below cover the physical left/right utilities used in the markup. */
+html[dir="rtl"] .text-left { text-align: right; }
+html[dir="rtl"] .text-right { text-align: left; }
+html[dir="rtl"] .pl-3 { padding-left: 0; padding-right: 0.75rem; }
+html[dir="rtl"] .pl-5 { padding-left: 0; padding-right: 1.25rem; }
+html[dir="rtl"] .pr-3 { padding-right: 0; padding-left: 0.75rem; }
+html[dir="rtl"] .pl-6 { padding-left: 0; padding-right: 1.5rem; }
+html[dir="rtl"] .ml-auto { margin-left: 0; margin-right: auto; }
+@media (min-width: 768px) {
+  html[dir="rtl"] .md\:pl-7 { padding-left: 0; padding-right: 1.75rem; }
+  html[dir="rtl"] .md\:pr-4 { padding-right: 0; padding-left: 1rem; }
+}
+@media (min-width: 1024px) {
+  html[dir="rtl"] .lg\:ml-0 { margin-right: 0; }
+}
+html[dir="rtl"] .border-l-4 { border-left-width: 0; border-right-width: 4px; }
+html[dir="rtl"] .absolute.left-0 { left: auto; right: 0; }
+/* Directional icons point the other way. */
+html[dir="rtl"] .lucide-arrow-right,
+html[dir="rtl"] .lucide-arrow-left,
+html[dir="rtl"] .lucide-chevron-right,
+html[dir="rtl"] .lucide-chevron-left { transform: scaleX(-1); }

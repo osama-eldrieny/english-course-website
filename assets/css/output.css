@@ -1189,6 +1189,10 @@ select.input-base {
   --logo-spark: var(--color-terra);
 }
 
+.pointer-events-none{
+  pointer-events: none;
+}
+
 .visible{
   visibility: visible;
 }
@@ -1217,6 +1221,10 @@ select.input-base {
   position: sticky;
 }
 
+.inset-0{
+  inset: 0px;
+}
+
 .-bottom-10{
   bottom: -2.5rem;
 }
@@ -1225,12 +1233,12 @@ select.input-base {
   bottom: 1.5rem;
 }
 
-.left-0{
-  left: 0px;
+.end-0{
+  inset-inline-end: 0px;
 }
 
-.left-3{
-  left: 0.75rem;
+.left-0{
+  left: 0px;
 }
 
 .left-5{
@@ -1257,12 +1265,12 @@ select.input-base {
   top: 2.5rem;
 }
 
-.top-3{
-  top: 0.75rem;
-}
-
 .top-32{
   top: 8rem;
+}
+
+.top-full{
+  top: 100%;
 }
 
 .z-10{
@@ -1277,8 +1285,8 @@ select.input-base {
   z-index: 50;
 }
 
-.z-\[60\]{
-  z-index: 60;
+.z-\[70\]{
+  z-index: 70;
 }
 
 .mx-auto{
@@ -1332,6 +1340,10 @@ select.input-base {
 
 .mb-8{
   margin-bottom: 2rem;
+}
+
+.me-2{
+  margin-inline-end: 0.5rem;
 }
 
 .ml-auto{
@@ -1410,6 +1422,10 @@ select.input-base {
   height: 3rem;
 }
 
+.h-14{
+  height: 3.5rem;
+}
+
 .h-16{
   height: 4rem;
 }
@@ -1442,6 +1458,10 @@ select.input-base {
   height: 300px;
 }
 
+.h-\[86px\]{
+  height: 86px;
+}
+
 .h-full{
   height: 100%;
 }
@@ -1470,8 +1490,8 @@ select.input-base {
   width: 4rem;
 }
 
-.w-44{
-  width: 11rem;
+.w-40{
+  width: 10rem;
 }
 
 .w-5{
@@ -1484,6 +1504,10 @@ select.input-base {
 
 .w-72{
   width: 18rem;
+}
+
+.w-\[86px\]{
+  width: 86px;
 }
 
 .w-auto{
@@ -1624,6 +1648,10 @@ select.input-base {
   gap: 0.25rem;
 }
 
+.gap-1\.5{
+  gap: 0.375rem;
+}
+
 .gap-10{
   gap: 2.5rem;
 }
@@ -1650,10 +1678,6 @@ select.input-base {
 
 .gap-6{
   gap: 1.5rem;
-}
-
-.gap-7{
-  gap: 1.75rem;
 }
 
 .gap-8{
@@ -1771,6 +1795,10 @@ select.input-base {
   border-color: rgb(var(--color-navy-rgb) / 0.1);
 }
 
+.border-navy\/20{
+  border-color: rgb(var(--color-navy-rgb) / 0.2);
+}
+
 .border-white\/20{
   border-color: rgb(255 255 255 / 0.2);
 }
@@ -1781,6 +1809,10 @@ select.input-base {
 
 .bg-bg-warm{
   background-color: var(--color-bg-warm);
+}
+
+.bg-black\/5{
+  background-color: rgb(0 0 0 / 0.05);
 }
 
 .bg-cream{
@@ -1873,6 +1905,11 @@ select.input-base {
      object-fit: cover;
 }
 
+.object-\[25\%_12\%\]{
+  -o-object-position: 25% 12%;
+     object-position: 25% 12%;
+}
+
 .object-\[50\%_20\%\]{
   -o-object-position: 50% 20%;
      object-position: 50% 20%;
@@ -1910,11 +1947,6 @@ select.input-base {
 .px-3{
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-}
-
-.px-3\.5{
-  padding-left: 0.875rem;
-  padding-right: 0.875rem;
 }
 
 .px-4{
@@ -2028,6 +2060,10 @@ select.input-base {
   padding-top: 8rem;
 }
 
+.pt-4{
+  padding-top: 1rem;
+}
+
 .pt-8{
   padding-top: 2rem;
 }
@@ -2055,6 +2091,10 @@ select.input-base {
 .text-5xl{
   font-size: 3rem;
   line-height: 1;
+}
+
+.text-\[22px\]{
+  font-size: 22px;
 }
 
 .text-base{
@@ -2133,6 +2173,10 @@ select.input-base {
   color: var(--color-gold-text);
 }
 
+.text-gold-tint{
+  color: var(--color-gold-tint);
+}
+
 .text-navy{
   --tw-text-opacity: 1;
   color: rgb(var(--color-navy-rgb) / var(--tw-text-opacity, 1));
@@ -2169,6 +2213,10 @@ select.input-base {
 
 .text-white\/90{
   color: rgb(255 255 255 / 0.9);
+}
+
+.underline-offset-4{
+  text-underline-offset: 4px;
 }
 
 .opacity-0{
@@ -2350,6 +2398,105 @@ select.input-base {
   }
 }
 
+/* ── Localization (see assets/js/i18n.js) ─────────────────────────────── */
+
+/* Hide the page until the first translation pass so English never flashes. */
+
+html[data-i18n-pending] body {
+  opacity: 0;
+}
+
+/* Per-language font stacks (Arabic / Chinese are loaded on demand by i18n.js). */
+
+html[lang="ar"] body, html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4,
+html[lang="ar"] button, html[lang="ar"] input, html[lang="ar"] textarea {
+  font-family: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+html[lang="zh"] body, html[lang="zh"] h1, html[lang="zh"] h2, html[lang="zh"] h3, html[lang="zh"] h4,
+html[lang="zh"] button, html[lang="zh"] input, html[lang="zh"] textarea {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+html[lang="ru"] body, html[lang="ru"] h1, html[lang="ru"] h2, html[lang="ru"] h3, html[lang="ru"] h4 {
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+/* Right-to-left (Arabic): flex/grid and text direction mirror automatically via dir="rtl";
+   the rules below cover the physical left/right utilities used in the markup. */
+
+html[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+html[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+html[dir="rtl"] .pl-3 {
+  padding-left: 0;
+  padding-right: 0.75rem;
+}
+
+html[dir="rtl"] .pl-5 {
+  padding-left: 0;
+  padding-right: 1.25rem;
+}
+
+html[dir="rtl"] .pr-3 {
+  padding-right: 0;
+  padding-left: 0.75rem;
+}
+
+html[dir="rtl"] .pl-6 {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+html[dir="rtl"] .ml-auto {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  html[dir="rtl"] .md\:pl-7 {
+    padding-left: 0;
+    padding-right: 1.75rem;
+  }
+
+  html[dir="rtl"] .md\:pr-4 {
+    padding-right: 0;
+    padding-left: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  html[dir="rtl"] .lg\:ml-0 {
+    margin-right: 0;
+  }
+}
+
+html[dir="rtl"] .border-l-4 {
+  border-left-width: 0;
+  border-right-width: 4px;
+}
+
+html[dir="rtl"] .absolute.left-0 {
+  left: auto;
+  right: 0;
+}
+
+/* Directional icons point the other way. */
+
+html[dir="rtl"] .lucide-arrow-right,
+html[dir="rtl"] .lucide-arrow-left,
+html[dir="rtl"] .lucide-chevron-right,
+html[dir="rtl"] .lucide-chevron-left {
+  transform: scaleX(-1);
+}
+
 .hover\:-translate-y-1:hover{
   --tw-translate-y: -0.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -2427,6 +2574,10 @@ select.input-base {
   --tw-ring-color: var(--color-gold);
 }
 
+.focus-visible\:ring-gold-tint:focus-visible{
+  --tw-ring-color: var(--color-gold-tint);
+}
+
 .focus-visible\:ring-offset-2:focus-visible{
   --tw-ring-offset-width: 2px;
 }
@@ -2449,15 +2600,15 @@ select.input-base {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.group:hover .group-hover\:underline{
+  text-decoration-line: underline;
+}
+
 .group:hover .group-hover\:opacity-100{
   opacity: 1;
 }
 
 @media (min-width: 640px){
-  .sm\:inline{
-    display: inline;
-  }
-
   .sm\:h-auto{
     height: auto;
   }
@@ -2502,14 +2653,6 @@ select.input-base {
 }
 
 @media (min-width: 768px){
-  .md\:left-6{
-    left: 1.5rem;
-  }
-
-  .md\:top-5{
-    top: 1.25rem;
-  }
-
   .md\:order-1{
     order: 1;
   }
@@ -2522,24 +2665,12 @@ select.input-base {
     grid-column: span 2 / span 2;
   }
 
-  .md\:ml-0{
-    margin-left: 0px;
+  .md\:me-3{
+    margin-inline-end: 0.75rem;
   }
 
-  .md\:flex{
-    display: flex;
-  }
-
-  .md\:inline-flex{
-    display: inline-flex;
-  }
-
-  .md\:hidden{
-    display: none;
-  }
-
-  .md\:flex-1{
-    flex: 1 1 0%;
+  .md\:h-16{
+    height: 4rem;
   }
 
   .md\:grid-cols-2{
@@ -2625,10 +2756,6 @@ select.input-base {
     font-size: 3.75rem;
     line-height: 1;
   }
-
-  .md\:text-xl{
-    font-size: 18px;
-  }
 }
 
 @media (min-width: 1024px){
@@ -2648,8 +2775,20 @@ select.input-base {
     grid-column: span 3 / span 3;
   }
 
+  .lg\:ml-0{
+    margin-left: 0px;
+  }
+
   .lg\:block{
     display: block;
+  }
+
+  .lg\:flex{
+    display: flex;
+  }
+
+  .lg\:inline-flex{
+    display: inline-flex;
   }
 
   .lg\:hidden{
@@ -2658,6 +2797,14 @@ select.input-base {
 
   .lg\:h-96{
     height: 24rem;
+  }
+
+  .lg\:max-w-3xl{
+    max-width: 48rem;
+  }
+
+  .lg\:flex-1{
+    flex: 1 1 0%;
   }
 
   .lg\:grid-cols-2{
@@ -2683,6 +2830,16 @@ select.input-base {
   .lg\:text-6xl{
     font-size: 3.75rem;
     line-height: 1;
+  }
+}
+
+@media (min-width: 1280px){
+  .xl\:inline{
+    display: inline;
+  }
+
+  .xl\:gap-7{
+    gap: 1.75rem;
   }
 }
 
