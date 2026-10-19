@@ -11,7 +11,7 @@
   ];
   var STORAGE_KEY = 'lang';
   var ATTRS = ['placeholder', 'aria-label', 'alt', 'title'];
-  var META_SELECTOR = 'meta[name="description"], meta[property="og:title"], meta[property="og:description"]';
+  var META_SELECTOR = 'meta[name="description"], meta[property="og:title"], meta[property="og:description"], meta[name="twitter:title"], meta[name="twitter:description"]';
   var FONTS = {
     ar: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap',
     zh: 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap',

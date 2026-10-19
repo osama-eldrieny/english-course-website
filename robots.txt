@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Internal tools and pages that should not appear in search results
+Disallow: /placement-test.html
+Disallow: /admin-placement-questions.html
+Disallow: /preview-all-questions.html
+Disallow: /apps-script/
+Disallow: /requirements/
+
+Sitemap: https://speakademi.com/sitemap.xml
