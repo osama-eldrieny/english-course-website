@@ -176,12 +176,24 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('writing-answer').addEventListener('input', updateWordCount);
 });
 
+// Joins the chosen country code and the typed number into one international
+// number (e.g. "+60111234567"). Non-digits and leading zeros are dropped, and a
+// number typed with its own "+"/"00" country code is kept as typed.
+function buildWhatsappNumber() {
+  const raw = document.getElementById('whatsapp').value.trim();
+  if (!raw) return '';
+  const digits = raw.replace(/\D/g, '');
+  if (/^(\+|00)/.test(raw)) return '+' + digits.replace(/^0+/, '');
+  const code = document.getElementById('whatsapp-country').value;
+  return '+' + code + digits.replace(/^0+/, '');
+}
+
 function onInfoSubmit(e) {
   e.preventDefault();
   state.studentInfo = {
     email: document.getElementById('email').value.trim(),
     fullName: document.getElementById('fullName').value.trim(),
-    whatsapp: document.getElementById('whatsapp').value.trim(),
+    whatsapp: buildWhatsappNumber(),
   };
   startTest();
 }
