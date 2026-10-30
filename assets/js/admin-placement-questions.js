@@ -2,7 +2,7 @@
 // Talks to the same Apps Script web app as placement-test.js, using the
 // admin_questions / admin_save_question / admin_delete_question actions.
 
-const API_URL = 'https://script.google.com/macros/s/AKfycbwkAAAat323vqTYRBn1MXIcUfdTOmh9MxUfOeuBVAwPJtNloo0CADI89reNxPeDd8EhTw/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbz-osUfHJ0hhHH0dHNT5FqmIu07QNNlm-AFAteHX-ZPWzrefztEagiHxSoGJem_4y9sAg/exec';
 const PASSWORD_KEY = 'speakfirst_admin_password';
 
 const QUESTION_TYPES = [
