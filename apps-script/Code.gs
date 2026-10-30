@@ -13,7 +13,7 @@
 
 const SPREADSHEET_ID = SpreadsheetApp.getActiveSpreadsheet().getId();
 // Comma-separated if you want more than one admin notified.
-const ADMIN_EMAIL = 'amalkhayata.ahk@gmail.com,osama.eldrieny@gmail.com';
+const ADMIN_EMAIL = 'amalkhayata.ahk@gmail.com';
 
 // Shared password gating the question-editor admin endpoints below. NOT
 // hardcoded here on purpose — set it once via Apps Script's own UI:
@@ -503,16 +503,16 @@ function sendStudentEmail(email, fullName) {
   if (!email) return;
   const body = `Hi ${fullName || 'there'},
 
-Thank you for completing the SpeakFirst English Placement Test!
+Thank you for completing the Speakademi English Placement Test!
 
 Your answers have been received. We're reviewing them now and will contact you with your results shortly.
 
 Best,
-SpeakFirst`;
+Speakademi`;
 
   // The level is deliberately not included — students hear their result
   // from the team (it's only in the admin email and the Results sheet).
-  sendMail_(email, 'We received your SpeakFirst Placement Test', body);
+  sendMail_(email, 'We received your Speakademi Placement Test', body);
 }
 
 function sendAdminEmail(payload, graded, level) {
